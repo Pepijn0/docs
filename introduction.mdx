@@ -1,13 +1,31 @@
 ---
 title: "Overview"
-description: "Let’s get you started with our API!"
+description: "Learn how you can setup E-commerce channel integrations with Kariz’s unified APIs"
 ---
 
+![](image.png)
 
+Welcome to the Kariz docs! You have come to the right place to learn how Kariz can help you setup all your E-commerce sales channel integrations through our unified API
 
-<img alt="Hero Dark" classname="hidden dark:block" src="/images/hero-dark.svg" />
+### [​](https://docs.kombo.dev/introduction#what-is-kombo)&#xA;**What is Kariz ?**
 
-## Setting up
+Kombo offers unified APIs for E-commerce We allow our customers to build a single integration to Kariz and instantly launch all E-commerce sales channel integrations to their customers.
+
+We do this by standardizing the data models of all the E-commerce platforms we support and allowing you to interact with the unified models using a set of clearly defined endpoints.
+
+This way, getting product data from an E-commerce platform solution like Shopify will look the same as getting product data from other E-commerce channels like Amazon. It’s the same set of data models and fields you can rely on.
+
+### &#xA;Unified APIs
+
+When scaling your e-commerce operation to multiple sales platforms, the effort and time spent both to build and maintain these integrations grows exponentially with the ammount of added channels. With Kariz, you don’t have to worry about the complexity of the Sales Channels. You will receive data in the same format for every tool you choose to support.
+
+We offer lots of tooling to make this process as simple as possible for any possible use-case you may have. This includes multiple unified authentication methods, pagination and our OpenAPI schema's to our full datamodels
+
+### Our Data models - Based of Shopify's
+
+To make connecting to Kariz as easy as possible, we use the same data models for our unified API as Shopify. This means that if you already have a integration to Shopify, we allow you to get setup in under an hour to all the other sales channel integrations that we offer. More than that, we return the data much easier than even using the Shopify API. We make multiple API calls to make sure that all the relevant e-commerce data is included in every call. This means that our product data also includes variants, inventory and inventory location. Best of all, it works the same for every E-commerce channel.
+
+## Authentication
 
 Authenticate your users with our 2 authentication methods
 
@@ -35,16 +53,20 @@ See how to connect to all your data across sales channels&#x20;
   </Card>
 </CardGroup>
 
-## Tooling&#x20;
+## Resources
 
-For more info on how our API works check out the following tabs&#x20;
+Explore our other resources to learn more about Kariz
 
 <CardGroup cols={2}>
-  <Card title="Supported Channels" icon="API" href="https://mintlify.com/docs/settings/global">
+  <Card title="Supported Channels" icon="store" href="https://mintlify.com/docs/settings/global">
     Overview of all of the E-commerce channels we currently support and the data models
   </Card>
 
-  <Card title="Pagination" icon="tooling" href="https://mintlify.com/docs/api-playground/openapi">
+  <Card title="Pagination" icon="page" href="https://mintlify.com/docs/api-playground/openapi">
     Description of how to access product and order batches greater than 100 at once using our API
+  </Card>
+
+  <Card title="Open API Schema" icon="code">
+    Download our OpenAPI schema for testing and code generation
   </Card>
 </CardGroup>
