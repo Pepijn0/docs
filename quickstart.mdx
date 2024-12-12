@@ -3,35 +3,41 @@ title: "Quickstart"
 description: "Welcome to Kariz's Quickstart Guide👋! Connect to dozens of E-commerce channels quickly."
 ---
 
+## What you will built
+
+If you haven't already, book a demo with us to get your account credentials. Here you will receive your **application** **API key**, every time you want to connect to connect to Kariz, this needs to be included in your request to our API.&#x20;
+
 ## Step 1: Create a developer account
 
-If you haven't already, book a demo with us to get your account credentials. Here you will receive your **application** **API key**, every time you want to connect to connect to Kariz, this needs to be included in the&#x20;
+If you haven't already, book a demo with us to get your account credentials. Here you will receive your **application** **API key**, every time you want to connect to connect to Kariz, this needs to be included in your request to our API.&#x20;
 
-## Step 2: Create a developer account
+## Step 2: Authenticate a user
 
-If you haven't already, book a demo with us to get your account credentials.
+There are 2 ways to authenticate a user in Kariz. Using our generic authenticator or using token authentication. The second is recommended for testing with existing users or if you want to keep your style for the integration page. For more infomation on the different authentication methods click here. For this tutorial we will use our generic authenticator as this is the quistest to setup.
 
+To create a authentication link for users, with our generic authenticator, you need to send us 3 parameters:
 
+* Application API key
 
+* Sales channel(s)
 
+* User name&#x20;
 
+The application API key you received from us before, you need to send it in every request to us so we authenticate your requests.
 
+The Sales channel(s) you send in the requests to us will determine what your end user will be asked to authenticate with. This can be one channel (shopify) but it can also be multiple channels at the same time (Shopify, WooCommerce and Amazon).
 
+The username, in order to authenticate a user for you, we need to know how to call the user. This code will be used later to retrieve data for a client. When you send us a username in a request, that didn't exisit yet. We are creating a new user for you in our database. When you send us a username that already existed in ourdatabase, we will update that record to include new sales channels or update old ones.
 
+## Step 3: Request data
 
-
-
-
-
-
-
-
-
-
-
-
+Now that you have autenticated a user, you can request data from them on the different sales channels. The data will always be returned in exactly the same format. To try this out, we recommend retrieving order data. More detailed instructurions can be found here:
 
 
+
+## Complete
+
+Now you can integrate to any of the E-commerce channels Kariz is connected to. There are some important concept you may want to check out. Particularly, how we handle rate limits and pagination. Kariz has build in pagination for every connected channel. This makes it possible to request get large data files.
 
 ### Edit and preview
 
