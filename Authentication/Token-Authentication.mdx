@@ -3,13 +3,7 @@ title: "Token Authentication"
 description: "Description of your new file."
 ---
 
-(desription of why you would want to use
-
-
-
-
-
-
+(desription of why you would want to use the token authentication)
 
 ##### Channels:
 
@@ -28,7 +22,7 @@ In the configuration, the scopes that are being used are called **channels**.
 
 Sample Json:
 
-```
+```json
 {
   "params": {
     "shopify": [
@@ -68,7 +62,7 @@ In the configuration, the scopes that are being used are called **channels**.
 
 Sample Json:
 
-```
+```json
 {
   "params": {
     "woocommerce": [
@@ -105,13 +99,56 @@ Sample Json:
 
 Sample Json:
 
-```
+```json
 {
   "params": {
     "bol": [
       {
         "key": "token",
         "value": "base64 token"
+      }
+    ]
+  }
+}
+```
+
+### `amazon_get_orders` : Retrieve a list of orders for **Amazon**
+
+[](https://github.com/runkariz/docs/blob/main/order/README.md#amazon_get_orders--retrieve-a-list-of-orders-for-amazon)
+
+##### Channels:
+
+[](https://github.com/runkariz/docs/blob/main/order/README.md#channels-3)
+
+In the configuration, the scopes that are being used are called **channels**.
+
+* `amazon`
+
+##### Available parameters:
+
+| Name           | Required                                     | Data type        | Description                                                                                                                          | Example                                                                             |
+| -------------- | -------------------------------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| endpoint       | Required                                     | String           | Shop URL find the full list [here](https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints)                                   | [https://sellingpartnerapi-eu.amazon.com](https://sellingpartnerapi-eu.amazon.com/) |
+| marketplaceIds | Required                                     | array of strings | The marketplace identifiers used in SP-API  find the full list [here](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids) | A1805IZSGTT6HS                                                                      |
+| token          | If user is not authenticated with magic link | String           | OAuth 2.0 token                                                                                                                      |                                                                                     |
+
+Sample Json:
+
+```json
+{
+  "params": {
+    "amazon": [
+      {
+        "key": "endpoint",
+        "value": "https://sellingpartnerapi-eu.amazon.com"
+      },
+      {
+        "key": "marketplaceIds",
+        "value": ["A1805IZSGTT6HS","A1PA6795UKMFR9"]
+      },
+      {
+        "key": "token",
+        "value": "oauth token"
       }
     ]
   }
