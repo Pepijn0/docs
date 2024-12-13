@@ -1,0 +1,111 @@
+---
+title: 'New file'
+description: 'Description of your new file.'
+---
+
+##### Channels:
+
+[](https://github.com/runkariz/docs/blob/main/order/README.md#channels)
+
+In the configuration, the scopes that are being used are called **channels**.
+
+* `shopify`
+
+##### Available parameters:
+
+| Name    | Required                                     | Data type | Description     | Example                  |
+| ------- | -------------------------------------------- | --------- | --------------- | ------------------------ |
+| baseUrl | If user is not authenticated with magic link | String    | Shop URL        | shop\_name.myshopify.com |
+| Token   | If user is not authenticated with magic link | String    | OAuth 2.0 token |                          |
+
+Sample Json:
+
+```
+{
+  "params": {
+    "shopify": [
+      {
+        "key": "baseUrl",
+        "value": "shop_name.myshopify.com"
+      },
+      {
+        "key": "token",
+        "value": "oauth token"
+      }
+    ]
+  }
+}
+```
+
+***
+
+### `woocommerce_get_orders` : Retrieve a list of orders for **WooCommerce**
+
+[](https://github.com/runkariz/docs/blob/main/order/README.md#woocommerce_get_orders--retrieve-a-list-of-orders-for-woocommerce)
+
+##### Channels:
+
+[](https://github.com/runkariz/docs/blob/main/order/README.md#channels-1)
+
+In the configuration, the scopes that are being used are called **channels**.
+
+* `woocommerce`
+
+##### Available parameters:
+
+| Name    | Required                                     | Data type | Description      | Example                                                                          |
+| ------- | -------------------------------------------- | --------- | ---------------- | -------------------------------------------------------------------------------- |
+| baseUrl | If user is not authenticated with magic link | String    | Full shop URL    | [**https://domain.com/wordpress/wp-json**](https://domain.com/wordpress/wp-json) |
+| Token   | If user is not authenticated with magic link | String    | Basic Auth token | base64                                                                           |
+
+Sample Json:
+
+```
+{
+  "params": {
+    "woocommerce": [
+      {
+        "key": "baseUrl",
+        "value": "https://domain.com/wordpress"
+      },
+      {
+        "key": "token",
+        "value": "base64 token"
+      }
+    ]
+  }
+}
+```
+
+***
+
+### `bol_get_orders` : Retrieve a list of orders for **Bol**
+
+[](https://github.com/runkariz/docs/blob/main/order/README.md#bol_get_orders--retrieve-a-list-of-orders-for-bol)
+
+##### Channels:
+
+[](https://github.com/runkariz/docs/blob/main/order/README.md#channels-2)
+
+* `bol`
+
+##### Available parameters:
+
+| Name  | Required                                     | Data type | Description      | Example |
+| ----- | -------------------------------------------- | --------- | ---------------- | ------- |
+| Token | If user is not authenticated with magic link | String    | Basic Auth token | base64  |
+
+Sample Json:
+
+```
+{
+  "params": {
+    "bol": [
+      {
+        "key": "token",
+        "value": "base64 token"
+      }
+    ]
+  }
+}
+```
