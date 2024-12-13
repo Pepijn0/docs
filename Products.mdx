@@ -1,0 +1,100 @@
+---
+title: "Products"
+description: "Description of your new file."
+---
+
+**Product Configurations**
+
+The product data from different channels is matched to a unified data model based on the Shopify product data model. For more information, refer to the Shopify Product API Documentation.
+
+### Why Use the Shopify Product Data Model?
+
+Kariz uses the Shopify product data model because it supports seamless integration with other e-commerce platforms. This consistency enables easier internal model adaptation, especially if you have already built a Shopify integration.
+
+### Inventory Data Integration
+
+The unified product data model includes inventory details for all product variants. With one API call, you receive:
+
+* All products
+
+* All product variants
+
+* Their inventory
+
+* Inventory levels split across multiple locations (if applicable)
+
+For more details on inventory models, refer to the Shopify Inventory API Documentation:
+
+* **Inventory Item**: [InventoryItem API Documentation]()
+
+* **Inventory Level**: [InventoryLevel API Documentation]()
+
+### Modifications to the Shopify Product Data Model
+
+* **ID Fields as Strings**: All ID fields are converted to strings to maintain cross-platform consistency.
+
+* **Added `channel_name` Variable**: Indicates the source platform of product data. For example, if data comes from Shopify, `channel_name = 'shopify'`.
+
+### Supported Channels and Parameters
+
+#### **Shopify**
+
+* **`baseUrl`** *(string, required if unauthenticated)*: Shop URL (e.g., `shop_name.myshopify.com`)
+
+* **`token`** *(string, required if unauthenticated)*: OAuth 2.0 token
+
+**Sample JSON:**
+
+\{
+&#x20; "params": \{
+&#x20;   "shopify": \[
+&#x20;     \{ "key": "baseUrl", "value": "shop\_name.myshopify.com" },
+&#x20;     \{ "key": "token", "value": "oauth token" }
+&#x20;   ]
+&#x20; }
+`}`
+
+By using these configurations, you can retrieve product details and inventory efficiently from various e-commerce platforms while maintaining a unified data model.
+
+
+Product API Parameters
+
+Below are the supported parameters for the `get products` function. These parameters allow filtering, sorting, and retrieving specific product data.
+
+#### **Filtering and Retrieval Parameters**
+
+* **`collection_id`** *(string, optional)*: Retrieves products within the specified collection.
+
+* **`created_at_min`** *(string, optional)*: Returns products created on or after the specified date.
+
+* **`created_at_max`** *(string, optional)*: Returns products created on or before the specified date.
+
+* **`fields`** *(string, optional)*: A comma-separated list of fields to include in the response.
+
+* **`handle`** *(string, optional)*: Retrieves products with a matching handle.
+
+* **`ids`** *(string, optional)*: A comma-separated list of specific product IDs to retrieve.
+
+* **`limit`** *(number, optional)*: The maximum number of products to return per page.
+
+* **`product_type`** *(string, optional)*: Retrieves products matching the specified product type.
+
+* **`published_at_min`** *(string, optional)*: Returns products published on or after the specified date.
+
+* **`published_at_max`** *(string, optional)*: Returns products published on or before the specified date.
+
+* **`published_status`** *(string, optional)*: Retrieves products with the specified published status.
+
+* **`since_id`** *(string, optional)*: Returns products created after the specified product ID.
+
+* **`status`** *(string, optional)*: Retrieves products with the specified status.
+
+* **`title`** *(string, optional)*: Retrieves products matching the specified title.
+
+* **`updated_at_min`** *(string, optional)*: Returns products updated on or after the specified date.
+
+* **`updated_at_max`** *(string, optional)*: Returns products updated on or before the specified date.
+
+* **`vendor`** *(string, optional)*: Retrieves products from the specified vendor.
+
+By using these parameters, you can efficiently query and retrieve relevant product data while minimizing data transfer and processing time.
