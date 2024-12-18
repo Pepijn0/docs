@@ -19,17 +19,27 @@ Benefits:
 
 ***
 
-### ~~Generating Magic Link URL~~
+### Authenticate user with Magic Link URL
 
-~~Magic Links can be generated ~~~~**Programmatically via API**~~
+Magic Links are generated **Programmatically via API** in 2 easy steps:
 
-#### ~~Dashboard~~
+1. &#x20;Generate an Authentication link for user
 
-![Merge Link demo in dashboard](https://docs.merge.dev/static/MergeLinkGIF-d9b614768238039669321db614778366.gif)
+2. &#x20;Redirect user to Authentication link
 
-~~You can igenerate Magic Link URLs via API in ~~~~**four easy steps**~~~~.~~
 
-1.
+To generate the authentication link you can call the following endpoint:
+`GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`
+
+
+Here you can specify the user ID of your user. This is how you will authenticate the user in subsequent calls to our API. The call also needs to contain a bearer token with your API credentials
+
+
+
+After this, all the user has to do is to complete the authentication flow. Here is an example video of what that may look like:
+
+
+
 
 ~~That's it! You will be presented with a unique URL that you can send to your customer.~~
 
@@ -41,11 +51,11 @@ Benefits:
 
 ~~To do this, make a POST request to the ~~[~~/link-token~~](https://docs.merge.dev/hris/link-token/)~~ endpoint.~~
 
-~~In the body parameters of your POST request, set the ~~~~`should_create_magic_link_url`~~~~ parameter to ~~~~`true`~~~~.~~
+~~In the body parameters of your POST request, set the \~\~\~\~~~~~`should_create_magic_link_url`~~~~\~\~\~\~ parameter to \~\~\~\~~~~~`true`~~~~\~\~\~\~.~~
 
 ~~`link_expiry_mins`~~
 
-~~In your POST request, we recommend setting the ~~~~`link_expiry_mins`~~~~ body parameter to the maximum of ~~~~`10080`~~~~ so that the Magic Link URL expires after 7 days.~~
+~~In your POST request, we recommend setting the \~\~\~\~~~~~`link_expiry_mins`~~~~\~\~\~\~ body parameter to the maximum of \~\~\~\~~~~~`10080`~~~~\~\~\~\~ so that the Magic Link URL expires after 7 days.~~
 
 ~~The generated Magic Link URL will expire 1 hour after creation.~~
 
@@ -53,4 +63,117 @@ Benefits:
 
 ### ~~Accessing Account Tokens for Linked Accounts Created with Magic Link~~
 
-~~Once your customer has successfully integrated their third-pary platform through Magic Link, you will need the new Linked Account's ~~~~**account token**~~~~ to make API requests to Merge on behalf of that Linked Account.~~
+~~Once your customer has successfully integrated their third-pary platform through Magic Link, you will need the new Linked Account's \~\~\~\~~~~~**account token**~~~~\~\~\~\~ to make API requests to Merge on behalf of that Linked Account.~~
+
+
+`GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`
+
+##### Parameters
+
+[](https://github.com/runkariz/docs/tree/main/authentication#parameters)
+
+> namerequiredtypedata typedescription
+> scopes
+> required
+> query
+> string\[]
+> Available options: `shopify`, `woocommerce`
+> tpUserId
+> required
+> query
+> string
+> The user id that you want to execute workflow for
+> redirectUrl
+> optional
+> query
+> string
+> The URL which user will be redirected to after finishes the authentication flow it can be your app
+
+**Note: `tpUserId` will be used to refer to your user and run workflows, so use a unique id for each user.**
+
+##### Responses
+
+[](https://github.com/runkariz/docs/tree/main/authentication#responses)
+
+> http codecontent-typeresponse
+> `200`
+> `application/json`
+> See the sample response
+> `400`
+> `application/json`
+> `{"code":"400","message":"Bad Request"}`
+> `405`
+> `text/html;charset=utf-8`
+> None
+
+Sample Response:
+
+\{
+&#x20; "token": "token",
+&#x20; "expirationUtcUnixTimeSeconds": 1727873939
+}
+
+##### Example cURL
+
+[](https://github.com/runkariz/docs/tree/main/authentication#example-curl)
+
+> curl -X 'GET' \\
+> 'https://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId=1\&redirectUrl=https%3A%2F%2Fmyapp.com\&scopes=shopify\&scopes=woocommerce' \\
+> -H 'accept: text/plain' \\
+> -H 'Authorization: Bearer \{access\_token}'
+
+`GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`
+
+##### Parameters
+
+[](https://github.com/runkariz/docs/tree/main/authentication#parameters)
+
+> namerequiredtypedata typedescription
+> scopes
+> required
+> query
+> string\[]
+> Available options: `shopify`, `woocommerce`
+> tpUserId
+> required
+> query
+> string
+> The user id that you want to execute workflow for
+> redirectUrl
+> optional
+> query
+> string
+> The URL which user will be redirected to after finishes the authentication flow it can be your app
+
+**Note: `tpUserId` will be used to refer to your user and run workflows, so use a unique id for each user.**
+
+##### Responses
+
+[](https://github.com/runkariz/docs/tree/main/authentication#responses)
+
+> http codecontent-typeresponse
+> `200`
+> `application/json`
+> See the sample response
+> `400`
+> `application/json`
+> `{"code":"400","message":"Bad Request"}`
+> `405`
+> `text/html;charset=utf-8`
+> None
+
+Sample Response:
+
+\{
+&#x20; "token": "token",
+&#x20; "expirationUtcUnixTimeSeconds": 1727873939
+}
+
+##### Example cURL
+
+```
+curl -X 'GET' \
+'https://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId=1&redirectUrl=https%3A%2F%2Fmyapp.com&scopes=shopify&scopes=woocommerce' \
+-H 'accept: text/plain' \
+-H 'Authorization: Bearer {access_token}'
+```
