@@ -1,11 +1,11 @@
 ---
 title: "Orders"
-description: "Overview of the order "
+description: "Get all the order data, including shipments and refunds on every supported channel"
 ---
 
-### Intro (check)
+### Overview (check)
 
-To interact with your users' orders, use the following configurations to fetch their orders. The order data from different channels is matched to a unified data model based on the Shopify order data model. For more details, refer to the Shopify Order API Documentation.
+To interact with your users' orders, use the following configurations to fetch their orders. The order data from different channels is matched to a unified data model based on the Shopify order data model. For more details, refer to [the Shopify Order API Documentation](https://shopify.dev/docs/api/admin-rest/2024-10/resources/order). By default, our order data includes **refunds, Shipment status**&#x20;
 
 ### Why Use the Shopify Data Model? (check)
 
@@ -15,11 +15,7 @@ Kariz uses the Shopify data model because it allows easy adaptation to your inte
 
 * **ID Fields as Strings**: All ID fields are converted to strings to maintain consistency across platforms.
 
-* **Added `channel_name` Variable**: A new variable called `channel_name` indicates the source platform of the order data. For example, if the order data is fetched from Shopify, `channel_name = 'shopify'`.
-
-
-
-  **Order Parameters for the `get order` Method**
+* **Added `channel_name` Variable**: A new variable called `channel_name` indicates the source platform of the order data. For example, if the order data is fetched from Shopify, `channel_name = 'shopify'`.**Order Parameters for the `get order` Method**
 
 Below are the supported parameters for the `get order` method. These parameters help filter, sort, and retrieve specific orders based on various criteria.
 

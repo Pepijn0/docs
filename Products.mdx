@@ -1,11 +1,9 @@
 ---
-title: "Products"
-description: "Description of your new file."
+title: "Product Configurations"
+description: "Get all product data from connected E-commerce channels, including variants and inventory"
 ---
 
-**Product Configurations**
-
-The product data from different channels is matched to a unified data model based on the Shopify product data model. For more information, refer to the Shopify Product API Documentation.
+The product data from different channels is matched to a unified data model based on the Shopify product data model. For more information, refer to the[ Shopify Product API Documentation.](https://shopify.dev/docs/api/admin-rest)
 
 ### Why Use the Shopify Product Data Model?
 
@@ -39,29 +37,32 @@ For more details on inventory models, refer to the Shopify Inventory API Documen
 
 #### **Shopify**
 
-* **`baseUrl`** *(string, required if unauthenticated)*: Shop URL (e.g., `shop_name.myshopify.com`)
+* **~~`baseUrl`~~**~~ ~~~~*(string, required if unauthenticated)*~~~~: Shop URL (e.g., ~~~~`shop_name.myshopify.com`~~~~)~~
 
-* **`token`** *(string, required if unauthenticated)*: OAuth 2.0 token
+* **~~`token`~~**~~ ~~~~*(string, required if unauthenticated)*~~~~: OAuth 2.0 token~~
 
 **Sample JSON:**
 
-\{
-&#x20; "params": \{
-&#x20;   "shopify": \[
-&#x20;     \{ "key": "baseUrl", "value": "shop\_name.myshopify.com" },
-&#x20;     \{ "key": "token", "value": "oauth token" }
-&#x20;   ]
-&#x20; }
-`}`
+```json
+{
+  "params": {
+    "shopify": [
+      { "key": "baseUrl", "value": "shop_name.myshopify.com" },
+      { "key": "token", "value": "oauth token" }
+    ]
+  }
+}
+```
+
+
 
 By using these configurations, you can retrieve product details and inventory efficiently from various e-commerce platforms while maintaining a unified data model.
 
-
-Product API Parameters
+## Product API Parameters
 
 Below are the supported parameters for the `get products` function. These parameters allow filtering, sorting, and retrieving specific product data.
 
-#### **Filtering and Retrieval Parameters**
+### **Filtering and Retrieval Parameters**
 
 * **`collection_id`** *(string, optional)*: Retrieves products within the specified collection.
 
