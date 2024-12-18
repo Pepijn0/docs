@@ -1,32 +1,50 @@
 ---
 title: "Token Authentication"
-description: "Description of your new file."
+description: "Integrate users with your existing authenticator, keeping your style"
 ---
 
-(description of why you would want to use
+When using the token authentication, you can simply send a request to us using your application token and the user token and base URL (when needed). This will allow you to authenticate users without having to send them throught the authenticator, with every API request that you send.
 
+There are a few reasons why you may want to use this approach over the magic link
 
+* You want to test Kariz for existing users that you have already authenticated with
 
+* You want to keep your own style for the authentication flow
 
+* You don't want to reauthenticate existing users
 
+This authentication method allows you to circumvent these use cases and still use our fully maintained unified API as part of your process.
 
+## **How it works**
 
-##### Channels:
+1. Get the existing user credential for a marketplace (usually stored in your app database)
+
+2. Send us a request to get data for that customer on one of our marketplaces
+
+The request can be anything, like get orders or get products. If you want to authenticate using this method it is important that your include some additional parameters in the request. These are based on what the application needs to handle the authentication and differ per channel. Below is listed what parameters we need for each channel to authenticate your users.
+
+## Channels:
 
 [](https://github.com/runkariz/docs/blob/main/order/README.md#channels)
 
 In the configuration, the scopes that are being used are called **channels**.
 
-* `shopify`
+* `Shopify`
 
-##### Available parameters:
+* `Bol.com`
+
+* `Amazon`
+
+* `WooCommerce`
+
+### `Shopify parameters`
 
 | Name    | Required                                     | Data type | Description     | Example                  |
 | ------- | -------------------------------------------- | --------- | --------------- | ------------------------ |
 | baseUrl | If user is not authenticated with magic link | String    | Shop URL        | shop\_name.myshopify.com |
 | Token   | If user is not authenticated with magic link | String    | OAuth 2.0 token |                          |
 
-Sample Json:
+**Sample Json:**
 
 ```json
 {
@@ -47,26 +65,14 @@ Sample Json:
 
 ***
 
-### `woocommerce_get_orders` : Retrieve a list of orders for **WooCommerce**
-
-[](https://github.com/runkariz/docs/blob/main/order/README.md#woocommerce_get_orders--retrieve-a-list-of-orders-for-woocommerce)
-
-##### Channels:
-
-[](https://github.com/runkariz/docs/blob/main/order/README.md#channels-1)
-
-In the configuration, the scopes that are being used are called **channels**.
-
-* `woocommerce`
-
-##### Available parameters:
+### `woocommerce parameters`
 
 | Name    | Required                                     | Data type | Description      | Example                                                                          |
 | ------- | -------------------------------------------- | --------- | ---------------- | -------------------------------------------------------------------------------- |
 | baseUrl | If user is not authenticated with magic link | String    | Full shop URL    | [**https://domain.com/wordpress/wp-json**](https://domain.com/wordpress/wp-json) |
 | Token   | If user is not authenticated with magic link | String    | Basic Auth token | base64                                                                           |
 
-Sample Json:
+**Sample Json:**
 
 ```json
 {
@@ -87,23 +93,13 @@ Sample Json:
 
 ***
 
-### `bol_get_orders` : Retrieve a list of orders for **Bol**
-
-[](https://github.com/runkariz/docs/blob/main/order/README.md#bol_get_orders--retrieve-a-list-of-orders-for-bol)
-
-##### Channels:
-
-[](https://github.com/runkariz/docs/blob/main/order/README.md#channels-2)
-
-* `bol`
-
-##### Available parameters:
+### `bol parameters`
 
 | Name  | Required                                     | Data type | Description      | Example |
 | ----- | -------------------------------------------- | --------- | ---------------- | ------- |
 | Token | If user is not authenticated with magic link | String    | Basic Auth token | base64  |
 
-Sample Json:
+**Sample Json:**
 
 ```json
 {
