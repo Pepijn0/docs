@@ -23,20 +23,7 @@ Benefits:
 
 ### Authenticate user with Magic Link URL
 
-~~Magic Links are generated ~~~~**Programmatically via API**~~~~ in 3 easy steps:~~
-
-1. ~~ Generate an Authentication link for user~~
-
-2. ~~ Redirect user to Authentication link~~
-
-~~To generate the authentication link you can call the following endpoint:
-~~~~`GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`~~
-
-~~Here you can specify the user ID of your user. This is how you will authenticate the user in subsequent calls to our API. The call also needs to contain a bearer token with your API credentials~~
-
-~~After this, all the user has to do is to complete the authentication flow. Here is an example video of what that may look like:~~
-
-~~That's it! You will be presented with a unique URL that you can send to your customer.~~
+Magic Links are generated **Programmatically via API** in 3 easy steps:
 
 <Steps>
   <Step title=" Generate an user Authentication link">
@@ -75,19 +62,9 @@ In this example the following parameters are used in the request:
 
 `redirectUrl`= [https://runkariz.com](https://runkariz.com)
 
-`Scopes`  =
-
-1. shopify
-
-2. woocommerce
-
-3. bol
-
-4. amazon
+`Scopes`  = shopify, woocommerce, bol, amazon
 
 `Bearer `= 287ys7a17te61238y12387wqt8tdqt6sad8fd1826871t2186et
-
-####
 
 ***
 
@@ -109,11 +86,11 @@ In this example the following parameters are used in the request:
 
 ##### Responses
 
-| http code | content-type             | response                                |
-| --------- | ------------------------ | --------------------------------------- |
-| 200       | application/json	        | See the sample response                 |
-| 400       | application/json	        | \{"code":"400","message":"Bad Request"} |
-| 405       | text/html;charset=utf-8	 | None                                    |
+| http code | content-type            | response                                |
+| --------- | ----------------------- | --------------------------------------- |
+| 200       | application/json        | See the sample response                 |
+| 400       | application/json        | \{"code":"400","message":"Bad Request"} |
+| 405       | text/html;charset=utf-8 | None                                    |
 
 Sample Response (200):
 
