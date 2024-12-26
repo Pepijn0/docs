@@ -23,6 +23,20 @@ We offer lots of tooling to make this process as simple as possible for any poss
 
 To make connecting to Kariz as easy as possible, we use the same data models for our unified API as Shopify. This means that if you already have a integration to Shopify, we allow you to get setup in under an hour to all the other sales channel integrations that we offer. More than that, we return the data much easier than even using the Shopify API. We make multiple API calls to make sure that all the relevant e-commerce data is included in every call. This means that our product data also includes variants, inventory and inventory location. Best of all, it works the same for every E-commerce channel.
 
+### Modifications to the Shopify Data Models
+
+[](https://github.com/runkariz/docs#modifications-to-the-shopify-data-models)
+
+We have made two minor changes to the Shopify data models:
+
+1. **ID Fields as Strings**
+   All ID fields are converted to strings to maintain consistency across different platforms.
+
+2. **Added Sales\_Channel Variable**
+   A new variable called `channel_name` is added to indicate the source platform of the user data. For example, if the user data is fetched from Shopify, `channel_name = 'shopify'`.
+
+
+
 ## Authentication
 
 Authenticate your users with our 2 authentication methods
