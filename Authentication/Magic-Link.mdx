@@ -15,17 +15,7 @@ Benefits:
 
 * **Your users can authorize integrations** without logging into your app, enabling custom user journeys
 
-<iframe
-  width="560"
-  height="315"
-  src="https://youtu.be/yGeoSag5GNk"
-  title="YouTube video player"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-></iframe>
-
-
+<iframe width="560" height="315" src="https://youtu.be/yGeoSag5GNk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
 
 <iframe width="560" height="315" src="https://youtu.be/HNQYok7ECfQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
 
@@ -50,17 +40,82 @@ That's it! You will be presented with a unique URL that you can send to your cus
 
 *The URL will expire within 1 hour*
 
+<Steps>
+  <Step title=" Generate an user Authentication link">
+    To generate the authentication link, call the following endpoint:
+    `GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`
+  </Step>
+
+  <Step title="Set the correct parameters">
+    `tpUserId` = The ID of the user that you want to create. You will use this ID moving forward to get data for this user.
+
+    `redirectUrl`= The url of your application that you want your users to get redirected back to after they finish the authentication.
+    `Scopes` = The scopes determine which channels your user will be asked to authenticate to. You can add multiple scopes to 1 request to request multiple authentications at a time
+
+    `-H 'Authorization: Bearer` this is the token your application received when creating an account. Replace this with your unique code
+  </Step>
+
+  <Step title=" Redirect user to Authentication link">
+    After sending this request and magic link will be returned to you called `uri` . Your users should be redirected to this link in order to&#x20;
+  </Step>
+</Steps>
+
+*The Authentication link will expire in 1 hour*
+
+### Example request
+
+```
+curl -X 'GET' \
+'https://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId=0283544273&redirectUrl=https%3A%2F%2Fmyapp.com&scopes=shopify&scopes=woocommerce&scopes=bol&scopes=amazon' \
+-H 'accept: text/plain' \
+-H 'Authorization: Bearer 287ys7a17te61238y12387wqt8tdqt6sad8fd1826871t2186et'
+```
+
+In this example the following parameters are used in the request:
+
+`tpUserId` = 0283544273
+
+`redirectUrl`= [https://runkariz.com](https://runkariz.com)
+
+`Scopes`  =
+
+1. shopify
+
+2. woocommerce
+
+3. bol
+
+4. amazon
+
+`Bearer `= 287ys7a17te61238y12387wqt8tdqt6sad8fd1826871t2186et
+
+These should all be altered to match your use case. The
+
+In this example, the user created is "0283544273".
+
+The channels they will be asked to authenticate with will be:
+
+1. shopify
+
+2. woocommerce
+
+3. bol
+
+4. amazon
+
+The bearer token needs to be send separately to us, this is the token your application received when creating an account.
+
 #### ~~API~~
 
 ~~Kariz offers the ability to programmatically generate Magic Link URLs via API.~~
 
 ~~To do this, make a POST request to the ~~[~~/link-token~~](https://docs.merge.dev/hris/link-token/)~~ endpoint.~~
 
-~~In the body parameters of your POST request, set the \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`should_create_magic_link_url`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ parameter to \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`true`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~.~~
+~~In the body parameters of your POST request, set the \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`should_create_magic_link_url`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ parameter to \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`true`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~.~~
 
 ~~`link_expiry_mins`~~
 
-~~In your POST request, we recommend setting the \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`link_expiry_mins`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ body parameter to the maximum of \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`10080`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ so that the Magic Link URL expires after 7 days.~~
+~~In your POST request, we recommend setting the \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`link_expiry_mins`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ body parameter to the maximum of \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`10080`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ so that the Magic Link URL expires after 7 days.~~
 
 ~~The generated Magic Link URL will expire 1 hour after creation.~~
 
@@ -68,7 +123,7 @@ That's it! You will be presented with a unique URL that you can send to your cus
 
 ### ~~Accessing Account Tokens for Linked Accounts Created with Magic Link~~
 
-~~Once your customer has successfully integrated their third-pary platform through Magic Link, you will need the new Linked Account's \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~**account token**~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ to make API requests to Merge on behalf of that Linked Account.~~
+~~Once your customer has successfully integrated their third-pary platform through Magic Link, you will need the new Linked Account's \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~**account token**~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ to make API requests to Merge on behalf of that Linked Account.~~
 
 `GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`
 
