@@ -3,9 +3,17 @@ title: "Product Configurations"
 description: "Get all product data from connected E-commerce channels, including variants and inventory"
 ---
 
+## Overview
+
 The product data from different channels is matched to a unified data model based on the Shopify product data model. For more information, refer to the[ Shopify Product API Documentation.](https://shopify.dev/docs/api/admin-rest)
 
-### Why Use the Shopify Product Data Model?
+### Authenticating users
+
+To get the data, you first need to authenticate your users. This is possible using **our authenticator** or in each API request using **token authentication.**
+
+## Datamodel
+
+### Shopify Product Data Model as baseline
 
 Kariz uses the Shopify product data model because it supports seamless integration with other e-commerce platforms. This consistency enables easier internal model adaptation, especially if you have already built a Shopify integration.
 
@@ -19,13 +27,13 @@ The unified product data model includes inventory details for all product varian
 
 * Their inventory
 
-* Inventory levels split across multiple locations (if applicable)
+* Inventory levels are split across multiple locations (if applicable)
 
 For more details on inventory models, refer to the Shopify Inventory API Documentation:
 
-* **Inventory Item**: [InventoryItem API Documentation]()
+* **Inventory Item**: [API Documentation]()
 
-* **Inventory Level**: [InventoryLevel API Documentation]()
+* **Inventory Level**:[ API Documentation]()
 
 ### Modifications to the Shopify Product Data Model
 
@@ -35,34 +43,37 @@ For more details on inventory models, refer to the Shopify Inventory API Documen
 
 ### Supported Channels and Parameters
 
-#### **Shopify**
+* Shopify
 
-* **~~`baseUrl`~~**~~ ~~~~*(string, required if unauthenticated)*~~~~: Shop URL (e.g., ~~~~`shop_name.myshopify.com`~~~~)~~
+* WooCommerce
 
-* **~~`token`~~**~~ ~~~~*(string, required if unauthenticated)*~~~~: OAuth 2.0 token~~
-
-**Sample JSON:**
-
-```json
-{
-  "params": {
-    "shopify": [
-      { "key": "baseUrl", "value": "shop_name.myshopify.com" },
-      { "key": "token", "value": "oauth token" }
-    ]
-  }
-}
-```
+* Bol.com  (webhook required)
 
 
+Retrieving the data&#x20;
+-------------------------
 
-By using these configurations, you can retrieve product details and inventory efficiently from various e-commerce platforms while maintaining a unified data model.
+We support 2 methods for retrieving the data, synchronous and asynchronous. To get started we recommend using the Synchronous method as it's quicker to setup and works for most platforms.
+
+However, some E-commerce platforms like Amazon, bol.com and others don't support synch responses for their product endpoints. To deal with this we also offer an Asynch option. It allows you to connect to these other marketplaces and is more suitable for high troughput applicaitons (like getting > 2000 products at a time).
+
+**Synchronous - JSON response** &#x20;
+
+**Asynchronous - Webhooks**
+
+Note: For testing webhooks follow this link: [Testing Webhooks](https://docs.github.com/en/webhooks/testing-and-troubleshooting-webhooks/testing-webhooks)
+
+Here is an example for the bol.com products, where the webhook is required.
+
+| Name              | Required | Data type | Description                                   | Example |
+| ----------------- | -------- | --------- | --------------------------------------------- | ------- |
+| delivery\_webhook | Yes      | object    | The result will be delivered on the given URL |         |
 
 ## Product API Parameters
 
 Below are the supported parameters for the `get products` function. These parameters allow filtering, sorting, and retrieving specific product data.
 
-### **Filtering and Retrieval Parameters**
+### **~~Filtering and Retrieval Parameters~~**
 
 * **`collection_id`** *(string, optional)*: Retrieves products within the specified collection.
 

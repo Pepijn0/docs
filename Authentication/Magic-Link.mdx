@@ -15,7 +15,9 @@ Benefits:
 
 * **Your users can authorize integrations** without logging into your app, enabling custom user journeys
 
-![Magic Link Preview](https://docs.merge.dev/static/f0325e2e00b6f9343ebb1e0a8df5acc1/cc181/magic-link-preview.png)
+![](image.png)
+
+![](image.png)
 
 ***
 
@@ -27,35 +29,28 @@ Magic Links are generated **Programmatically via API** in 2 easy steps:
 
 2. &#x20;Redirect user to Authentication link
 
-
 To generate the authentication link you can call the following endpoint:
 `GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`
 
-
 Here you can specify the user ID of your user. This is how you will authenticate the user in subsequent calls to our API. The call also needs to contain a bearer token with your API credentials
-
-
 
 After this, all the user has to do is to complete the authentication flow. Here is an example video of what that may look like:
 
+That's it! You will be presented with a unique URL that you can send to your customer.
 
-
-
-~~That's it! You will be presented with a unique URL that you can send to your customer.~~
-
-*~~The URL will expire within 7 days~~*
+*The URL will expire within 1 hour*
 
 #### ~~API~~
 
-~~Kariz also offers the ability to programmatically generate Magic Link URLs via API.~~
+~~Kariz offers the ability to programmatically generate Magic Link URLs via API.~~
 
 ~~To do this, make a POST request to the ~~[~~/link-token~~](https://docs.merge.dev/hris/link-token/)~~ endpoint.~~
 
-~~In the body parameters of your POST request, set the \~\~\~\~~~~~`should_create_magic_link_url`~~~~\~\~\~\~ parameter to \~\~\~\~~~~~`true`~~~~\~\~\~\~.~~
+~~In the body parameters of your POST request, set the \~\~\~\~\~\~\~\~~~~~`should_create_magic_link_url`~~~~\~\~\~\~\~\~\~\~ parameter to \~\~\~\~\~\~\~\~~~~~`true`~~~~\~\~\~\~\~\~\~\~.~~
 
 ~~`link_expiry_mins`~~
 
-~~In your POST request, we recommend setting the \~\~\~\~~~~~`link_expiry_mins`~~~~\~\~\~\~ body parameter to the maximum of \~\~\~\~~~~~`10080`~~~~\~\~\~\~ so that the Magic Link URL expires after 7 days.~~
+~~In your POST request, we recommend setting the \~\~\~\~\~\~\~\~~~~~`link_expiry_mins`~~~~\~\~\~\~\~\~\~\~ body parameter to the maximum of \~\~\~\~\~\~\~\~~~~~`10080`~~~~\~\~\~\~\~\~\~\~ so that the Magic Link URL expires after 7 days.~~
 
 ~~The generated Magic Link URL will expire 1 hour after creation.~~
 
@@ -63,8 +58,7 @@ After this, all the user has to do is to complete the authentication flow. Here 
 
 ### ~~Accessing Account Tokens for Linked Accounts Created with Magic Link~~
 
-~~Once your customer has successfully integrated their third-pary platform through Magic Link, you will need the new Linked Account's \~\~\~\~~~~~**account token**~~~~\~\~\~\~ to make API requests to Merge on behalf of that Linked Account.~~
-
+~~Once your customer has successfully integrated their third-pary platform through Magic Link, you will need the new Linked Account's \~\~\~\~\~\~\~\~~~~~**account token**~~~~\~\~\~\~\~\~\~\~ to make API requests to Merge on behalf of that Linked Account.~~
 
 `GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`
 
