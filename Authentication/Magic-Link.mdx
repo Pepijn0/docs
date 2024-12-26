@@ -15,8 +15,17 @@ Benefits:
 
 * **Your users can authorize integrations** without logging into your app, enabling custom user journeys
 
-<iframe src="https://youtu.be/yGeoSag5GNk"> </iframe>
+<iframe src="https://youtu.be/yGeoSag5GNk" />
 
+<iframe
+  width="560"
+  height="315"
+  src="https://youtu.be/HNQYok7ECfQ"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
 
 
 ***
@@ -46,11 +55,11 @@ That's it! You will be presented with a unique URL that you can send to your cus
 
 ~~To do this, make a POST request to the ~~[~~/link-token~~](https://docs.merge.dev/hris/link-token/)~~ endpoint.~~
 
-~~In the body parameters of your POST request, set the \~\~\~\~\~\~\~\~\~\~\~\~~~~~`should_create_magic_link_url`~~~~\~\~\~\~\~\~\~\~\~\~\~\~ parameter to \~\~\~\~\~\~\~\~\~\~\~\~~~~~`true`~~~~\~\~\~\~\~\~\~\~\~\~\~\~.~~
+~~In the body parameters of your POST request, set the \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`should_create_magic_link_url`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ parameter to \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`true`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~.~~
 
 ~~`link_expiry_mins`~~
 
-~~In your POST request, we recommend setting the \~\~\~\~\~\~\~\~\~\~\~\~~~~~`link_expiry_mins`~~~~\~\~\~\~\~\~\~\~\~\~\~\~ body parameter to the maximum of \~\~\~\~\~\~\~\~\~\~\~\~~~~~`10080`~~~~\~\~\~\~\~\~\~\~\~\~\~\~ so that the Magic Link URL expires after 7 days.~~
+~~In your POST request, we recommend setting the \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`link_expiry_mins`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ body parameter to the maximum of \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`10080`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ so that the Magic Link URL expires after 7 days.~~
 
 ~~The generated Magic Link URL will expire 1 hour after creation.~~
 
@@ -58,7 +67,7 @@ That's it! You will be presented with a unique URL that you can send to your cus
 
 ### ~~Accessing Account Tokens for Linked Accounts Created with Magic Link~~
 
-~~Once your customer has successfully integrated their third-pary platform through Magic Link, you will need the new Linked Account's \~\~\~\~\~\~\~\~\~\~\~\~~~~~**account token**~~~~\~\~\~\~\~\~\~\~\~\~\~\~ to make API requests to Merge on behalf of that Linked Account.~~
+~~Once your customer has successfully integrated their third-pary platform through Magic Link, you will need the new Linked Account's \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~**account token**~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ to make API requests to Merge on behalf of that Linked Account.~~
 
 `GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`
 
