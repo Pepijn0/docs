@@ -23,22 +23,20 @@ Benefits:
 
 ### Authenticate user with Magic Link URL
 
-Magic Links are generated **Programmatically via API** in 2 easy steps:
+~~Magic Links are generated ~~~~**Programmatically via API**~~~~ in 3 easy steps:~~
 
-1. &#x20;Generate an Authentication link for user
+1. ~~ Generate an Authentication link for user~~
 
-2. &#x20;Redirect user to Authentication link
+2. ~~ Redirect user to Authentication link~~
 
-To generate the authentication link you can call the following endpoint:
-`GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`
+~~To generate the authentication link you can call the following endpoint:
+~~~~`GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`~~
 
-Here you can specify the user ID of your user. This is how you will authenticate the user in subsequent calls to our API. The call also needs to contain a bearer token with your API credentials
+~~Here you can specify the user ID of your user. This is how you will authenticate the user in subsequent calls to our API. The call also needs to contain a bearer token with your API credentials~~
 
-After this, all the user has to do is to complete the authentication flow. Here is an example video of what that may look like:
+~~After this, all the user has to do is to complete the authentication flow. Here is an example video of what that may look like:~~
 
-That's it! You will be presented with a unique URL that you can send to your customer.
-
-*The URL will expire within 1 hour*
+~~That's it! You will be presented with a unique URL that you can send to your customer.~~
 
 <Steps>
   <Step title=" Generate an user Authentication link">
@@ -47,7 +45,7 @@ That's it! You will be presented with a unique URL that you can send to your cus
   </Step>
 
   <Step title="Set the correct parameters">
-    `tpUserId` = The ID of the user that you want to create. You will use this ID moving forward to get data for this user.
+    `tpUserId` = The ID of the user that you want to create. You will use this ID moving forward to get data for this user, so use a unique id for each user.
 
     `redirectUrl`= The url of your application that you want your users to get redirected back to after they finish the authentication.
     `Scopes` = The scopes determine which channels your user will be asked to authenticate to. You can add multiple scopes to 1 request to request multiple authentications at a time
@@ -89,150 +87,41 @@ In this example the following parameters are used in the request:
 
 `Bearer `= 287ys7a17te61238y12387wqt8tdqt6sad8fd1826871t2186et
 
-These should all be altered to match your use case. The
-
-In this example, the user created is "0283544273".
-
-The channels they will be asked to authenticate with will be:
-
-1. shopify
-
-2. woocommerce
-
-3. bol
-
-4. amazon
-
-The bearer token needs to be send separately to us, this is the token your application received when creating an account.
-
-#### ~~API~~
-
-~~Kariz offers the ability to programmatically generate Magic Link URLs via API.~~
-
-~~To do this, make a POST request to the ~~[~~/link-token~~](https://docs.merge.dev/hris/link-token/)~~ endpoint.~~
-
-~~In the body parameters of your POST request, set the \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`should_create_magic_link_url`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ parameter to \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`true`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~.~~
-
-~~`link_expiry_mins`~~
-
-~~In your POST request, we recommend setting the \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`link_expiry_mins`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ body parameter to the maximum of \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~`10080`~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ so that the Magic Link URL expires after 7 days.~~
-
-~~The generated Magic Link URL will expire 1 hour after creation.~~
+####
 
 ***
 
-### ~~Accessing Account Tokens for Linked Accounts Created with Magic Link~~
+### Available Scopes (E-commerce channels)
 
-~~Once your customer has successfully integrated their third-pary platform through Magic Link, you will need the new Linked Account's \~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~~~~~**account token**~~~~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~ to make API requests to Merge on behalf of that Linked Account.~~
+* shopify
 
-`GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`
+* woocommerce
 
-##### Parameters
+* bol
 
-[](https://github.com/runkariz/docs/tree/main/authentication#parameters)
+* amazon
 
-> namerequiredtypedata typedescription
-> scopes
-> required
-> query
-> string\[]
-> Available options: `shopify`, `woocommerce`
-> tpUserId
-> required
-> query
-> string
-> The user id that you want to execute workflow for
-> redirectUrl
-> optional
-> query
-> string
-> The URL which user will be redirected to after finishes the authentication flow it can be your app
-
-**Note: `tpUserId` will be used to refer to your user and run workflows, so use a unique id for each user.**
+| name        | required | type  | data type | description                                                                     |
+| ----------- | -------- | ----- | --------- | ------------------------------------------------------------------------------- |
+| scopes      | required | query | string\[] | The E-commerce channels your users will be asked to authenticate with           |
+| tpUserId    | required | query | string    | The user id that you want to execute workflow for                               |
+| redirectUrl | optional | query | string    | The URL which user will be redirected to after finishes the authentication flow |
 
 ##### Responses
 
-[](https://github.com/runkariz/docs/tree/main/authentication#responses)
+| http code | content-type             | response                                |
+| --------- | ------------------------ | --------------------------------------- |
+| 200       | application/json	        | See the sample response                 |
+| 400       | application/json	        | \{"code":"400","message":"Bad Request"} |
+| 405       | text/html;charset=utf-8	 | None                                    |
 
-> http codecontent-typeresponse
-> `200`
-> `application/json`
-> See the sample response
-> `400`
-> `application/json`
-> `{"code":"400","message":"Bad Request"}`
-> `405`
-> `text/html;charset=utf-8`
-> None
-
-Sample Response:
-
-\{
-&#x20; "token": "token",
-&#x20; "expirationUtcUnixTimeSeconds": 1727873939
-}
-
-##### Example cURL
-
-[](https://github.com/runkariz/docs/tree/main/authentication#example-curl)
-
-> curl -X 'GET' \\
-> 'https://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId=1\&redirectUrl=https%3A%2F%2Fmyapp.com\&scopes=shopify\&scopes=woocommerce' \\
-> -H 'accept: text/plain' \\
-> -H 'Authorization: Bearer \{access\_token}'
-
-`GEThttps://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId={tp_app_user_id}&redirectUrl={redirect_url}&scopes={scope_names}`
-
-##### Parameters
-
-[](https://github.com/runkariz/docs/tree/main/authentication#parameters)
-
-> namerequiredtypedata typedescription
-> scopes
-> required
-> query
-> string\[]
-> Available options: `shopify`, `woocommerce`
-> tpUserId
-> required
-> query
-> string
-> The user id that you want to execute workflow for
-> redirectUrl
-> optional
-> query
-> string
-> The URL which user will be redirected to after finishes the authentication flow it can be your app
-
-**Note: `tpUserId` will be used to refer to your user and run workflows, so use a unique id for each user.**
-
-##### Responses
-
-[](https://github.com/runkariz/docs/tree/main/authentication#responses)
-
-> http codecontent-typeresponse
-> `200`
-> `application/json`
-> See the sample response
-> `400`
-> `application/json`
-> `{"code":"400","message":"Bad Request"}`
-> `405`
-> `text/html;charset=utf-8`
-> None
-
-Sample Response:
-
-\{
-&#x20; "token": "token",
-&#x20; "expirationUtcUnixTimeSeconds": 1727873939
-}
-
-##### Example cURL
+Sample Response (200):
 
 ```
-curl -X 'GET' \
-'https://api.demo.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken?tpUserId=1&redirectUrl=https%3A%2F%2Fmyapp.com&scopes=shopify&scopes=woocommerce' \
--H 'accept: text/plain' \
--H 'Authorization: Bearer {access_token}'
+{
+
+    "uri": "https://www.demo.trykariz.com/en/tpuser/authorize?token=MvznqqrmRYhfTlRdjsDXaHjFbBqquHN8IgTtObvrRX7AGSJdA4NJ4y40q9sMALixHz1F%2Fjic%2FdO1YwA1T41Wr0g2TAO57R1fKul2q7bfARgj7BLpfP%2FGnjKhdPG6eL9q%2BUjwXIU45ppkw%2F7N7qrCjYaWaPdyeqFGtyfRbAPBv9DJvEdWoo7FM0o9wH4M4wEe359KqNVYxCrX6jkZF5rqwnQt5WdgdUQMTY5ub9lMq4FOG1422MMR7ND6zgsxjVcqWPZ1Slt0YbKR%2FW3kZouiTH8ewAn5xu3C%2FrasxTvyGMNzgvnrRLqLLguyaERp6foS2lZ0mYj5FPI95InoQdu79CDlAKp%2FY7J0y5m3K2mgZkM63%2Fqt5QoY0rhkpvFc7qe9NJDWW%2FY1HMVtQhy%2Fk0kqsDA8nQaXqi%2BTftAh5j4BXvPZm5%2BleaC5kG6sSQtriReR9nMGdwwYp%2B37J6X7XUxSOWVUSthfrhgVuRVOlD%2BBgw3ldag2xE%2Bk3kTebZM6rzYlmwwT77LFf1ekUMBOFkPYA2soLltoRdaMJAyEm5cUxw03g1FqnFaE2XXerOoHGSQQVdD6V3VsrA70d4pkCOwyuqGMBdIfzByUSk5WuSdA6G8%3D",
+    "token": "MvznqqrmRYhfTlRdjsDXaHjFbBqquHN8IgTtObvrRX7AGSJdA4NJ4y40q9sMALixHz1F%2Fjic%2FdO1YwA1T41Wr0g2TAO57R1fKul2q7bfARgj7BLpfP%2FGnjKhdPG6eL9q%2BUjwXIU45ppkw%2F7N7qrCjYaWaPdyeqFGtyfRbAPBv9DJvEdWoo7FM0o9wH4M4wEe359KqNVYxCrX6jkZF5rqwnQt5WdgdUQMTY5ub9lMq4FOG1422MMR7ND6zgsxjVcqWPZ1Slt0YbKR%2FW3kZouiTH8ewAn5xu3C%2FrasxTvyGMNzgvnrRLqLLguyaERp6foS2lZ0mYj5FPI95InoQdu79CDlAKp%2FY7J0y5m3K2mgZkM63%2Fqt5QoY0rhkpvFc7qe9NJDWW%2FY1HMVtQhy%2Fk0kqsDA8nQaXqi%2BTftAh5j4BXvPZm5%2BleaC5kG6sSQtriReR9nMGdwwYp%2B37J6X7XUxSOWVUSthfrhgVuRVOlD%2BBgw3ldag2xE%2Bk3kTebZM6rzYlmwwT77LFf1ekUMBOFkPYA2soLltoRdaMJAyEm5cUxw03g1FqnFaE2XXerOoHGSQQVdD6V3VsrA70d4pkCOwyuqGMBdIfzByUSk5WuSdA6G8%3D",
+    "expirationUtcUnixTimeSeconds": 1735220491
+}
 ```
