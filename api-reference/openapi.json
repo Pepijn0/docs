@@ -290,12 +290,6 @@
           "200": {
             "description": "Execution result",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
-              },
               "application/json": {
                 "schema": {
                   "allOf": [
@@ -766,12 +760,6 @@
                     ]
                   }
                 }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
               }
             }
           },
@@ -889,12 +877,6 @@
           "200": {
             "description": "Execution result",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
-              },
               "application/json": {
                 "schema": {
                   "allOf": [
@@ -907,12 +889,6 @@
                   ]
                 },
                 "example": "The response is same as /api/KarizClientApp/ExecuteSync/Shopify/GetOrders"
-              },
-              "text/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
               }
             }
           },
@@ -1037,12 +1013,6 @@
           "200": {
             "description": "Execution result",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
-              },
               "application/json": {
                 "schema": {
                   "allOf": [
@@ -1055,12 +1025,6 @@
                   ]
                 },
                 "example": "The response is same as /api/KarizClientApp/ExecuteSync/Shopify/GetOrders"
-              },
-              "text/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
               }
             }
           },
@@ -1174,12 +1138,6 @@
           "200": {
             "description": "Execution result",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
-              },
               "application/json": {
                 "schema": {
                   "allOf": [
@@ -1192,12 +1150,6 @@
                   ]
                 },
                 "example": "The response is same as /api/KarizClientApp/ExecuteSync/Shopify/GetOrders"
-              },
-              "text/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
               }
             }
           },
@@ -1315,12 +1267,6 @@
           "200": {
             "description": "Execution result",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
-              },
               "application/json": {
                 "schema": {
                   "allOf": [
@@ -1604,12 +1550,6 @@
                     ]
                   }
                 }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
               }
             }
           },
@@ -1727,12 +1667,6 @@
           "200": {
             "description": "Execution result",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
-              },
               "application/json": {
                 "schema": {
                   "allOf": [
@@ -1745,12 +1679,6 @@
                   ]
                 },
                 "example": "The response is same as /api/KarizClientApp/ExecuteSync/Shopify/GetProducts"
-              },
-              "text/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
               }
             }
           },
@@ -1865,12 +1793,6 @@
           "200": {
             "description": "Execution result",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
-              },
               "application/json": {
                 "schema": {
                   "allOf": [
@@ -1883,12 +1805,6 @@
                   ]
                 },
                 "example": "The response is same as /api/KarizClientApp/ExecuteSync/Shopify/GetProducts"
-              },
-              "text/json": {
-                "schema": {
-                  "type": "object",
-                  "additionalProperties": {}
-                }
               }
             }
           },
