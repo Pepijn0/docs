@@ -25,11 +25,10 @@
     "name": "Dashboard",
     "url": "https://runkariz.com"
   },
-  "tabs": [
+  "anchors": [
     {
-      "name": "API Reference",
-      "url": "api-reference",
-      "openapi": "/api-reference/openapi.json"
+      "type": "openapi",
+      "file": "/api-reference/openapi.json"
     }
   ],
   "navigation": [
