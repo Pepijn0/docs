@@ -29,7 +29,7 @@
     {
       "name": "API Reference",
       "url": "api-reference",
-      "icon": "square-terminal"
+      "icon": "square-terminal",
       "type": "openapi",
       "file": "/api-reference/openapi.json"
     }
