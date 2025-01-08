@@ -167,11 +167,6 @@
           "200": {
             "description": "Magic link details.",
             "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/KarizClientAppDisposableToken"
-                }
-              },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/KarizClientAppDisposableToken"
@@ -180,11 +175,6 @@
                   "uri": "https://www.app.trykariz.com/en/tpuser/authorize?token=Mvznqqrm...AuD639OMo%3D",
                   "token": "Mvznqqrm...AuD639OMo%3D",
                   "expirationUtcUnixTimeSeconds": 1736269316
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/KarizClientAppDisposableToken"
                 }
               }
             }
