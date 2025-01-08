@@ -34,7 +34,7 @@
   "anchors": [
     {
       "name": "API Reference",
-      "openapi": "https://github.com/runkariz/docs/blob/main/openapi.json",
+      "openapi": "https://github.com/runkariz/docs/blob/main/openapi.json?raw=true",
       "url": "api-reference",
       "icon": "square-terminal"
     }
