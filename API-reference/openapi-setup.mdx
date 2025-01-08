@@ -1,0 +1,27 @@
+---
+title: "OpenAPI Setup Guide"
+description: "Learn how to set up your OpenAPI specification"
+---
+
+# OpenAPI Setup
+
+It seems the OpenAPI specification file `/api-reference/openapi.json` referenced in your `mint.json` configuration could not be found. Here's how to resolve this:
+
+1. Make sure your OpenAPI specification file exists at the correct path:
+   - The file should be located at `/api-reference/openapi.json`
+   - Create this file if it doesn't exist
+
+2. Verify your mint.json configuration:
+   ```json
+   {
+     // ... other config
+     "openapi": "/api-reference/openapi.json"
+     // or in the anchors/tabs array
+   }
+   ```
+
+3. If your OpenAPI specification is in a different location:
+   - Either move it to `/api-reference/openapi.json`
+   - Or update the path in your `mint.json` to match your file's actual location
+
+For more information about working with OpenAPI specifications, refer to our documentation on API reference setup.
