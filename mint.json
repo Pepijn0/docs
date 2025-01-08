@@ -30,7 +30,7 @@
       "name": "API Reference",
       "url": "api-reference",
       "icon": "square-terminal",
-      "openapi": "/api-reference/openapi.json"
+      "openapi": "/api-reference/openapi.json?raw=true"
     }
   ],
   "anchors": [
@@ -38,7 +38,7 @@
       "name": "API Reference",
       "url": "api-reference",
       "icon": "square-terminal",
-      "openapi": "/api-reference/openapi.json"
+      "openapi": "/api-reference/openapi.json?raw=true"
     }
   ],
   "navigation": [
