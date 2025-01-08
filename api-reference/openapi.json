@@ -162,20 +162,6 @@
             }
           }
         ],
-        "requestBody": {
-          "description": "If you want to use your own OAuth application, you need to configure it through these params",
-          "content": {
-            "application/json": {
-              "schema": {}
-            },
-            "text/json": {
-              "schema": {}
-            },
-            "application/*+json": {
-              "schema": {}
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Magic link details.",
@@ -1096,7 +1082,7 @@
                     "type": "boolean"
                   },
                   "schemaValidationErrors": {
-                    "type": "null"
+                    "type": "object"
                   },
                   "restErrors": {
                     "type": "object",
@@ -1108,7 +1094,7 @@
                         "type": "string"
                       },
                       "content_file_path": {
-                        "type": "null"
+                        "type": "object"
                       },
                       "headers": {
                         "type": "object",
@@ -1129,10 +1115,10 @@
                     }
                   },
                   "operationErrors": {
-                    "type": "null"
+                    "type": "object"
                   },
                   "unexpectedErrors": {
-                    "type": "null"
+                    "type": "object"
                   },
                   "execution_id": {
                     "type": "string"
@@ -1154,16 +1140,16 @@
                 "type": "boolean"
               },
               "schemaValidationErrors": {
-                "type": "null"
+                "type": "object"
               },
               "restErrors": {
-                "type": "null"
+                "type": "object"
               },
               "operationErrors": {
-                "type": "null"
+                "type": "object"
               },
               "unexpectedErrors": {
-                "type": "null"
+                "type": "object"
               },
               "execution_id": {
                 "type": "string"
@@ -1202,19 +1188,19 @@
               },
               "ExtResources": {
                 "type": "array",
-                "items": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "Uri": {
-                        "type": "string"
-                      },
-                      "Duration": {
-                        "type": "number"
-                      }
+                "items":
+                {
+                  "type": "object",
+                  "properties": {
+                    "Uri": {
+                      "type": "string"
+                    },
+                    "Duration": {
+                      "type": "number"
                     }
                   }
-                ]
+                }
+
               }
             }
           }
@@ -1562,16 +1548,16 @@
                 "type": "boolean"
               },
               "schemaValidationErrors": {
-                "type": "null"
+                "type": "object"
               },
               "restErrors": {
-                "type": "null"
+                "type": "object"
               },
               "operationErrors": {
-                "type": "null"
+                "type": "object"
               },
               "unexpectedErrors": {
-                "type": "null"
+                "type": "object"
               },
               "execution_id": {
                 "type": "string"
@@ -1766,42 +1752,25 @@
         "properties": {
           "shopify": {
             "type": "array",
-            "items": [
-              {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "type": "string",
-                    "default": "baseUrl",
-                    "description": "required(if user is not authenticated), Shop URL (ex: shop_name.myshopify.com)"
-                  },
-                  "value": {
-                    "type": "string"
-                  }
+            "items":
+            {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "default": "baseUrl",
+                  "description": "required(if user is not authenticated), Shop URL (ex: shop_name.myshopify.com)"
                 },
-                "required": [
-                  "key",
-                  "value"
-                ]
+                "value": {
+                  "type": "string"
+                }
               },
-              {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "type": "string",
-                    "default": "token",
-                    "description": "*required(if user is not authenticated), OAuth 2.0 token(JWT)"
-                  },
-                  "value": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "key",
-                  "value"
-                ]
-              }
-            ]
+              "required": [
+                "key",
+                "value"
+              ]
+            }
+
           }
         },
         "required": [
@@ -1813,42 +1782,25 @@
         "properties": {
           "woocommerce": {
             "type": "array",
-            "items": [
-              {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "type": "string",
-                    "default": "baseUrl",
-                    "description": "required(if user is not authenticated), Full shop URL (ex: https://domain.com/wordpress/wp-json)"
-                  },
-                  "value": {
-                    "type": "string"
-                  }
+            "items":
+            {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "default": "baseUrl",
+                  "description": "required(if user is not authenticated), Full shop URL (ex: https://domain.com/wordpress/wp-json)"
                 },
-                "required": [
-                  "key",
-                  "value"
-                ]
+                "value": {
+                  "type": "string"
+                }
               },
-              {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "type": "string",
-                    "default": "token",
-                    "description": "required(if user is not authenticated), Basic Auth token (base64)"
-                  },
-                  "value": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "key",
-                  "value"
-                ]
-              }
-            ]
+              "required": [
+                "key",
+                "value"
+              ]
+            }
+
           }
         },
         "required": [
@@ -1860,67 +1812,25 @@
         "properties": {
           "amazon": {
             "type": "array",
-            "items": [
-              {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "type": "string",
-                    "default": "endpoint",
-                    "description": "*required, Shop URL (ex: https://sellingpartnerapi-eu.amazon.com) find the full list [here](https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints)"
-                  },
-                  "value": {
-                    "type": "string"
-                  }
+            "items":
+            {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "default": "endpoint",
+                  "description": "*required, Shop URL (ex: https://sellingpartnerapi-eu.amazon.com) find the full list [here](https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints)"
                 },
-                "required": [
-                  "key",
-                  "value"
-                ]
+                "value": {
+                  "type": "string"
+                }
               },
-              {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "type": "string",
-                    "default": "marketplaceIds",
-                    "description": "*required, The marketplace identifiers used in SP-API (ex: [\"A1805IZSGTT6HS\"]) find the full list [here](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)"
-                  },
-                  "value": {
-                    "type": "array",
-                    "items": [
-                      {
-                        "type": "string"
-                      },
-                      {
-                        "type": "string"
-                      }
-                    ]
-                  }
-                },
-                "required": [
-                  "key",
-                  "value"
-                ]
-              },
-              {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "type": "string",
-                    "default": "token",
-                    "description": "*required(if user is not authenticated), OAuth 2.0 token (JWT)"
-                  },
-                  "value": {
-                    "type": "string"
-                  }
-                },
-                "required": [
-                  "key",
-                  "value"
-                ]
-              }
-            ]
+              "required": [
+                "key",
+                "value"
+              ]
+            }
+
           }
         },
         "required": [
@@ -1932,25 +1842,25 @@
         "properties": {
           "bol": {
             "type": "array",
-            "items": [
-              {
-                "type": "object",
-                "properties": {
-                  "key": {
-                    "type": "string",
-                    "default": "token",
-                    "description": "*required(if user is not authenticated), Basic Auth token (base64)"
-                  },
-                  "value": {
-                    "type": "string"
-                  }
+            "items":
+            {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string",
+                  "default": "token",
+                  "description": "*required(if user is not authenticated), Basic Auth token (base64)"
                 },
-                "required": [
-                  "key",
-                  "value"
-                ]
-              }
-            ]
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "key",
+                "value"
+              ]
+            }
+
           }
         },
         "required": [
@@ -1970,16 +1880,16 @@
                 "type": "boolean"
               },
               "schemaValidationErrors": {
-                "type": "null"
+                "type": "object"
               },
               "restErrors": {
-                "type": "null"
+                "type": "object"
               },
               "operationErrors": {
-                "type": "null"
+                "type": "object"
               },
               "unexpectedErrors": {
-                "type": "null"
+                "type": "object"
               },
               "execution_id": {
                 "type": "string"
@@ -2024,9 +1934,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/Address"
-              },
-              {
-                "type": "null"
               }
             ]
           },
@@ -2070,9 +1977,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/Customer"
-              },
-              {
-                "type": "null"
               }
             ]
           },
@@ -2107,9 +2011,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/OrderFinancialStatus"
-              },
-              {
-                "type": "null"
               }
             ]
           },
@@ -2123,9 +2024,6 @@
           "fulfillment_status": {
             "description": "",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/OrderFulfillmentStatus"
               }
@@ -2198,9 +2096,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/Address"
-              },
-              {
-                "type": "null"
               }
             ]
           },
@@ -2289,9 +2184,6 @@
             "description": "The current total duties charged on the order in shop and presentment currencies.",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PriceSet"
               }
             ]
@@ -2299,9 +2191,6 @@
           "original_total_duties_set": {
             "description": "The original total duties charged on the order in shop and presentment currencies.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/PriceSet"
               }
@@ -2315,9 +2204,6 @@
             "description": "The total of all line item prices in shop and presentment currencies.",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PriceSet"
               }
             ]
@@ -2325,9 +2211,6 @@
           "total_discounts_set": {
             "description": "The total discounts applied to the price of the order in shop and presentment currencies.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/PriceSet"
               }
@@ -2337,9 +2220,6 @@
             "description": "The total shipping price of the order, excluding discounts and returns, in shop and presentment currencies. If taxes_included is set to true, then total_shipping_price_set includes taxes.",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PriceSet"
               }
             ]
@@ -2348,9 +2228,6 @@
             "description": "The subtotal of the order in shop and presentment currencies.",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PriceSet"
               }
             ]
@@ -2358,9 +2235,6 @@
           "total_price_set": {
             "description": "The total price of the order in shop and presentment currencies.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/PriceSet"
               }
@@ -2373,9 +2247,6 @@
           "total_tax_set": {
             "description": "The total tax applied to the order in shop and presentment currencies.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/PriceSet"
               }
@@ -2393,9 +2264,6 @@
             "description": "The current subtotal price of the order in shop and presentment currencies. The amount values associated with this field reflect order edits, returns, and refunds.",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PriceSet"
               }
             ]
@@ -2407,9 +2275,6 @@
           "current_total_discounts_set": {
             "description": "The current total discounts on the order in shop and presentment currencies. The amount values associated with this field reflect order edits, returns, and refunds.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/PriceSet"
               }
@@ -2423,9 +2288,6 @@
             "description": "The current total price of the order in shop and presentment currencies. The amount values associated with this field reflect order edits, returns, and refunds.",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PriceSet"
               }
             ]
@@ -2438,9 +2300,6 @@
             "description": "The current total taxes charged on the order in shop and presentment currencies. The amount values associated with this field reflect order edits, returns, and refunds.",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PriceSet"
               }
             ]
@@ -2448,9 +2307,6 @@
           "payment_terms": {
             "description": "The terms and conditions under which a payment should be processed.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/PaymentTerms"
               }
@@ -2460,9 +2316,6 @@
             "description": "The current total additional fees on the order in shop and presentment currencies. The amount values associated with this field reflect order edits, returns, and refunds.",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PriceSet"
               }
             ]
@@ -2470,9 +2323,6 @@
           "original_total_additional_fees_set": {
             "description": "The original total additional fees on the order in shop and presentment currencies.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/PriceSet"
               }
@@ -2489,9 +2339,6 @@
           "company": {
             "description": "",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/OrderCompany"
               }
@@ -2602,9 +2449,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/Address"
-              },
-              {
-                "type": "null"
               }
             ]
           },
@@ -2656,9 +2500,6 @@
             "description": "",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/MarketingConsent"
               }
             ]
@@ -2673,9 +2514,6 @@
           "email_marketing_consent": {
             "description": "",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/MarketingConsent"
               }
@@ -2874,9 +2712,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/FulfillmentStatus"
-              },
-              {
-                "type": "null"
               }
             ]
           },
@@ -2895,9 +2730,6 @@
           "destination": {
             "description": "",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/Address"
               }
@@ -2946,9 +2778,6 @@
             "description": "",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/FulfillmentShipmentStatus"
               }
             ]
@@ -2960,9 +2789,6 @@
           "origin_address": {
             "description": "The address of the fulfillment location.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/Address"
               }
@@ -2993,9 +2819,6 @@
           "fulfillment_status": {
             "description": "",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/LineFulfillmentStatus"
               }
@@ -3069,9 +2892,6 @@
             "description": "The total discount applied to the line item in shop and presentment currencies.",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PriceSet"
               }
             ]
@@ -3098,9 +2918,6 @@
             "description": "The price of the line item in shop and presentment currencies",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PriceSet"
               }
             ]
@@ -3113,9 +2930,6 @@
           "pre_tax_price_set": {
             "description": "The price per item, excluding taxes and excluding discounts in shop and presentment currencies.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/PriceSet"
               }
@@ -3160,9 +2974,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/PriceSet"
-              },
-              {
-                "type": "null"
               }
             ]
           }
@@ -3177,9 +2988,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/Price"
-              },
-              {
-                "type": "null"
               }
             ]
           },
@@ -3188,9 +2996,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/Price"
-              },
-              {
-                "type": "null"
               }
             ]
           }
@@ -3228,9 +3033,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/PriceSet"
-              },
-              {
-                "type": "null"
               }
             ]
           }
@@ -3320,9 +3122,6 @@
           "shipping": {
             "description": "Specify how much shipping to refund.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/Shipping"
               }
@@ -3446,9 +3245,6 @@
             "description": "The amount of the order adjustment in shop and presentment currencies.",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PriceSet"
               }
             ]
@@ -3456,9 +3252,6 @@
           "tax_amount_set": {
             "description": "The tax amount of the order adjustment in shop and presentment currencies.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/PriceSet"
               }
@@ -3481,9 +3274,6 @@
           "line_item": {
             "description": "",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/LineItem"
               }
@@ -3511,9 +3301,6 @@
             "description": "The subtotal of the refund line item in shop and presentment currencies.",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PriceSet"
               }
             ]
@@ -3521,9 +3308,6 @@
           "total_tax_set": {
             "description": "The total tax of the line item in shop and presentment currencies.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/PriceSet"
               }
@@ -3589,9 +3373,6 @@
             "description": "An object containing information about the credit card used for this transaction.",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/PaymentDetails"
               }
             ]
@@ -3611,9 +3392,6 @@
           "status": {
             "description": "The status of the transaction. Valid values are: pending, failure, success or error.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/TransactionStatus"
               }
@@ -3657,9 +3435,6 @@
             "description": "An adjustment on the transaction showing the amount lost or gained due to fluctuations in the currency exchange rate",
             "oneOf": [
               {
-                "type": "null"
-              },
-              {
                 "$ref": "#/components/schemas/CurrencyExchangeAdjustment"
               }
             ]
@@ -3667,9 +3442,6 @@
           "payments_refund_attributes": {
             "description": "",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/PaymentsRefundAttributes"
               }
@@ -3682,9 +3454,6 @@
           "total_unsettled_set": {
             "description": "Specifies the available amount with currency to capture on the gateway in shop and presentment currencies. Only available when an amount is capturable or manually mark as paid.",
             "oneOf": [
-              {
-                "type": "null"
-              },
               {
                 "$ref": "#/components/schemas/PriceSet"
               }
@@ -3814,9 +3583,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/PriceSet"
-              },
-              {
-                "type": "null"
               }
             ]
           }
@@ -3899,9 +3665,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/PriceSet"
-              },
-              {
-                "type": "null"
               }
             ]
           },
@@ -3910,9 +3673,6 @@
             "oneOf": [
               {
                 "$ref": "#/components/schemas/PriceSet"
-              },
-              {
-                "type": "null"
               }
             ]
           }
@@ -4978,4 +4738,3 @@
     }
   }
 }
-    
