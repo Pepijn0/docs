@@ -141,7 +141,8 @@
             "description": "<br>The ID of your user (use a valid and unique email address).\r\n<br>We use this email address to connect user data when they want to register with Kariz and use the insights.",
             "schema": {
               "type": "string"
-            }
+            },
+            "required": true
           },
           {
             "name": "redirectUrl",
@@ -211,7 +212,8 @@
             "description": "<br>The ID of your user(must be authenticated with target channels).",
             "schema": {
               "type": "string"
-            }
+            },
+            "required": true
           },
           {
             "name": "completionCallbackUrl",
@@ -798,7 +800,8 @@
             "description": "<br>The ID of your user(must be authenticated with target channels).",
             "schema": {
               "type": "string"
-            }
+            },
+            "required": true
           },
           {
             "name": "completionCallbackUrl",
@@ -927,7 +930,8 @@
             "description": "<br>The ID of your user(must be authenticated with target channels).",
             "schema": {
               "type": "string"
-            }
+            },
+            "required": true
           },
           {
             "name": "completionCallbackUrl",
@@ -1063,7 +1067,8 @@
             "description": "<br>The ID of your user(must be authenticated with target channels).",
             "schema": {
               "type": "string"
-            }
+            },
+            "required": true
           },
           {
             "name": "completionCallbackUrl",
@@ -1188,7 +1193,8 @@
             "description": "<br>The ID of your user(must be authenticated with target channels).",
             "schema": {
               "type": "string"
-            }
+            },
+            "required": true
           },
           {
             "name": "completionCallbackUrl",
@@ -1588,7 +1594,8 @@
             "description": "<br>The ID of your user(must be authenticated with target channels).",
             "schema": {
               "type": "string"
-            }
+            },
+            "required": true
           },
           {
             "name": "completionCallbackUrl",
@@ -1626,34 +1633,34 @@
                 ]
               },
               "example": {
-                  "params": {
-                    "woocommerce": [
-                      {
-                        "key": "baseUrl",
-                        "value": "https://domain.com/wordpress"
-                      },
-                      {
-                        "key": "token",
-                        "value": "base64 token"
-                      }
-                    ]
-                  },
-                  "api_version": "1",
-                  "attribution_app_id": "1",
-                  "created_at_max": "1948-06-08T07:16:01.0Z",
-                  "created_at_min": "1948-06-08T07:16:01.0Z",
-                  "fields": "id,name",
-                  "financial_status": "paid",
-                  "fulfillment_status": "shipped",
-                  "ids": "1,2",
-                  "limit": 10,
-                  "processed_at_max": "1948-06-08T07:16:01.0Z",
-                  "processed_at_min": "1948-06-08T07:16:01.0Z",
-                  "since_id": "1",
-                  "status": "any",
-                  "updated_at_max": "1918-04-30T21:13:27.0Z",
-                  "updated_at_min": "1939-08-05T01:34:33.0Z"
-                }              
+                "params": {
+                  "woocommerce": [
+                    {
+                      "key": "baseUrl",
+                      "value": "https://domain.com/wordpress"
+                    },
+                    {
+                      "key": "token",
+                      "value": "base64 token"
+                    }
+                  ]
+                },
+                "api_version": "1",
+                "attribution_app_id": "1",
+                "created_at_max": "1948-06-08T07:16:01.0Z",
+                "created_at_min": "1948-06-08T07:16:01.0Z",
+                "fields": "id,name",
+                "financial_status": "paid",
+                "fulfillment_status": "shipped",
+                "ids": "1,2",
+                "limit": 10,
+                "processed_at_max": "1948-06-08T07:16:01.0Z",
+                "processed_at_min": "1948-06-08T07:16:01.0Z",
+                "since_id": "1",
+                "status": "any",
+                "updated_at_max": "1918-04-30T21:13:27.0Z",
+                "updated_at_min": "1939-08-05T01:34:33.0Z"
+              }
             },
             "text/json": {
               "schema": {}
@@ -1717,7 +1724,8 @@
             "description": "<br>The ID of your user(must be authenticated with target channels).",
             "schema": {
               "type": "string"
-            }
+            },
+            "required": true
           },
           {
             "name": "completionCallbackUrl",
@@ -1755,31 +1763,31 @@
                 ]
               },
               "example": {
-                  "params": {
-                    "bol": [
-                      {
-                        "key": "token",
-                        "value": "base64 token"
-                      }
-                    ]
-                  },
-                  "api_version": "1",
-                  "attribution_app_id": "1",
-                  "created_at_max": "1948-06-08T07:16:01.0Z",
-                  "created_at_min": "1948-06-08T07:16:01.0Z",
-                  "fields": "id,name",
-                  "financial_status": "paid",
-                  "fulfillment_status": "shipped",
-                  "ids": "1,2",
-                  "limit": 10,
-                  "processed_at_max": "1948-06-08T07:16:01.0Z",
-                  "processed_at_min": "1948-06-08T07:16:01.0Z",
-                  "since_id": "1",
-                  "status": "any",
-                  "updated_at_max": "1918-04-30T21:13:27.0Z",
-                  "updated_at_min": "1939-08-05T01:34:33.0Z"
-                }
-              
+                "params": {
+                  "bol": [
+                    {
+                      "key": "token",
+                      "value": "base64 token"
+                    }
+                  ]
+                },
+                "api_version": "1",
+                "attribution_app_id": "1",
+                "created_at_max": "1948-06-08T07:16:01.0Z",
+                "created_at_min": "1948-06-08T07:16:01.0Z",
+                "fields": "id,name",
+                "financial_status": "paid",
+                "fulfillment_status": "shipped",
+                "ids": "1,2",
+                "limit": 10,
+                "processed_at_max": "1948-06-08T07:16:01.0Z",
+                "processed_at_min": "1948-06-08T07:16:01.0Z",
+                "since_id": "1",
+                "status": "any",
+                "updated_at_max": "1918-04-30T21:13:27.0Z",
+                "updated_at_min": "1939-08-05T01:34:33.0Z"
+              }
+
             },
             "text/json": {
               "schema": {}
