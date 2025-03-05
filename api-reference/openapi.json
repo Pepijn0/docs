@@ -196,7 +196,7 @@
         "tags": [
           "Orders"
         ],
-        "summary": "Retrieve a list of orders from Shopify.",
+        "summary": "Get orders Shopify.",
         "parameters": [
           {
             "name": "tpUserId",
@@ -772,7 +772,7 @@
         "tags": [
           "Orders"
         ],
-        "summary": "Retrieve a list of orders from WooCommerce.",
+        "summary": "Get orders WooCommerce.",
         "parameters": [
           {
             "name": "tpUserId",
@@ -1347,7 +1347,7 @@
         "tags": [
           "Orders"
         ],
-        "summary": "Retrieve a list of orders from Amazon.",
+        "summary": "Get orders from Amazon.",
         "parameters": [
           {
             "name": "tpUserId",
@@ -1929,7 +1929,7 @@
         "tags": [
           "Orders"
         ],
-        "summary": "Retrieve a list of orders from Bol.",
+        "summary": "Get orders from Bol.",
         "parameters": [
           {
             "name": "tpUserId",
@@ -2501,7 +2501,7 @@
         "tags": [
           "Products"
         ],
-        "summary": "Retrieve a list of products from Shopify.",
+        "summary": "Get products Shopify.",
         "parameters": [
           {
             "name": "tpUserId",
@@ -2890,7 +2890,7 @@
         "tags": [
           "Products"
         ],
-        "summary": "Retrieve a list of products from Woocommerce.",
+        "summary": "Get products Woocommerce.",
         "parameters": [
           {
             "name": "tpUserId",
@@ -3465,7 +3465,7 @@
         "tags": [
           "Products"
         ],
-        "summary": "Retrieve a list of products from Bol.",
+        "summary": "Get products Bol.",
         "parameters": [
           {
             "name": "tpUserId",
