@@ -2890,7 +2890,7 @@
         "tags": [
           "Products"
         ],
-        "summary": "List products Woocommerce",
+        "summary": "List products WooCommerce",
         "parameters": [
           {
             "name": "tpUserId",
