@@ -7917,17 +7917,7 @@
                 "key",
                 "value"
               ]
-            },
-            "default": [
-              {
-                "key": "baseUrl",
-                "value": "shop_name.myshopify.com"
-              },
-              {
-                "key": "token",
-                "value": "oauth token"
-              }
-            ]
+            }
           }
         },
         "required": [
@@ -7956,17 +7946,7 @@
                 "key",
                 "value"
               ]
-            },
-            "default": [
-              {
-                "key": "baseUrl",
-                "value": "https://domain.com/wordpress"
-              },
-              {
-                "key": "token",
-                "value": "base64 token"
-              }
-            ]
+            }
           }
         },
         "required": [
@@ -7994,24 +7974,7 @@
                 "key",
                 "value"
               ]
-            },
-            "default": [
-              {
-                "key": "endpoint",
-                "value": "https://sellingpartnerapi-eu.amazon.com"
-              },
-              {
-                "key": "marketplaceIds",
-                "value": [
-                  "A1805IZSGTT6HS",
-                  "A1PA6795UKMFR9"
-                ]
-              },
-              {
-                "key": "token",
-                "value": "oauth token"
-              }
-            ]
+            }
           }
         },
         "required": [
@@ -8038,13 +8001,7 @@
                 "key",
                 "value"
               ]
-            },
-            "default": [
-              {
-                "key": "token",
-                "value": "base64 token"
-              }
-            ]
+            }
           }
         },
         "required": [
@@ -8071,17 +8028,7 @@
                 "key",
                 "value"
               ]
-            },
-            "default": [
-              {
-                "key": "region",
-                "value": "nl"
-              },
-              {
-                "key": "token",
-                "value": "Basic {base_64 string}"
-              }
-            ]
+            }
           }
         },
         "required": [
@@ -8108,17 +8055,7 @@
                 "key",
                 "value"
               ]
-            },
-            "default": [
-              {
-                "key": "store_hash",
-                "value": "store hash"
-              },
-              {
-                "key": "token",
-                "value": "store token"
-              }
-            ]
+            }
           }
         },
         "required": [
