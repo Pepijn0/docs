@@ -155,11 +155,19 @@
           {
             "name": "scopes",
             "in": "query",
-            "description": "Scopes are channel names, acceptable values:`shopify`,`amazon`,`woocommerce`,`bol`,`sharetribe`, `lightspeed-c`",
+            "description": "Scopes are channel names, acceptable values:`shopify`,`amazon`,`woocommerce`,`bol`,`sharetribe`, `lightspeed_c`",
             "schema": {
               "type": "array",
               "items": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "shopify",
+                  "amazon",
+                  "woocommerce",
+                  "bol",
+                  "sharetribe",
+                  "lightspeed_c"
+                ]
               },
               "default": [
                 "shopify",
@@ -167,7 +175,7 @@
                 "woocommerce",
                 "bol",
                 "sharetribe",
-                "lightspeed-c"
+                "lightspeed_c"
               ]
             }
           }
@@ -198,26 +206,33 @@
         ]
       }
     },
-    "/api/KarizClientApp/RunSync": {
+    "/api/KarizClientApp/Unified/Products": {
       "post": {
         "tags": [
           "Unified"
         ],
-        "summary": "List orders, products, inventory",
+        "summary": "Products",
         "parameters": [
           {
-            "name": "tpUserId",
+            "name": "channel",
             "in": "query",
-            "description": "The ID of your user(must be authenticated with target channels).",
+            "description": "Target channel",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "bigcommerce",
+                "bol",
+                "lightspeed_c",
+                "shopify",
+                "woocommerce"
+              ]
             },
             "required": true
           },
           {
-            "name": "configName",
+            "name": "tpUserId",
             "in": "query",
-            "description": "Workflow configuration name.\n\n**Acceptable values:**\n\n **Shopify:**\n-   `shopify_get_orders`\n-   `shopify_get_products`\n\n**Amazon:**\n-   `amazon_get_orders`\n\n**Bol:**\n-   `bol_get_orders`\n-   `bol_get_all_offers_sync`\n-   `bol_get_inventory`\n\n**BigCommerce:**\n-   `bigcommerce_get_orders`\n-   `bigcommerce_get_products`\n\n**Lightspeed C:**\n-   `lightspeedc_get_orders`\n-   `lightspeedc_get_products`",
+            "description": "The ID of your user(must be authenticated with target channels).",
             "schema": {
               "type": "string"
             },
@@ -241,95 +256,81 @@
           }
         ],
         "requestBody": {
-          "description": "The body of request is depend on the `configName` see the samples.",
+          "description": "The body of request is depend on the `channel` see the samples.",
           "content": {
             "application/json": {
               "schema": {
-                "oneOf": [
+                "allOf": [
                   {
-                    "allOf": [
-                      {
-                        "properties": {
-                          "params": {
-                            "oneOf": [
-                              {
-                                "$ref": "#/components/schemas/ShopifyBodyParams"
-                              },
-                              {
-                                "$ref": "#/components/schemas/WoocommerceBodyParams"
-                              },
-                              {
-                                "$ref": "#/components/schemas/AmazonBodyParams"
-                              },
-                              {
-                                "$ref": "#/components/schemas/BolBodyParams"
-                              },
-                              {
-                                "$ref": "#/components/schemas/LightspeedCBodyParams"
-                              },
-                              {
-                                "$ref": "#/components/schemas/BigCommerceBodyParams"
-                              }
-                            ]
+                    "properties": {
+                      "params": {
+                        "oneOf": [
+                          {
+                            "$ref": "#/components/schemas/ShopifyBodyParams"
+                          },
+                          {
+                            "$ref": "#/components/schemas/WoocommerceBodyParams"
+                          },
+                          {
+                            "$ref": "#/components/schemas/AmazonBodyParams"
+                          },
+                          {
+                            "$ref": "#/components/schemas/BolBodyParams"
+                          },
+                          {
+                            "$ref": "#/components/schemas/LightspeedCBodyParams"
+                          },
+                          {
+                            "$ref": "#/components/schemas/BigCommerceBodyParams"
                           }
-                        }
-                      },
-                      {
-                        "$ref": "#/components/schemas/GetOrdersBody"
+                        ]
                       }
-                    ]
+                    }
                   },
                   {
-                    "allOf": [
-                      {
-                        "properties": {
-                          "params": {
-                            "oneOf": [
-                              {
-                                "$ref": "#/components/schemas/ShopifyBodyParams"
-                              },
-                              {
-                                "$ref": "#/components/schemas/WoocommerceBodyParams"
-                              },
-                              {
-                                "$ref": "#/components/schemas/AmazonBodyParams"
-                              },
-                              {
-                                "$ref": "#/components/schemas/BolBodyParams"
-                              },
-                              {
-                                "$ref": "#/components/schemas/LightspeedCBodyParams"
-                              },
-                              {
-                                "$ref": "#/components/schemas/BigCommerceBodyParams"
-                              }
-                            ]
-                          }
-                        }
-                      },
-                      {
-                        "$ref": "#/components/schemas/GetProductsBody"
-                      }                      
-                    ]
+                    "$ref": "#/components/schemas/GetProductsBody"
                   }
                 ]
               },
-              "example": {
-                "params": {
-                  "allOf": [
-                    {
+              "examples": {
+                "Shopify": {
+                  "summary": "Example with Shopify configuration.",
+                  "value": {
+                    "params": {
                       "shopify": [
                         {
                           "key": "baseUrl",
-                          "value": "shop_name.myshopify.com"
+                          "value": "your-shop.myshopify.com"
                         },
                         {
                           "key": "token",
-                          "value": "oauth token"
+                          "value": "your-shopify-oauth-token"
                         }
                       ]
                     },
-                    {
+                    "collection_id": "1",
+                    "created_at_max": "1948-06-08T07:16:01.0Z",
+                    "created_at_min": "1948-06-08T07:16:01.0Z",
+                    "fields": "id,name",
+                    "handle": "handle",
+                    "ids": "1,2",
+                    "limit": 10,
+                    "product_type": "1948-06-08T07:16:01.0Z",
+                    "published_at_max": "1948-06-08T07:16:01.0Z",
+                    "published_at_min": "1948-06-08T07:16:01.0Z",
+                    "published_status": "published",
+                    "since_id": "1",
+                    "status": "active",
+                    "title": "title",
+                    "updated_at_max": "1918-04-30T21:13:27.0Z",
+                    "updated_at_min": "1918-04-30T21:13:27.0Z",
+                    "vendor": "vendor"
+                  }
+                },
+                "Lightspeed-C": {
+                  "summary": "Example with Lightspeed C configuration.",
+                  "value": {
+                    "params": {
                       "lightspeed_c": [
                         {
                           "key": "region",
@@ -337,11 +338,33 @@
                         },
                         {
                           "key": "token",
-                          "value": "Basic {base64}"
+                          "value": "Basic eHh4eHh4"
                         }
                       ]
                     },
-                    {
+                    "collection_id": "1",
+                    "created_at_max": "1948-06-08T07:16:01.0Z",
+                    "created_at_min": "1948-06-08T07:16:01.0Z",
+                    "fields": "id,name",
+                    "handle": "handle",
+                    "ids": "1,2",
+                    "limit": 10,
+                    "product_type": "1948-06-08T07:16:01.0Z",
+                    "published_at_max": "1948-06-08T07:16:01.0Z",
+                    "published_at_min": "1948-06-08T07:16:01.0Z",
+                    "published_status": "published",
+                    "since_id": "1",
+                    "status": "active",
+                    "title": "title",
+                    "updated_at_max": "1918-04-30T21:13:27.0Z",
+                    "updated_at_min": "1918-04-30T21:13:27.0Z",
+                    "vendor": "vendor"
+                  }
+                },
+                "Bigcommerce": {
+                  "summary": "Example with Bigcommerce configuration.",
+                  "value": {
+                    "params": {
                       "bigcommerce": [
                         {
                           "key": "store_hash",
@@ -353,7 +376,29 @@
                         }
                       ]
                     },
-                    {
+                    "collection_id": "1",
+                    "created_at_max": "1948-06-08T07:16:01.0Z",
+                    "created_at_min": "1948-06-08T07:16:01.0Z",
+                    "fields": "id,name",
+                    "handle": "handle",
+                    "ids": "1,2",
+                    "limit": 10,
+                    "product_type": "1948-06-08T07:16:01.0Z",
+                    "published_at_max": "1948-06-08T07:16:01.0Z",
+                    "published_at_min": "1948-06-08T07:16:01.0Z",
+                    "published_status": "published",
+                    "since_id": "1",
+                    "status": "active",
+                    "title": "title",
+                    "updated_at_max": "1918-04-30T21:13:27.0Z",
+                    "updated_at_min": "1918-04-30T21:13:27.0Z",
+                    "vendor": "vendor"
+                  }
+                },
+                "Woocommerce": {
+                  "summary": "Example with Woocommerce configuration.",
+                  "value": {
+                    "params": {
                       "woocommerce": [
                         {
                           "key": "baseUrl",
@@ -365,7 +410,577 @@
                         }
                       ]
                     },
+                    "collection_id": "1",
+                    "created_at_max": "1948-06-08T07:16:01.0Z",
+                    "created_at_min": "1948-06-08T07:16:01.0Z",
+                    "fields": "id,name",
+                    "handle": "handle",
+                    "ids": "1,2",
+                    "limit": 10,
+                    "product_type": "1948-06-08T07:16:01.0Z",
+                    "published_at_max": "1948-06-08T07:16:01.0Z",
+                    "published_at_min": "1948-06-08T07:16:01.0Z",
+                    "published_status": "published",
+                    "since_id": "1",
+                    "status": "active",
+                    "title": "title",
+                    "updated_at_max": "1918-04-30T21:13:27.0Z",
+                    "updated_at_min": "1918-04-30T21:13:27.0Z",
+                    "vendor": "vendor"
+                  }
+                },
+                "Bol": {
+                  "summary": "Example with Bol configuration.",
+                  "value": {
+                    "params": {
+                      "bol": [
+                        {
+                          "key": "token",
+                          "value": "base64 token"
+                        }
+                      ]
+                    },
+                    "collection_id": "1",
+                    "created_at_max": "1948-06-08T07:16:01.0Z",
+                    "created_at_min": "1948-06-08T07:16:01.0Z",
+                    "fields": "id,name",
+                    "handle": "handle",
+                    "ids": "1,2",
+                    "limit": 10,
+                    "product_type": "1948-06-08T07:16:01.0Z",
+                    "published_at_max": "1948-06-08T07:16:01.0Z",
+                    "published_at_min": "1948-06-08T07:16:01.0Z",
+                    "published_status": "published",
+                    "since_id": "1",
+                    "status": "active",
+                    "title": "title",
+                    "updated_at_max": "1918-04-30T21:13:27.0Z",
+                    "updated_at_min": "1918-04-30T21:13:27.0Z",
+                    "vendor": "vendor"
+                  }
+                }
+              }
+            },
+            "text/json": {
+              "schema": {}
+            },
+            "application/*+json": {
+              "schema": {}
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Execution result",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
                     {
+                      "$ref": "#/components/schemas/ResponseWrapper"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProductOutput"
+                    }
+                  ]
+                },
+                "example": {
+                  "Errors": {},
+                  "Output": {
+                    "step": "transform",
+                    "isSuccess": true,
+                    "schemaValidationErrors": null,
+                    "restErrors": null,
+                    "operationErrors": null,
+                    "unexpectedErrors": null,
+                    "execution_id": "ed7ad663-4757-447c-b5cd-1e83c2380afc",
+                    "override_count": 1,
+                    "next_page_token_url": "https://api.trykariz.com/api/KarizClientApp/RunSync?configName=shopify_get_orders&tpUserId=1&data=%7B%22limit%22%3A1%2C%22next_page_token%22%3A%22eyJsYXN0X2lkIjo1OTU0NDYxMzM1ODI3LCJsYXN0X3ZhbHVlIjoiMjAyNC0wOS0xMyAxNDo0NzoxMy4xNDAwNTEiLCJkaXJlY3Rpb24iOiJuZXh0In0%22%7D",
+                    "next_page_token": "eyJsYXN0X2lkIjo1OTU0NDYxMzM1ODI3LCJsYXN0X3ZhbHVlIjoiMjAyNC0wOS0xMyAxNDo0NzoxMy4xNDAwNTEiLCJkaXJlY3Rpb24iOiJuZXh0In0",
+                    "result": [
+                      {
+                        "id": "9193872097555",
+                        "channel_name": "lightspeed_c",
+                        "title": "Gift Card",
+                        "body_html": "This is a gift card for the store",
+                        "vendor": "Snowboard Vendor",
+                        "product_type": "",
+                        "created_at": "2024-03-29T09:40:33+00:00",
+                        "handle": "gift-card",
+                        "updated_at": "2024-04-19T17:37:08+00:00",
+                        "published_at": "2024-03-29T09:40:34+00:00",
+                        "template_suffix": null,
+                        "published_scope": "web",
+                        "tags": "",
+                        "status": "active",
+                        "variants": [
+                          {
+                            "id": "48467551060243",
+                            "product_id": "9193872097555",
+                            "title": "$10",
+                            "price": "10.00",
+                            "position": 1,
+                            "inventory_policy": "deny",
+                            "compare_at_price": null,
+                            "option1": "$10",
+                            "option2": null,
+                            "option3": null,
+                            "created_at": "2024-03-29T09:40:33+00:00",
+                            "updated_at": "2024-03-29T09:40:33+00:00",
+                            "taxable": false,
+                            "barcode": null,
+                            "fulfillment_service": "gift_card",
+                            "grams": 0,
+                            "inventory_management": null,
+                            "requires_shipping": false,
+                            "sku": "",
+                            "weight": 0,
+                            "weight_unit": "kg",
+                            "inventory_item_id": "50485600059667",
+                            "inventory_quantity": 0,
+                            "old_inventory_quantity": 0,
+                            "image_id": null,
+                            "inventory_item": {
+                              "id": "50485600059667",
+                              "sku": "",
+                              "created_at": "2024-03-29T09:40:33+00:00",
+                              "updated_at": "2024-03-29T09:40:33+00:00",
+                              "requires_shipping": false,
+                              "cost": null,
+                              "country_code_of_origin": null,
+                              "province_code_of_origin": null,
+                              "harmonized_system_code": null,
+                              "tracked": false,
+                              "inventory_levels": [
+                                {
+                                  "inventory_item_id": "50485600059667",
+                                  "location_id": "97423720723",
+                                  "available": null,
+                                  "updated_at": "2024-03-29T09:40:34+00:00"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "id": "48467551093011",
+                            "product_id": "9193872097555",
+                            "title": "$25",
+                            "price": "25.00",
+                            "position": 2,
+                            "inventory_policy": "deny",
+                            "compare_at_price": null,
+                            "option1": "$25",
+                            "option2": null,
+                            "option3": null,
+                            "created_at": "2024-03-29T09:40:33+00:00",
+                            "updated_at": "2024-03-29T09:40:33+00:00",
+                            "taxable": false,
+                            "barcode": null,
+                            "fulfillment_service": "gift_card",
+                            "grams": 0,
+                            "inventory_management": null,
+                            "requires_shipping": false,
+                            "sku": "",
+                            "weight": 0,
+                            "weight_unit": "kg",
+                            "inventory_item_id": "50485600092435",
+                            "inventory_quantity": 0,
+                            "old_inventory_quantity": 0,
+                            "image_id": null,
+                            "inventory_item": {
+                              "id": "50485600092435",
+                              "sku": "",
+                              "created_at": "2024-03-29T09:40:33+00:00",
+                              "updated_at": "2024-03-29T09:40:33+00:00",
+                              "requires_shipping": false,
+                              "cost": null,
+                              "country_code_of_origin": null,
+                              "province_code_of_origin": null,
+                              "harmonized_system_code": null,
+                              "tracked": false,
+                              "inventory_levels": [
+                                {
+                                  "inventory_item_id": "50485600092435",
+                                  "location_id": "97423720723",
+                                  "available": null,
+                                  "updated_at": "2024-03-29T09:40:34+00:00"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "id": "48467551158547",
+                            "product_id": "9193872097555",
+                            "title": "$50",
+                            "price": "50.00",
+                            "position": 3,
+                            "inventory_policy": "deny",
+                            "compare_at_price": null,
+                            "option1": "$50",
+                            "option2": null,
+                            "option3": null,
+                            "created_at": "2024-03-29T09:40:33+00:00",
+                            "updated_at": "2024-03-29T09:40:33+00:00",
+                            "taxable": false,
+                            "barcode": null,
+                            "fulfillment_service": "gift_card",
+                            "grams": 0,
+                            "inventory_management": null,
+                            "requires_shipping": false,
+                            "sku": "",
+                            "weight": 0,
+                            "weight_unit": "kg",
+                            "inventory_item_id": "50485600125203",
+                            "inventory_quantity": 0,
+                            "old_inventory_quantity": 0,
+                            "image_id": null,
+                            "inventory_item": {
+                              "id": "50485600125203",
+                              "sku": "",
+                              "created_at": "2024-03-29T09:40:33+00:00",
+                              "updated_at": "2024-03-29T09:40:33+00:00",
+                              "requires_shipping": false,
+                              "cost": null,
+                              "country_code_of_origin": null,
+                              "province_code_of_origin": null,
+                              "harmonized_system_code": null,
+                              "tracked": false,
+                              "inventory_levels": [
+                                {
+                                  "inventory_item_id": "50485600125203",
+                                  "location_id": "97423720723",
+                                  "available": null,
+                                  "updated_at": "2024-03-29T09:40:34+00:00"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "id": "48467551191315",
+                            "product_id": "9193872097555",
+                            "title": "$100",
+                            "price": "100.00",
+                            "position": 4,
+                            "inventory_policy": "deny",
+                            "compare_at_price": null,
+                            "option1": "$100",
+                            "option2": null,
+                            "option3": null,
+                            "created_at": "2024-03-29T09:40:33+00:00",
+                            "updated_at": "2024-03-29T09:40:33+00:00",
+                            "taxable": false,
+                            "barcode": null,
+                            "fulfillment_service": "gift_card",
+                            "grams": 0,
+                            "inventory_management": null,
+                            "requires_shipping": false,
+                            "sku": "",
+                            "weight": 0,
+                            "weight_unit": "kg",
+                            "inventory_item_id": "50485600157971",
+                            "inventory_quantity": 0,
+                            "old_inventory_quantity": 0,
+                            "image_id": null,
+                            "inventory_item": {
+                              "id": "50485600157971",
+                              "sku": "",
+                              "created_at": "2024-03-29T09:40:33+00:00",
+                              "updated_at": "2024-03-29T09:40:33+00:00",
+                              "requires_shipping": false,
+                              "cost": null,
+                              "country_code_of_origin": null,
+                              "province_code_of_origin": null,
+                              "harmonized_system_code": null,
+                              "tracked": false,
+                              "inventory_levels": [
+                                {
+                                  "inventory_item_id": "50485600157971",
+                                  "location_id": "97423720723",
+                                  "available": null,
+                                  "updated_at": "2024-03-29T09:40:34+00:00"
+                                }
+                              ]
+                            }
+                          }
+                        ],
+                        "options": [
+                          {
+                            "id": "11557505007891",
+                            "product_id": "9193872097555",
+                            "name": "Denominations",
+                            "position": 1,
+                            "values": [
+                              "$10",
+                              "$25",
+                              "$50",
+                              "$100"
+                            ]
+                          }
+                        ],
+                        "images": [
+                          {
+                            "id": "45574246203667",
+                            "alt": "Gift card that shows text: Generated data gift card",
+                            "position": 1,
+                            "product_id": "9193872097555",
+                            "created_at": "2024-03-29T09:40:33+00:00",
+                            "updated_at": "2024-03-29T09:40:33+00:00",
+                            "width": 2881,
+                            "height": 2881,
+                            "src": "https://cdn.shopify.com/s/files/1/0870/1234/4083/files/gift_card.png?v=1711705233",
+                            "variant_ids": []
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "Report": {
+                    "TraceId": "00-3c6a96b919427b0952ba274800a4b04f-7efc4603f4ee42e7-00",
+                    "TotalExtResourcesDuration": 356.8311,
+                    "TotalEventsTransitDuration": 554.5615,
+                    "TotalTransformationsDuration": 690.4757,
+                    "TotalRequestsDuration": 4296.1973,
+                    "ExtResources": [
+                      {
+                        "Uri": "https://quickstart.myshopify.com/admin/api/2024-04/orders.json",
+                        "Duration": 356.8311
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [
+              "kariz_core_api"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/KarizClientApp/Unified/Orders": {
+      "post": {
+        "tags": [
+          "Unified"
+        ],
+        "summary": "Orders",
+        "parameters": [
+          {
+            "name": "channel",
+            "in": "query",
+            "description": "Target channel",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "amazon",
+                "bigcommerce",
+                "bol",
+                "lightspeed_c",
+                "shopify",
+                "woocommerce"
+              ]
+            },
+            "required": true
+          },
+          {
+            "name": "tpUserId",
+            "in": "query",
+            "description": "The ID of your user(must be authenticated with target channels).",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "completionCallbackUrl",
+            "in": "query",
+            "description": "To receive the completion event. You can use a webhook to find out whether the task is finished.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "data",
+            "in": "query",
+            "description": "This parameter is used when you want to use GET method. Not practical for POST method.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "The body of request is depend on the `channel` see the samples.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "properties": {
+                      "params": {
+                        "oneOf": [
+                          {
+                            "$ref": "#/components/schemas/ShopifyBodyParams"
+                          },
+                          {
+                            "$ref": "#/components/schemas/WoocommerceBodyParams"
+                          },
+                          {
+                            "$ref": "#/components/schemas/AmazonBodyParams"
+                          },
+                          {
+                            "$ref": "#/components/schemas/BolBodyParams"
+                          },
+                          {
+                            "$ref": "#/components/schemas/LightspeedCBodyParams"
+                          },
+                          {
+                            "$ref": "#/components/schemas/BigCommerceBodyParams"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "$ref": "#/components/schemas/GetProductsBody"
+                  }
+                ]
+              },
+              "examples": {
+                "Shopify": {
+                  "summary": "Example with Shopify configuration.",
+                  "value": {
+                    "params": {
+                      "shopify": [
+                        {
+                          "key": "baseUrl",
+                          "value": "your-shop.myshopify.com"
+                        },
+                        {
+                          "key": "token",
+                          "value": "your-shopify-oauth-token"
+                        }
+                      ]
+                    },
+                    "api_version": "1",
+                    "attribution_app_id": "1",
+                    "created_at_max": "1948-06-08T07:16:01.0Z",
+                    "created_at_min": "1948-06-08T07:16:01.0Z",
+                    "fields": "id,name",
+                    "financial_status": "paid",
+                    "fulfillment_status": "shipped",
+                    "ids": "1,2",
+                    "limit": 10,
+                    "processed_at_max": "1948-06-08T07:16:01.0Z",
+                    "processed_at_min": "1948-06-08T07:16:01.0Z",
+                    "since_id": "1",
+                    "status": "any",
+                    "updated_at_max": "1918-04-30T21:13:27.0Z",
+                    "updated_at_min": "1939-08-05T01:34:33.0Z"
+                  }
+                },
+                "Lightspeed-C": {
+                  "summary": "Example with Lightspeed C configuration.",
+                  "value": {
+                    "params": {
+                      "lightspeed_c": [
+                        {
+                          "key": "region",
+                          "value": "nl"
+                        },
+                        {
+                          "key": "token",
+                          "value": "Basic eHh4eHh4"
+                        }
+                      ]
+                    },
+                    "api_version": "1",
+                    "attribution_app_id": "1",
+                    "created_at_max": "1948-06-08T07:16:01.0Z",
+                    "created_at_min": "1948-06-08T07:16:01.0Z",
+                    "fields": "id,name",
+                    "financial_status": "paid",
+                    "fulfillment_status": "shipped",
+                    "ids": "1,2",
+                    "limit": 10,
+                    "processed_at_max": "1948-06-08T07:16:01.0Z",
+                    "processed_at_min": "1948-06-08T07:16:01.0Z",
+                    "since_id": "1",
+                    "status": "any",
+                    "updated_at_max": "1918-04-30T21:13:27.0Z",
+                    "updated_at_min": "1939-08-05T01:34:33.0Z"
+                  }
+                },
+                "Bigcommerce": {
+                  "summary": "Example with Bigcommerce configuration.",
+                  "value": {
+                    "params": {
+                      "bigcommerce": [
+                        {
+                          "key": "store_hash",
+                          "value": "store hash"
+                        },
+                        {
+                          "key": "token",
+                          "value": "store token"
+                        }
+                      ]
+                    },
+                    "api_version": "1",
+                    "attribution_app_id": "1",
+                    "created_at_max": "1948-06-08T07:16:01.0Z",
+                    "created_at_min": "1948-06-08T07:16:01.0Z",
+                    "fields": "id,name",
+                    "financial_status": "paid",
+                    "fulfillment_status": "shipped",
+                    "ids": "1,2",
+                    "limit": 10,
+                    "processed_at_max": "1948-06-08T07:16:01.0Z",
+                    "processed_at_min": "1948-06-08T07:16:01.0Z",
+                    "since_id": "1",
+                    "status": "any",
+                    "updated_at_max": "1918-04-30T21:13:27.0Z",
+                    "updated_at_min": "1939-08-05T01:34:33.0Z"
+                  }
+                },
+                "Woocommerce": {
+                  "summary": "Example with Woocommerce configuration.",
+                  "value": {
+                    "params": {
+                      "woocommerce": [
+                        {
+                          "key": "baseUrl",
+                          "value": "https://domain.com/wordpress"
+                        },
+                        {
+                          "key": "token",
+                          "value": "base64 token"
+                        }
+                      ]
+                    },
+                    "api_version": "1",
+                    "attribution_app_id": "1",
+                    "created_at_max": "1948-06-08T07:16:01.0Z",
+                    "created_at_min": "1948-06-08T07:16:01.0Z",
+                    "fields": "id,name",
+                    "financial_status": "paid",
+                    "fulfillment_status": "shipped",
+                    "ids": "1,2",
+                    "limit": 10,
+                    "processed_at_max": "1948-06-08T07:16:01.0Z",
+                    "processed_at_min": "1948-06-08T07:16:01.0Z",
+                    "since_id": "1",
+                    "status": "any",
+                    "updated_at_max": "1918-04-30T21:13:27.0Z",
+                    "updated_at_min": "1939-08-05T01:34:33.0Z"
+                  }
+                },
+                "Amazon": {
+                  "summary": "Example with Amazon configuration.",
+                  "value": {
+                    "params": {
                       "amazon": [
                         {
                           "key": "endpoint",
@@ -384,31 +999,51 @@
                         }
                       ]
                     },
-                    {
+                    "api_version": "1",
+                    "attribution_app_id": "1",
+                    "created_at_max": "1948-06-08T07:16:01.0Z",
+                    "created_at_min": "1948-06-08T07:16:01.0Z",
+                    "fields": "id,name",
+                    "financial_status": "paid",
+                    "fulfillment_status": "shipped",
+                    "ids": "1,2",
+                    "limit": 10,
+                    "processed_at_max": "1948-06-08T07:16:01.0Z",
+                    "processed_at_min": "1948-06-08T07:16:01.0Z",
+                    "since_id": "1",
+                    "status": "any",
+                    "updated_at_max": "1918-04-30T21:13:27.0Z",
+                    "updated_at_min": "1939-08-05T01:34:33.0Z"
+                  }
+                },
+                "Bol": {
+                  "summary": "Example with Bol configuration.",
+                  "value": {
+                    "params": {
                       "bol": [
                         {
                           "key": "token",
                           "value": "base64 token"
                         }
                       ]
-                    }
-                  ]
-                },
-                "api_version": "1",
-                "attribution_app_id": "1",
-                "created_at_max": "1948-06-08T07:16:01.0Z",
-                "created_at_min": "1948-06-08T07:16:01.0Z",
-                "fields": "id,name",
-                "financial_status": "paid",
-                "fulfillment_status": "shipped",
-                "ids": "1,2",
-                "limit": 10,
-                "processed_at_max": "1948-06-08T07:16:01.0Z",
-                "processed_at_min": "1948-06-08T07:16:01.0Z",
-                "since_id": "1",
-                "status": "any",
-                "updated_at_max": "1918-04-30T21:13:27.0Z",
-                "updated_at_min": "1939-08-05T01:34:33.0Z"
+                    },
+                    "api_version": "1",
+                    "attribution_app_id": "1",
+                    "created_at_max": "1948-06-08T07:16:01.0Z",
+                    "created_at_min": "1948-06-08T07:16:01.0Z",
+                    "fields": "id,name",
+                    "financial_status": "paid",
+                    "fulfillment_status": "shipped",
+                    "ids": "1,2",
+                    "limit": 10,
+                    "processed_at_max": "1948-06-08T07:16:01.0Z",
+                    "processed_at_min": "1948-06-08T07:16:01.0Z",
+                    "since_id": "1",
+                    "status": "any",
+                    "updated_at_max": "1918-04-30T21:13:27.0Z",
+                    "updated_at_min": "1939-08-05T01:34:33.0Z"
+                  }
+                }
               }
             },
             "text/json": {
@@ -4429,21 +5064,23 @@
                     }
                   ]
                 },
-                "api_version": "1",
-                "attribution_app_id": "1",
+                "collection_id": "1",
                 "created_at_max": "1948-06-08T07:16:01.0Z",
                 "created_at_min": "1948-06-08T07:16:01.0Z",
                 "fields": "id,name",
-                "financial_status": "paid",
-                "fulfillment_status": "shipped",
+                "handle": "handle",
                 "ids": "1,2",
                 "limit": 10,
-                "processed_at_max": "1948-06-08T07:16:01.0Z",
-                "processed_at_min": "1948-06-08T07:16:01.0Z",
+                "product_type": "1948-06-08T07:16:01.0Z",
+                "published_at_max": "1948-06-08T07:16:01.0Z",
+                "published_at_min": "1948-06-08T07:16:01.0Z",
+                "published_status": "published",
                 "since_id": "1",
-                "status": "any",
+                "status": "active",
+                "title": "title",
                 "updated_at_max": "1918-04-30T21:13:27.0Z",
-                "updated_at_min": "1939-08-05T01:34:33.0Z"
+                "updated_at_min": "1918-04-30T21:13:27.0Z",
+                "vendor": "vendor"
               }
             },
             "text/json": {
@@ -4818,21 +5455,23 @@
                     }
                   ]
                 },
-                "api_version": "1",
-                "attribution_app_id": "1",
+                "collection_id": "1",
                 "created_at_max": "1948-06-08T07:16:01.0Z",
                 "created_at_min": "1948-06-08T07:16:01.0Z",
                 "fields": "id,name",
-                "financial_status": "paid",
-                "fulfillment_status": "shipped",
+                "handle": "handle",
                 "ids": "1,2",
                 "limit": 10,
-                "processed_at_max": "1948-06-08T07:16:01.0Z",
-                "processed_at_min": "1948-06-08T07:16:01.0Z",
+                "product_type": "1948-06-08T07:16:01.0Z",
+                "published_at_max": "1948-06-08T07:16:01.0Z",
+                "published_at_min": "1948-06-08T07:16:01.0Z",
+                "published_status": "published",
                 "since_id": "1",
-                "status": "any",
+                "status": "active",
+                "title": "title",
                 "updated_at_max": "1918-04-30T21:13:27.0Z",
-                "updated_at_min": "1939-08-05T01:34:33.0Z"
+                "updated_at_min": "1918-04-30T21:13:27.0Z",
+                "vendor": "vendor"
               }
             },
             "text/json": {
@@ -5207,21 +5846,23 @@
                     }
                   ]
                 },
-                "api_version": "1",
-                "attribution_app_id": "1",
+                "collection_id": "1",
                 "created_at_max": "1948-06-08T07:16:01.0Z",
                 "created_at_min": "1948-06-08T07:16:01.0Z",
                 "fields": "id,name",
-                "financial_status": "paid",
-                "fulfillment_status": "shipped",
+                "handle": "handle",
                 "ids": "1,2",
                 "limit": 10,
-                "processed_at_max": "1948-06-08T07:16:01.0Z",
-                "processed_at_min": "1948-06-08T07:16:01.0Z",
+                "product_type": "1948-06-08T07:16:01.0Z",
+                "published_at_max": "1948-06-08T07:16:01.0Z",
+                "published_at_min": "1948-06-08T07:16:01.0Z",
+                "published_status": "published",
                 "since_id": "1",
-                "status": "any",
+                "status": "active",
+                "title": "title",
                 "updated_at_max": "1918-04-30T21:13:27.0Z",
-                "updated_at_min": "1939-08-05T01:34:33.0Z"
+                "updated_at_min": "1918-04-30T21:13:27.0Z",
+                "vendor": "vendor"
               }
             },
             "text/json": {
@@ -5596,21 +6237,23 @@
                     }
                   ]
                 },
-                "api_version": "1",
-                "attribution_app_id": "1",
+                "collection_id": "1",
                 "created_at_max": "1948-06-08T07:16:01.0Z",
                 "created_at_min": "1948-06-08T07:16:01.0Z",
                 "fields": "id,name",
-                "financial_status": "paid",
-                "fulfillment_status": "shipped",
+                "handle": "handle",
                 "ids": "1,2",
                 "limit": 10,
-                "processed_at_max": "1948-06-08T07:16:01.0Z",
-                "processed_at_min": "1948-06-08T07:16:01.0Z",
+                "product_type": "1948-06-08T07:16:01.0Z",
+                "published_at_max": "1948-06-08T07:16:01.0Z",
+                "published_at_min": "1948-06-08T07:16:01.0Z",
+                "published_status": "published",
                 "since_id": "1",
-                "status": "any",
+                "status": "active",
+                "title": "title",
                 "updated_at_max": "1918-04-30T21:13:27.0Z",
-                "updated_at_min": "1939-08-05T01:34:33.0Z"
+                "updated_at_min": "1918-04-30T21:13:27.0Z",
+                "vendor": "vendor"
               }
             },
             "text/json": {
@@ -6168,21 +6811,23 @@
                     }
                   ]
                 },
-                "api_version": "1",
-                "attribution_app_id": "1",
+                "collection_id": "1",
                 "created_at_max": "1948-06-08T07:16:01.0Z",
                 "created_at_min": "1948-06-08T07:16:01.0Z",
                 "fields": "id,name",
-                "financial_status": "paid",
-                "fulfillment_status": "shipped",
+                "handle": "handle",
                 "ids": "1,2",
                 "limit": 10,
-                "processed_at_max": "1948-06-08T07:16:01.0Z",
-                "processed_at_min": "1948-06-08T07:16:01.0Z",
+                "product_type": "1948-06-08T07:16:01.0Z",
+                "published_at_max": "1948-06-08T07:16:01.0Z",
+                "published_at_min": "1948-06-08T07:16:01.0Z",
+                "published_status": "published",
                 "since_id": "1",
-                "status": "any",
+                "status": "active",
+                "title": "title",
                 "updated_at_max": "1918-04-30T21:13:27.0Z",
-                "updated_at_min": "1939-08-05T01:34:33.0Z"
+                "updated_at_min": "1918-04-30T21:13:27.0Z",
+                "vendor": "vendor"
               }
             },
             "text/json": {
@@ -7078,7 +7723,8 @@
           },
           "limit": {
             "type": "number",
-            "description": "Return up to this many results per page."
+            "description": "Return up to this many results per page.",
+            "default": 10
           },
           "product_type": {
             "type": "string",
@@ -7209,7 +7855,7 @@
           "limit": {
             "type": "number",
             "description": "The maximum number of results to show on a page.",
-            "default": 50
+            "default": 10
           },
           "processed_at_max": {
             "type": "string",
@@ -7253,7 +7899,6 @@
       },
       "ShopifyBodyParams": {
         "type": "object",
-        "description": "The params section in the request body contains specific settings. These settings are different depending on which configName you choose. Think of configName as selecting a preset configuration, and params holds the details of that preset. Each configName needs its own specific params to work correctly(if you are using Unified API you need to specify the `configNames`).\n\n**Related configuration names:**\n-   `shopify_get_orders`\n-   `shopify_get_products`",
         "properties": {
           "shopify": {
             "type": "array",
@@ -7293,7 +7938,6 @@
         "properties": {
           "woocommerce": {
             "type": "array",
-            "description": "The params section in the request body contains specific settings. These settings are different depending on which configName you choose. Think of configName as selecting a preset configuration, and params holds the details of that preset. Each configName needs its own specific params to work correctly(if you are using Unified API you need to specify the `configNames`).\n\n**Related configuration names:**\n-   `woocommerce_get_orders`\n-   `woocommerce_get_products`",
             "items": {
               "type": "object",
               "properties": {
@@ -7329,7 +7973,6 @@
       },
       "AmazonBodyParams": {
         "type": "object",
-        "description": "The params section in the request body contains specific settings. These settings are different depending on which configName you choose. Think of configName as selecting a preset configuration, and params holds the details of that preset. Each configName needs its own specific params to work correctly(if you are using Unified API you need to specify the `configNames`).\n\n**Related configuration names:**\n-   `amazon_get_orders`",
         "properties": {
           "amazon": {
             "description": "The endpoint parameter (ex: https://sellingpartnerapi-eu.amazon.com) find the full list [here](https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints)\n, The marketplace identifiers(marketplaceIds) used in SP-API (ex: [\"A1805IZSGTT6HS\"]) find the full list [here](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)",
@@ -7374,7 +8017,6 @@
       },
       "BolBodyParams": {
         "type": "object",
-        "description": "The params section in the request body contains specific settings. These settings are different depending on which configName you choose. Think of configName as selecting a preset configuration, and params holds the details of that preset. Each configName needs its own specific params to work correctly(if you are using Unified API you need to specify the `configNames`).\n\n**Related configuration names:**\n-   `bol_get_orders`\n-   `bol_get_all_offers_sync`\n-   `bol_get_inventory`",
         "properties": {
           "bol": {
             "type": "array",
@@ -7407,7 +8049,6 @@
       },
       "LightspeedCBodyParams": {
         "type": "object",
-        "description": "The params section in the request body contains specific settings. These settings are different depending on which configName you choose. Think of configName as selecting a preset configuration, and params holds the details of that preset. Each configName needs its own specific params to work correctly(if you are using Unified API you need to specify the `configNames`).\n\n**Related configuration names:**\n-   `lightspeedc_get_orders`\n-   `lightspeedc_get_products`",
         "properties": {
           "lightspeed_c": {
             "type": "array",
@@ -7444,7 +8085,6 @@
       },
       "BigCommerceBodyParams": {
         "type": "object",
-        "description": "The params section in the request body contains specific settings. These settings are different depending on which configName you choose. Think of configName as selecting a preset configuration, and params holds the details of that preset. Each configName needs its own specific params to work correctly(if you are using Unified API you need to specify the `configNames`).\n\n**Related configuration names:**\n-   `bigcommerce_get_orders`\n-   `bigcommerce_get_products`",
         "properties": {
           "bigcommerce": {
             "type": "array",
