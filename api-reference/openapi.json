@@ -211,7 +211,7 @@
         "tags": [
           "Unified"
         ],
-        "summary": "Products",
+        "summary": "List products",
         "parameters": [
           {
             "name": "channel",
@@ -766,7 +766,7 @@
         "tags": [
           "Unified"
         ],
-        "summary": "Orders",
+        "summary": "List orders",
         "parameters": [
           {
             "name": "channel",
