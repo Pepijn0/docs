@@ -7899,6 +7899,7 @@
       },
       "ShopifyBodyParams": {
         "type": "object",
+        "title": "Shopify Parameters",
         "properties": {
           "shopify": {
             "type": "array",
@@ -7935,6 +7936,7 @@
       },
       "WoocommerceBodyParams": {
         "type": "object",
+        "title": "Woocommerce Parameters",
         "properties": {
           "woocommerce": {
             "type": "array",
@@ -7973,6 +7975,7 @@
       },
       "AmazonBodyParams": {
         "type": "object",
+        "title": "Amazon Parameters",
         "properties": {
           "amazon": {
             "description": "The endpoint parameter (ex: https://sellingpartnerapi-eu.amazon.com) find the full list [here](https://developer-docs.amazon.com/sp-api/docs/sp-api-endpoints)\n, The marketplace identifiers(marketplaceIds) used in SP-API (ex: [\"A1805IZSGTT6HS\"]) find the full list [here](https://developer-docs.amazon.com/sp-api/docs/marketplace-ids)",
@@ -8017,6 +8020,7 @@
       },
       "BolBodyParams": {
         "type": "object",
+        "title": "Bol Parameters",
         "properties": {
           "bol": {
             "type": "array",
@@ -8049,6 +8053,7 @@
       },
       "LightspeedCBodyParams": {
         "type": "object",
+        "title": "LightspeedC Parameters",
         "properties": {
           "lightspeed_c": {
             "type": "array",
@@ -8085,6 +8090,7 @@
       },
       "BigCommerceBodyParams": {
         "type": "object",
+        "title": "BigCommerce Parameters",
         "properties": {
           "bigcommerce": {
             "type": "array",
