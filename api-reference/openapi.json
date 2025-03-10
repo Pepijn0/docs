@@ -844,7 +844,7 @@
                     }
                   },
                   {
-                    "$ref": "#/components/schemas/GetProductsBody"
+                    "$ref": "#/components/schemas/GetOrdersBody"
                   }
                 ]
               },
@@ -7700,45 +7700,35 @@
             "description": "Return up to this many results per page.",
             "default": 10
           },
-          "collection_id": {
-            "type": "string",
-            "description": "Return products by product collection ID."
-          },
-          "created_at_max": {
+          "updated_at_min": {
             "type": "string",
             "format": "date-time",
-            "description": "Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)"
+            "description": "Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)"
+          },
+          "updated_at_max": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)"
           },
           "created_at_min": {
             "type": "string",
             "format": "date-time",
             "description": "Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)"
           },
-          "fields": {
-            "type": "string",
-            "description": "Return only certain fields specified by a comma-separated list of field names."
-          },
-          "handle": {
-            "type": "string",
-            "description": "Return only products specified by a comma-separated list of product handles."
-          },
-          "ids": {
-            "type": "string",
-            "description": "Return only products specified by a comma-separated list of product IDs."
-          },
-          "product_type": {
-            "type": "string",
-            "description": "Return products by product type."
-          },
-          "published_at_max": {
+          "created_at_max": {
             "type": "string",
             "format": "date-time",
-            "description": "Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)"
+            "description": "Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)"
           },
           "published_at_min": {
             "type": "string",
             "format": "date-time",
             "description": "Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)"
+          },
+          "published_at_max": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)"
           },
           "published_status": {
             "type": "string",
@@ -7750,9 +7740,9 @@
               "any"
             ]
           },
-          "since_id": {
+          "ids": {
             "type": "string",
-            "description": "Return only products after the specified ID."
+            "description": "Return only products specified by a comma-separated list of product IDs."
           },
           "status": {
             "type": "string",
@@ -7764,19 +7754,29 @@
             "description": "Return only products specified by a comma-separated list of statuses.",
             "default": "any"
           },
+          "since_id": {
+            "type": "string",
+            "description": "Return only products after the specified ID."
+          },
+          "fields": {
+            "type": "string",
+            "description": "Return only certain fields specified by a comma-separated list of field names."
+          },
+          "collection_id": {
+            "type": "string",
+            "description": "Return products by product collection ID."
+          },
+          "handle": {
+            "type": "string",
+            "description": "Return only products specified by a comma-separated list of product handles."
+          },
+          "product_type": {
+            "type": "string",
+            "description": "Return products by product type."
+          },
           "title": {
             "type": "string",
             "description": "Return products by product title."
-          },
-          "updated_at_max": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)"
-          },
-          "updated_at_min": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)"
           },
           "vendor": {
             "type": "string",
