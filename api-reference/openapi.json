@@ -7800,7 +7800,7 @@
             "type": "string",
             "format": "date-time",
             "description": "Show orders last updated at or after date.",
-            "Supported Channels": [
+            "x-Supported-Channels": [
               "shopify",
               "woocommerce",
               "bigcommerce",
