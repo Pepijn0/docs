@@ -818,6 +818,9 @@
               "schema": {
                 "allOf": [
                   {
+                    "$ref": "#/components/schemas/GetOrdersBody"
+                  },
+                  {
                     "properties": {
                       "params": {
                         "oneOf": [
@@ -842,9 +845,6 @@
                         ]
                       }
                     }
-                  },
-                  {
-                    "$ref": "#/components/schemas/GetOrdersBody"
                   }
                 ]
               },
