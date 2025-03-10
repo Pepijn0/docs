@@ -7787,9 +7787,6 @@
       "GetOrdersBody": {
         "type": "object",
         "properties": {
-          "params": {
-            "type": "object"
-          },
           "next_page_token": {
             "type": "string",
             "description": "Used to paginate to the next batch of objects. Should be a copy of the next_page_token value from the previous response."
@@ -7894,6 +7891,9 @@
             "type": "string",
             "format": "date-time",
             "description": "Show orders last updated at or after date."
+          },
+          "params": {
+            "type": "object"
           }
         }
       },
