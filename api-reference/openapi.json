@@ -7791,6 +7791,67 @@
             "type": "string",
             "description": "Used to paginate to the next batch of objects. Should be a copy of the next_page_token value from the previous response."
           },
+          "limit": {
+            "type": "number",
+            "description": "The maximum number of results to show on a page.",
+            "default": 10
+          },
+          "updated_at_min": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Show orders last updated at or after date."
+          },
+          "updated_at_max": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Show orders last updated at or before date."
+          },
+          "created_at_min": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Show orders created at or after date."
+          },
+          "created_at_max": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Show orders created at or before date."
+          },
+          "processed_at_min": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Show orders imported at or after date."
+          },
+          "processed_at_max": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Show orders imported at or before date."
+          },
+          "ids": {
+            "type": "string",
+            "description": "Retrieve only orders specified by a comma-separated list of order IDs."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "open",
+              "closed",
+              "cancelled",
+              "any",
+              "",
+              null
+            ],
+            "description": "Filter orders by their status.",
+            "default": "open"
+          },
+          "since_id": {
+            "type": "string",
+            "format": "integer",
+            "description": "Show orders after the specified ID."
+          },
+          "fields": {
+            "type": "string",
+            "description": "Retrieve only certain fields, specified by a comma-separated list of fields names."
+          },
           "api_version": {
             "type": "string",
             "description": ""
@@ -7798,20 +7859,6 @@
           "attribution_app_id": {
             "type": "string",
             "description": "Show orders attributed to a certain app, specified by the app ID. Set as current to show orders for the app currently consuming the API."
-          },
-          "created_at_max": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Show orders created at or before date."
-          },
-          "created_at_min": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Show orders created at or after date."
-          },
-          "fields": {
-            "type": "string",
-            "description": "Retrieve only certain fields, specified by a comma-separated list of fields names."
           },
           "financial_status": {
             "type": "string",
@@ -7844,53 +7891,6 @@
             ],
             "description": "Filter orders by their fulfillment status.",
             "default": "any"
-          },
-          "ids": {
-            "type": "string",
-            "description": "Retrieve only orders specified by a comma-separated list of order IDs."
-          },
-          "limit": {
-            "type": "number",
-            "description": "The maximum number of results to show on a page.",
-            "default": 10
-          },
-          "processed_at_max": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Show orders imported at or before date."
-          },
-          "processed_at_min": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Show orders imported at or after date."
-          },
-          "since_id": {
-            "type": "string",
-            "format": "integer",
-            "description": "Show orders after the specified ID."
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "open",
-              "closed",
-              "cancelled",
-              "any",
-              "",
-              null
-            ],
-            "description": "Filter orders by their status.",
-            "default": "open"
-          },
-          "updated_at_max": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Show orders last updated at or before date."
-          },
-          "updated_at_min": {
-            "type": "string",
-            "format": "date-time",
-            "description": "Show orders last updated at or after date."
           }
         }
       },
