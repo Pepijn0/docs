@@ -8563,7 +8563,8 @@
             "updated_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products last updated after a specified date. \n(format: 2014-04-25T16:15:47-04:00)\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`.\n"
+              "description": "Return products updated after this date. Date and time must be in **ISO 8601 format** (YYYY-MM-DDTHH:mm:ss[timezone offset]).\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`.\n.",
+              "example": "2025-01-25T16:15:47-04:00"
             },
             "updated_at_max": {
               "type": "string",
@@ -8588,7 +8589,7 @@
             "published_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00) \n\n Supported channels for this parameter: `shopify`, `woocommerce`.\n"
+              "description": "Return products published before a specified date. \n(format: 2014-04-25T16:15:47-04:00) \n\n Supported channels for this parameter: `shopify`, `woocommerce`.\n"
             },
             "published_status": {
               "type": "string",
