@@ -8644,11 +8644,11 @@
           "properties": {
             "next_page_token": {
               "type": "string",
-              "description": "Used to paginate to the next batch of objects. Should be a copy of the next_page_token value from the previous response."
+              "description": "Used to paginate to the next batch of objects. Should be a copy of the next_page_token value from the previous response.\n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`.\n"
             },
             "limit": {
               "type": "number",
-              "description": "The maximum number of results to show on a page.",
+              "description": "The maximum number of results to show on a page. \n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`.\n",
               "default": 10
             },
             "updated_at_min": {
@@ -8659,31 +8659,31 @@
             "updated_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Show orders last updated at or before date."
+              "description": "Show orders last updated at or before date.\n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`.\n"
             },
             "created_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Show orders created at or after date."
+              "description": "Show orders created at or after date.\n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`.\n"
             },
             "created_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Show orders created at or before date."
+              "description": "Show orders created at or before date.\n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`.\n"
             },
             "processed_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Show orders imported at or after date."
+              "description": "Show orders imported at or after date.\n\n Supported channels for this parameter: `shopify`.\n"
             },
             "processed_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Show orders imported at or before date."
+              "description": "Show orders imported at or before date.\n\n Supported channels for this parameter: `shopify`.\n"
             },
             "ids": {
               "type": "string",
-              "description": "Retrieve only orders specified by a comma-separated list of order IDs."
+              "description": "Retrieve only orders specified by a comma-separated list of order IDs.  \n\n Supported channels for this parameter are `shopify`, `woocommerce`, `bigcommerce`, `amazon`.\n"
             },
             "status": {
               "type": "string",
@@ -8695,25 +8695,21 @@
                 "",
                 null
               ],
-              "description": "Filter orders by their status.",
+              "description": "Filter orders by their status. \n\n Supported channels for this parameter are `shopify`, `woocommerce`, `bol`, `amazon`.\n",
               "default": "open"
             },
             "since_id": {
               "type": "string",
               "format": "integer",
-              "description": "Show orders after the specified ID."
+              "description": "Show orders after the specified ID. \n\n Supported channels for this parameter are `shopify`, `woocommerce`, `lightspeed_c`.\n"
             },
             "fields": {
               "type": "string",
-              "description": "Retrieve only certain fields, specified by a comma-separated list of fields names."
-            },
-            "api_version": {
-              "type": "string",
-              "description": ""
+              "description": "Retrieve only certain fields, specified by a comma-separated list of fields names. \n\n Supported channels for this parameter are `shopify`,`lightspeed_c`.\n"
             },
             "attribution_app_id": {
               "type": "string",
-              "description": "Show orders attributed to a certain app, specified by the app ID. Set as current to show orders for the app currently consuming the API."
+              "description": "Show orders attributed to a certain app, specified by the app ID. Set as current to show orders for the app currently consuming the API. \n\n Supported channels for this parameter are `shopify`.\n"
             },
             "financial_status": {
               "type": "string",
@@ -8730,7 +8726,7 @@
                 "",
                 null
               ],
-              "description": "Filter orders by their financial status.",
+              "description": "Filter orders by their financial status. \n\n Supported channels for this parameter are `shopify`.\n",
               "default": "any"
             },
             "fulfillment_status": {
@@ -8744,7 +8740,7 @@
                 "",
                 null
               ],
-              "description": "Filter orders by their fulfillment status.",
+              "description": "Filter orders by their fulfillment status. \n\n Supported channels for this parameter are `shopify`.\n",
               "default": "any"
             }
           }
