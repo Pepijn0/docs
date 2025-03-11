@@ -24,7 +24,7 @@
           ],
           "security": [],
           "summary": "Obtain Access Token",
-          "description": "Kariz uses an access token to control access to our API via OAuth 2.0 Password Grant. Use this endpoint to retrieve an access token. You’ll need valid user and application credentials. If you don’t have an account, [schedule a demo] (https://cal.com/kariz-pepijn/intro-unified-api) to gain access. Use this token in the Authorization header of subsequent calls.",
+          "description": "Kariz uses an access token to control access to our API via OAuth 2.0 Password Grant. Use this endpoint to retrieve an access token.\n You’ll need valid user and application credentials. If you don’t have an account, [schedule a demo] ([https://cal.com/kariz-pepijn/intro-unified-api]) to gain access. Use this token in the Authorization header of subsequent calls.",
           "requestBody": {
             "required": true,
             "content": {
