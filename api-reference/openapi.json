@@ -780,7 +780,7 @@
             "Unified"
           ],
           "summary": "List all order info",
-          "description": "Retrieves a comprehensive list of orders, including **all** associated data, containing:\n\n*   **Full Order Details:** All standard order information (customer, billing, shipping, etc.).\n*   **Line Items:** Complete line item information.\n*   **Fulfillments:** Details about order fulfillments, including shipping.\n*   **Returns:** Any returned items associated with the order.\n\nBy providing all this data in a single response, this endpoint significantly simplifies order management integrations.",
+          "description": "Retrieves a list of orders, including **all** associated data, containing:\n\n*   **Full Order Details:** All standard order information (customer, billing, shipping, etc.).\n*   **Line Items:** Complete line item information.\n*   **Fulfillments:** Details order fulfillments and tracking.\n*   **Returns:** Any returned items associated with the order.\n\nProviding all this data in a single response significantly simplifies order management integrations. **The response format is compatible with the Shopify REST API order schema, enabling rapid integration. For detailed schema explanations, refer to the [Shopify REST API Order resource]([https://shopify.dev/docs/api/admin-rest/2024-10/resources/order]).**",
           "parameters": [
             {
               "name": "channel",
