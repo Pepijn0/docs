@@ -780,7 +780,7 @@
             "Unified"
           ],
           "summary": "List all order info",
-          "description": "Retrieves a comprehensive list of orders, including **all** associated data. This endpoint provides a complete view of each order, encompassing:\n\n*   **Full Order Details:** All standard order information (customer, billing, shipping, etc.).\n*   **Line Items:** Complete line item information, including links to the detailed product information (from the `List all product info` endpoint).\n*   **Fulfillments:** Details about order fulfillments, including tracking information.\n*   **Returns:** Information about any returned items associated with the order.\n\nBy providing all this data in a single response, this endpoint significantly simplifies order management integrations and reduces the need for multiple API calls.",
+          "description": "Retrieves a comprehensive list of orders, including **all** associated data, containing:\n\n*   **Full Order Details:** All standard order information (customer, billing, shipping, etc.).\n*   **Line Items:** Complete line item information.\n*   **Fulfillments:** Details about order fulfillments, including shipping information.\n*   **Returns:** Information about any returned items associated with the order.\n\nBy providing all this data in a single response, this endpoint significantly simplifies order management integrations.",
           "parameters": [
             {
               "name": "channel",
