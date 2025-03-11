@@ -155,7 +155,7 @@
             {
               "name": "scopes",
               "in": "query",
-              "description": "Scopes are channel names, acceptable values:`shopify`,`amazon`,`woocommerce`,`bol`,`sharetribe`, `lightspeed_c`",
+              "description": "Scopes are channel names, acceptable values:`shopify`,`amazon`,`woocommerce`,`bol`,`sharetribe`, `lightspeed_c`, `mirakl`",
               "schema": {
                 "type": "array",
                 "items": {
@@ -166,7 +166,8 @@
                     "woocommerce",
                     "bol",
                     "sharetribe",
-                    "lightspeed_c"
+                    "lightspeed_c",
+                    "mirakl"
                   ]
                 },
                 "default": [
@@ -175,7 +176,8 @@
                   "woocommerce",
                   "bol",
                   "sharetribe",
-                  "lightspeed_c"
+                  "lightspeed_c",
+                  "mirakl"
                 ]
               }
             }
