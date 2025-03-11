@@ -8652,7 +8652,7 @@
             "updated_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Show orders last updated at or after date. \n\n:::info\nSupported channels for this parameter are 'shopify','woocommerce','bigcommerce',lightspeed_c','bol','amazon'.\n:::"
+              "description": "Show orders last updated at or after date. \n\n Supported channels for this parameter are `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`.\n"
             },
             "updated_at_max": {
               "type": "string",
