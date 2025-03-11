@@ -37,7 +37,7 @@
                       "default": "password",
                       "enum": [
                         "password"
-                      ]
+                      ],
                       "description": "The type of OAuth grant being used."
                     },
                     "username": {
