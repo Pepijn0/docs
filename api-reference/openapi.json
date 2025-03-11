@@ -34,28 +34,31 @@
                   "properties": {
                     "grant_type": {
                       "type": "string",
-                      "example": "password",
-                      "description": "The type of OAuth grant being used. Must be 'password'."
+                      "default": "password",
+                      "enum": [
+                        "password"
+                      ]
+                      "description": "The type of OAuth grant being used."
                     },
                     "username": {
                       "type": "string",
-                      "example": "johndoe@example.com",
-                      "description": "The user's username or email."
+                      "example": "john@nike.com",
+                      "description": "Your developer username in Kariz. This can be found in your account. It's the credential you use to login."
                     },
                     "password": {
                       "type": "string",
-                      "example": "supersecretpassword",
-                      "description": "The user's password."
+                      "example": "secretpassword",
+                      "description": "Your developer password in Kariz. This can be found in your account. It's the credential you use to login."
                     },
                     "client_id": {
                       "type": "string",
                       "example": "client123",
-                      "description": "The client identifier issued to the application."
+                      "description": "The client id for your application. This can be found in your account."
                     },
                     "client_secret": {
                       "type": "string",
                       "example": "clientsecret123",
-                      "description": "The client secret issued to the application."
+                      "description": "The client secret for your application. This can be found in your account."
                     }
                   },
                   "required": [
@@ -90,7 +93,7 @@
                       "expires_in": {
                         "type": "integer",
                         "example": 3600,
-                        "description": "The number of seconds until the token expires."
+                        "description": "The number of seconds until the token expires. By default the token expires every 90 days."
                       },
                       "scope": {
                         "type": "string",
@@ -133,12 +136,12 @@
             "Magic link"
           ],
           "summary": "Create a Magic link",
-          "description": "Create a Magic link for your users.\r\nMagic link is a link that allows your user to authenticate with third-party apps like Shopify without registering with us.",
+          "description": "Creates a Magic link to be used when linking a new end user.",
           "parameters": [
             {
               "name": "tpUserId",
               "in": "query",
-              "description": "The ID of your user (use a valid and unique email address).",
+              "description": "Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.",
               "schema": {
                 "type": "string"
               },
@@ -155,7 +158,7 @@
             {
               "name": "scopes",
               "in": "query",
-              "description": "Scopes are channel names, acceptable values:`shopify`,`amazon`,`woocommerce`,`bol`,`sharetribe`, `lightspeed_c`, `mirakl`",
+              "description": "Scopes are the channels the user will be asked to authenticate with. By default, user will be given the option to authenticate to all supported channels.",
               "schema": {
                 "type": "array",
                 "items": {
