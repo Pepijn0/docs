@@ -213,7 +213,8 @@
           "tags": [
             "Unified"
           ],
-          "summary": "List products",
+          "summary": "List all product info",
+          "description": "Retrieves a list all products, including *all* associated data. Unlike basic product listing endpoints, this endpoint returns complete product details, including:\n\n*   **Variants:** All product variants, with their individual attributes (price, SKU, etc.).\n*   **Inventory:** Detailed inventory information for each variant.\n*   **Inventory Locations:** Availability of each variant at different inventory locations.\n\n.",
           "parameters": [
             {
               "name": "channel",
@@ -778,7 +779,7 @@
           "tags": [
             "Unified"
           ],
-          "summary": "List orders",
+          "summary": "List all order info",
           "parameters": [
             {
               "name": "channel",
