@@ -214,7 +214,7 @@
             "Unified"
           ],
           "summary": "List all product info",
-          "description": "Retrieves a list of products from the seller's catalog, including **all** associated data, containing:\n\n*   **Variants:** All product variants, with their attributes (price, SKU, options, etc.).\n*   **Inventory:** inventory information for each product and variant.\n*   **Inventory Locations:**  Inventory locations at the variant level.\n\nProviding all this data in a single response simplifies product integrations. **The response is compatible with the Shopify REST API product schema**. For detailed schema explanations, see the [Shopify REST API Product resource]([https://shopify.dev/docs/api/admin-rest/2024-10/resources/product]).",
+          "description": "Retrieves a list of products from the seller's catalog, including **all** associated data, containing:\n\n*   **Variants:** All product variants, with their attributes (price, SKU, options, etc.).\n*   **Inventory:** inventory information for each product and variant.\n*   **Inventory Locations:**  Inventory locations at the variant level.\n\nProviding all this data in a single response simplifies product integrations. The response is compatible with the Shopify REST API product schema. For detailed schema explanations, see the [Shopify REST API Product resource]([https://shopify.dev/docs/api/admin-rest/2024-10/resources/product]).",
           "parameters": [
             {
               "name": "channel",
@@ -780,7 +780,7 @@
             "Unified"
           ],
           "summary": "List all order info",
-          "description": "Retrieves a list of orders, including **all** associated data, containing:\n\n*   **Full Order Details:** All standard order information (customer, billing, shipping, etc.).\n*   **Line Items:** Complete line item information.\n*   **Fulfillments:** Details order fulfillments and tracking.\n*   **Returns:** Any returned items associated with the order.\n\nProviding all this data in a single response simplifies order management integrations. **The response is compatible with the Shopify REST API order schema**. For detailed schema explanations, see the [Shopify REST API Order resource]([https://shopify.dev/docs/api/admin-rest/2024-10/resources/order]).",
+          "description": "Retrieves a list of orders, including **all** associated data, containing:\n\n*   **Full Order Details:** All standard order information (customer, billing, shipping, etc.).\n*   **Line Items:** Complete line item information.\n*   **Fulfillments:** Details order fulfillments and tracking.\n*   **Returns:** Any returned items associated with the order.\n\nProviding all this data in a single response simplifies order management integrations. The response is compatible with the Shopify REST API order schema. For detailed schema explanations, see the [Shopify REST API Order resource]([https://shopify.dev/docs/api/admin-rest/2024-10/resources/order]).",
           "parameters": [
             {
               "name": "channel",
