@@ -8548,47 +8548,47 @@
           "properties": {
             "next_page_token": {
               "type": "string",
-              "description": "Used to paginate to the next batch of objects. Should be a copy of the next_page_token value from the previous response."
+              "description": "Used to paginate to the next batch of objects. Should be a copy of the next_page_token value from the previous response. \n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`.\n"
             },
             "limit": {
               "type": "number",
-              "description": "Return up to this many results per page.",
+              "description": "Return up to this many results per page.\n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`.\n",
               "default": 10
             },
             "updated_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)"
+              "description": "Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`.\n"
             },
             "updated_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)"
+              "description": "Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`.\n"
             },
             "created_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)"
+              "description": "Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)\n\n Supported channels for this parameter: `shopify`, `lightspeed_c`.\n"
             },
             "created_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00)"
+              "description": "Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00) \n\n Supported channels for this parameter: `shopify`, `lightspeed_c`.\n"
             },
             "published_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00)"
+              "description": "Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00) \n\n Supported channels for this parameter: `shopify`, `woocommerce`.\n"
             },
             "published_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00)"
+              "description": "Return products published before a specified date. (format: 2014-04-25T16:15:47-04:00) \n\n Supported channels for this parameter: `shopify`, `woocommerce`.\n"
             },
             "published_status": {
               "type": "string",
               "default": "any",
-              "description": "Return products by their published status.",
+              "description": "Return products by their published status.\n\n Supported channels for this parameter: `shopify`.\n",
               "enum": [
                 "published",
                 "unpublished",
@@ -8597,7 +8597,7 @@
             },
             "ids": {
               "type": "string",
-              "description": "Return only products specified by a comma-separated list of product IDs."
+              "description": "Return only products specified by a comma-separated list of product IDs. \n\n Supported channels for this parameter: `shopify`, `woocommerce`.\n"
             },
             "status": {
               "type": "string",
@@ -8606,36 +8606,36 @@
                 "archived",
                 "draft"
               ],
-              "description": "Return only products specified by a comma-separated list of statuses.",
+              "description": "Return only products specified by a comma-separated list of statuses. \n\n Supported channels for this parameter: `shopify`, `woocommerce`.\n",
               "default": "any"
             },
             "since_id": {
               "type": "string",
-              "description": "Return only products after the specified ID."
+              "description": "Return only products after the specified ID. \n\n Supported channels for this parameter: `shopify`,`lightspeed_c`.\n"
             },
             "fields": {
               "type": "string",
-              "description": "Return only certain fields specified by a comma-separated list of field names."
+              "description": "Return only certain fields specified by a comma-separated list of field names.\n\n Supported channels for this parameter: `shopify`,`lightspeed_c`.\n"
             },
             "collection_id": {
               "type": "string",
-              "description": "Return products by product collection ID."
+              "description": "Return products by product collection ID. \n\n Supported channels for this parameter: `shopify`, `woocommerce`.\n"
             },
             "handle": {
               "type": "string",
-              "description": "Return only products specified by a comma-separated list of product handles."
+              "description": "Return only products specified by a comma-separated list of product handles. \n\n Supported channels for this parameter: `shopify`.\n"
             },
             "product_type": {
               "type": "string",
-              "description": "Return products by product type."
+              "description": "Return products by product type. \n\n Supported channels for this parameter: `shopify`.\n"
             },
             "title": {
               "type": "string",
-              "description": "Return products by product title."
+              "description": "Return products by product title. \n\n Supported channels for this parameter: `shopify`, `woocommerce`.\n"
             },
             "vendor": {
               "type": "string",
-              "description": "Return products by product vendor."
+              "description": "Return products by product vendor.\n\n Supported channels for this parameter: `shopify`,`lightspeed_c`.\n"
             }
           }
         },
