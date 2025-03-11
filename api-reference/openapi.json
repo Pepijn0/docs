@@ -141,7 +141,7 @@
             {
               "name": "tpUserId",
               "in": "query",
-              "description": "Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.",
+              "description": "Your end user's email address. This is purely for identification purposes. Setting this value will not cause any emails to be sent.",
               "schema": {
                 "type": "string"
               },
@@ -222,7 +222,7 @@
             {
               "name": "channel",
               "in": "query",
-              "description": "Target channel",
+              "description": "The channel you want to fetch the user data from. You can only request user data from 1 channel per request. Requests are made in real time, so the time to completion depends on the sales channel",
               "schema": {
                 "type": "string",
                 "enum": [
@@ -239,7 +239,7 @@
             {
               "name": "tpUserId",
               "in": "query",
-              "description": "The ID of your user(must be authenticated with target channels).",
+              "description": "The ID of the user you want to fetch the data for. The user must be authenticated to the channel you are sending the request for.",
               "schema": {
                 "type": "string"
               },
@@ -8557,33 +8557,33 @@
             },
             "limit": {
               "type": "number",
-              "description": "Return up to this many results per page.\n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`.\n",
+              "description": "Used to limit the number of returned objects. Defaults to 10.\n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`.\n",
               "default": 10
             },
             "updated_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products last updated after a specified date. (format: 2014-04-25T16:15:47-04:00)\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`.\n"
+              "description": "Return products last updated after a specified date. \n(format: 2014-04-25T16:15:47-04:00)\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`.\n"
             },
             "updated_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products last updated before a specified date. (format: 2014-04-25T16:15:47-04:00)\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`.\n"
+              "description": "Return products last updated before a specified date. \n(format: 2014-04-25T16:15:47-04:00)\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`.\n"
             },
             "created_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products created after a specified date. (format: 2014-04-25T16:15:47-04:00)\n\n Supported channels for this parameter: `shopify`, `lightspeed_c`.\n"
+              "description": "Return products created after a specified date. \n(format: 2014-04-25T16:15:47-04:00)\n\n Supported channels for this parameter: `shopify`, `lightspeed_c`.\n"
             },
             "created_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products created before a specified date. (format: 2014-04-25T16:15:47-04:00) \n\n Supported channels for this parameter: `shopify`, `lightspeed_c`.\n"
+              "description": "Return products created before a specified date. \n(format: 2014-04-25T16:15:47-04:00) \n\n Supported channels for this parameter: `shopify`, `lightspeed_c`.\n"
             },
             "published_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products published after a specified date. (format: 2014-04-25T16:15:47-04:00) \n\n Supported channels for this parameter: `shopify`, `woocommerce`.\n"
+              "description": "Return products published after a specified date. \n(format: 2014-04-25T16:15:47-04:00) \n\n Supported channels for this parameter: `shopify`, `woocommerce`.\n"
             },
             "published_at_max": {
               "type": "string",
@@ -8653,7 +8653,7 @@
             },
             "limit": {
               "type": "number",
-              "description": "The maximum number of results to show on a page. \n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`.\n",
+              "description": "Used to limit the number of returned objects. Defaults to 50. \n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`.\n",
               "default": 10
             },
             "updated_at_min": {
