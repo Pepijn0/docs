@@ -74,7 +74,7 @@
           },
           "responses": {
             "200": {
-              "description": "Successful response containing the access token.",
+              "description": "POST /connect/token Successful response",
               "content": {
                 "application/json": {
                   "schema": {
@@ -187,7 +187,7 @@
           ],
           "responses": {
             "200": {
-              "description": "Magic link details.",
+              "description": "GET /TpUserAuthDisposableToken Successful response",
               "content": {
                 "application/json": {
                   "schema": {
@@ -476,18 +476,12 @@
                     }
                   }
                 }
-              },
-              "text/json": {
-                "schema": {}
-              },
-              "application/*+json": {
-                "schema": {}
               }
             }
           },
           "responses": {
             "200": {
-              "description": "Execution result",
+              "description": "POST /Unified/Products Successful response",
               "content": {
                 "application/json": {
                   "schema": {
@@ -1076,18 +1070,12 @@
                     }
                   }
                 }
-              },
-              "text/json": {
-                "schema": {}
-              },
-              "application/*+json": {
-                "schema": {}
               }
             }
           },
           "responses": {
             "200": {
-              "description": "Execution result",
+              "description": "POST /Unified/Orders Successful response",
               "content": {
                 "application/json": {
                   "schema": {
