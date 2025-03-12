@@ -8563,35 +8563,38 @@
             "updated_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products updated after this date. Date and time must be in **ISO 8601 format** (YYYY-MM-DDTHH:mm:ss[timezone offset]).\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`.",
+              "description": "Return products updated after this date. Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset]).\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`.",
               "example": "2025-01-25T16:15:47-04:00"
             },
             "updated_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products updated before this date. \nDate and time must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset])\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`",
+              "description": "Return products updated before this date. Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset])\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`",
               "example": "2025-01-25T16:15:47-04:00"
             },
             "created_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products created after this date. \nDate and time must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset])\n\n Supported channels for this parameter: `shopify`, `lightspeed_c`",
+              "description": "Return products created after this date. Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset])\n\n Supported channels for this parameter: `shopify`, `lightspeed_c`",
               "example": "2025-01-25T16:15:47-04:00"
             },
             "created_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products created before a specified date. \n(format: 2014-04-25T16:15:47-04:00) \n\n Supported channels for this parameter: `shopify`, `lightspeed_c`.\n"
+              "description": "Return products created before this date.  Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset]). \n\n Supported channels for this parameter: `shopify`, `lightspeed_c`",
+              "example": "2025-01-25T16:15:47-04:00"
             },
             "published_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products published after a specified date. \n(format: 2014-04-25T16:15:47-04:00) \n\n Supported channels for this parameter: `shopify`, `woocommerce`.\n"
+              "description": "Return products published after this date.  Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset]). \n\n Supported channels for this parameter: `shopify`, `woocommerce`",
+              "example": "2025-01-25T16:15:47-04:00"
             },
             "published_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products published before a specified date. \n(format: 2014-04-25T16:15:47-04:00) \n\n Supported channels for this parameter: `shopify`, `woocommerce`.\n"
+              "description": "Return products published before this date.  Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset]). \n\n Supported channels for this parameter: `shopify`, `woocommerce`",
+              "example": "2025-01-25T16:15:47-04:00"
             },
             "published_status": {
               "type": "string",
