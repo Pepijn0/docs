@@ -28,7 +28,7 @@
           "requestBody": {
             "required": true,
             "content": {
-              "application/x-www-form-urlencoded": {
+              "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
@@ -136,7 +136,7 @@
             "Magic link"
           ],
           "summary": "Create a Magic link",
-          "description": "Use Magic Links to invite users to connect their accounts. Generate a URL and share it with the end user. Once they finish authenticating via the Magic Link, you’ll have a valid token to perform API requests. We also support token authentication, reach out to us for more information on this.",
+          "description": "Use Magic Links to invite users to connect their accounts. Generate a URL and share it with the end user. \nOnce they finish authenticating via the Magic Link, you’ll have a valid token to perform API requests. \nWe also support token authentication, reach out to us for more information on this.",
           "parameters": [
             {
               "name": "tpUserId",
@@ -255,7 +255,7 @@
             }
           ],
           "requestBody": {
-            "description": "The body of request is depend on the `channel` see the samples.",
+            "description": "The supported parameters to query the data depend on the channels API. Supported channels shows which parameters can be used for which channels.",
             "content": {
               "application/json": {
                 "schema": {
@@ -822,7 +822,7 @@
             }
           ],
           "requestBody": {
-            "description": "The body of request is depend on the `channel` see the samples.",
+            "description": "The supported parameters to query the data depend on the channels API. Supported channels shows which parameters can be used for which channels.",
             "content": {
               "application/json": {
                 "schema": {
@@ -2124,53 +2124,53 @@
           "properties": {
             "next_page_token": {
               "type": "string",
-              "description": "Used to paginate to the next batch of objects. Should be a copy of the next_page_token value from the previous response. \n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`\n"
+              "description": "Used to paginate to the next batch of objects. Should be a copy of the next_page_token value from the previous response. \n\n Supported channels: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`\n"
             },
             "limit": {
               "type": "number",
-              "description": "Used to limit the number of returned objects. The maximum is 100.\n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`\n",
+              "description": "Used to limit the number of returned objects. The maximum is 100.\n\n Supported channels: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`\n",
               "default": 10
             },
             "updated_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products updated after this date. Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset]).\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`",
+              "description": "Return products updated after this date. Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset]).\n\n Supported channels: `shopify`, `bigcommerce`, `lightspeed_c`",
               "example": "2025-01-25T16:15:47-04:00"
             },
             "updated_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products updated before this date. Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset])\n\n Supported channels for this parameter: `shopify`, `bigcommerce`, `lightspeed_c`",
+              "description": "Return products updated before this date. Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset])\n\n Supported channels: `shopify`, `bigcommerce`, `lightspeed_c`",
               "example": "2025-01-25T16:15:47-04:00"
             },
             "created_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products created after this date. Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset])\n\n Supported channels for this parameter: `shopify`, `lightspeed_c`",
+              "description": "Return products created after this date. Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset])\n\n Supported channels: `shopify`, `lightspeed_c`",
               "example": "2025-01-25T16:15:47-04:00"
             },
             "created_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products created before this date.  Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset]). \n\n Supported channels for this parameter: `shopify`, `lightspeed_c`",
+              "description": "Return products created before this date.  Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset]). \n\n Supported channels: `shopify`, `lightspeed_c`",
               "example": "2025-01-25T16:15:47-04:00"
             },
             "published_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products published after this date.  Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset]). \n\n Supported channels for this parameter: `shopify`, `woocommerce`",
+              "description": "Return products published after this date.  Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset]). \n\n Supported channels: `shopify`, `woocommerce`",
               "example": "2025-01-25T16:15:47-04:00"
             },
             "published_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Return products published before this date.  Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset]). \n\n Supported channels for this parameter: `shopify`, `woocommerce`",
+              "description": "Return products published before this date.  Date must be in ISO 8601 format (YYYY-MM-DDTHH:mm:ss[timezone offset]). \n\n Supported channels: `shopify`, `woocommerce`",
               "example": "2025-01-25T16:15:47-04:00"
             },
             "published_status": {
               "type": "string",
               "default": "any",
-              "description": "Return products by their published status.\n\n Supported channels for this parameter: `shopify`",
+              "description": "Return products by their published status.\n\n Supported channels: `shopify`",
               "enum": [
                 "published",
                 "unpublished",
@@ -2179,7 +2179,7 @@
             },
             "ids": {
               "type": "string",
-              "description": "Return only products specified by a comma-separated list of product IDs. \n\n Supported channels for this parameter: `shopify`, `woocommerce`"
+              "description": "Return only products specified by a comma-separated list of product IDs. \n\n Supported channels: `shopify`, `woocommerce`"
             },
             "status": {
               "type": "string",
@@ -2188,36 +2188,36 @@
                 "archived",
                 "draft"
               ],
-              "description": "Return only products specified by a comma-separated list of statuses. \n\n Supported channels for this parameter: `shopify`, `woocommerce`",
+              "description": "Return only products specified by a comma-separated list of statuses. \n\n Supported channels: `shopify`, `woocommerce`",
               "default": "any"
             },
             "since_id": {
               "type": "string",
-              "description": "Return only products after the specified ID. \n\n Supported channels for this parameter: `shopify`,`lightspeed_c`"
+              "description": "Return only products after the specified ID. \n\n Supported channels: `shopify`,`lightspeed_c`"
             },
             "fields": {
               "type": "string",
-              "description": "Return only certain fields specified by a comma-separated list of field names.\n\n Supported channels for this parameter: `shopify`,`lightspeed_c`"
+              "description": "Return only certain fields specified by a comma-separated list of field names.\n\n Supported channels: `shopify`,`lightspeed_c`"
             },
             "collection_id": {
               "type": "string",
-              "description": "Return products by product collection ID. \n\n Supported channels for this parameter: `shopify`, `woocommerce`"
+              "description": "Return products by product collection ID. \n\n Supported channels: `shopify`, `woocommerce`"
             },
             "handle": {
               "type": "string",
-              "description": "Return only products specified by a comma-separated list of product handles. \n\n Supported channels for this parameter: `shopify`"
+              "description": "Return only products specified by a comma-separated list of product handles. \n\n Supported channels: `shopify`"
             },
             "product_type": {
               "type": "string",
-              "description": "Return products by product type. \n\n Supported channels for this parameter: `shopify`"
+              "description": "Return products by product type. \n\n Supported channels: `shopify`"
             },
             "title": {
               "type": "string",
-              "description": "Return products by product title. \n\n Supported channels for this parameter: `shopify`, `woocommerce`"
+              "description": "Return products by product title. \n\n Supported channels: `shopify`, `woocommerce`"
             },
             "vendor": {
               "type": "string",
-              "description": "Return products by product vendor.\n\n Supported channels for this parameter: `shopify`,`lightspeed_c`"
+              "description": "Return products by product vendor.\n\n Supported channels: `shopify`,`lightspeed_c`"
             }
           }
         },
@@ -2226,46 +2226,46 @@
           "properties": {
             "next_page_token": {
               "type": "string",
-              "description": "Used to paginate to the next batch of objects. Should be a copy of the next_page_token value from the previous response.\n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`"
+              "description": "Used to paginate to the next batch of objects. Should be a copy of the next_page_token value from the previous response.\n\n Supported channels: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`"
             },
             "limit": {
               "type": "number",
-              "description": "Used to limit the number of returned objects. The maximum is 100. \n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`",
+              "description": "Used to limit the number of returned objects. The maximum is 100. \n\n Supported channels: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`",
               "default": 10
             },
             "updated_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Show orders last updated at or after date. \n\n Supported channels for this parameter are `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`"
+              "description": "Show orders last updated at or after date. \n\n Supported channels are `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`"
             },
             "updated_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Show orders last updated at or before date.\n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`"
+              "description": "Show orders last updated at or before date.\n\n Supported channels: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`"
             },
             "created_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Show orders created at or after date.\n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`"
+              "description": "Show orders created at or after date.\n\n Supported channels: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`"
             },
             "created_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Show orders created at or before date.\n\n Supported channels for this parameter: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`"
+              "description": "Show orders created at or before date.\n\n Supported channels: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `amazon`"
             },
             "processed_at_min": {
               "type": "string",
               "format": "date-time",
-              "description": "Show orders imported at or after date.\n\n Supported channels for this parameter: `shopify`"
+              "description": "Show orders imported at or after date.\n\n Supported channels: `shopify`"
             },
             "processed_at_max": {
               "type": "string",
               "format": "date-time",
-              "description": "Show orders imported at or before date.\n\n Supported channels for this parameter: `shopify`"
+              "description": "Show orders imported at or before date.\n\n Supported channels: `shopify`"
             },
             "ids": {
               "type": "string",
-              "description": "Retrieve only orders specified by a comma-separated list of order IDs.  \n\n Supported channels for this parameter are `shopify`, `woocommerce`, `bigcommerce`, `amazon`"
+              "description": "Retrieve only orders specified by a comma-separated list of order IDs.  \n\n Supported channels are `shopify`, `woocommerce`, `bigcommerce`, `amazon`"
             },
             "status": {
               "type": "string",
@@ -2276,21 +2276,21 @@
                 "any",
                 "null"                
               ],
-              "description": "Filter orders by their status. \n\n Supported channels for this parameter are `shopify`, `woocommerce`, `bol`, `amazon`",
+              "description": "Filter orders by their status. \n\n Supported channels are `shopify`, `woocommerce`, `bol`, `amazon`",
               "default": "open"
             },
             "since_id": {
               "type": "string",
               "format": "integer",
-              "description": "Show orders after the specified ID. \n\n Supported channels for this parameter are `shopify`, `woocommerce`, `lightspeed_c`"
+              "description": "Show orders after the specified ID. \n\n Supported channels are `shopify`, `woocommerce`, `lightspeed_c`"
             },
             "fields": {
               "type": "string",
-              "description": "Retrieve only certain fields, specified by a comma-separated list of fields names. \n\n Supported channels for this parameter are `shopify`,`lightspeed_c`"
+              "description": "Retrieve only certain fields, specified by a comma-separated list of fields names. \n\n Supported channels are `shopify`,`lightspeed_c`"
             },
             "attribution_app_id": {
               "type": "string",
-              "description": "Show orders attributed to a certain app, specified by the app ID. Set as current to show orders for the app currently consuming the API. \n\n Supported channels for this parameter are `shopify`"
+              "description": "Show orders attributed to a certain app, specified by the app ID. Set as current to show orders for the app currently consuming the API. \n\n Supported channels are `shopify`"
             },
             "financial_status": {
               "type": "string",
@@ -2306,7 +2306,7 @@
                 "unpaid",
                 "null"
               ],
-              "description": "Filter orders by their financial status. \n\n Supported channels for this parameter are `shopify`",
+              "description": "Filter orders by their financial status. \n\n Supported channels are `shopify`",
               "default": "any"
             },
             "fulfillment_status": {
@@ -2319,7 +2319,7 @@
                 "unfulfilled",
                 "null"                
               ],
-              "description": "Filter orders by their fulfillment status. \n\n Supported channels for this parameter are `shopify`",
+              "description": "Filter orders by their fulfillment status. \n\n Supported channels are `shopify`",
               "default": "any"
             }
           }
