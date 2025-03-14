@@ -2598,18 +2598,18 @@
             "properties": {
               "id": {
                 "type": "string",
-                "description": ""
+                "description": "The ID of the order, used for API purposes. This is different from the `order_number` property, which is the ID used by the shop owner and customer."
               },
               "channel_name": {
                 "type": "string",
-                "description": ""
+                "description": "The channel the order originates from. For example `amazon`"
               },
               "app_id": {
                 "type": "string",
-                "description": "Unique identifier of the app who created the order."
+                "description": "The ID of the app that created the order."
               },
               "billing_address": {
-                "description": "The mailing address associated with the payment method. This address is an optional field that will not be available on orders that do not require one.",
+                "description": "The mailing address associated with the payment method. This address is an optional field that won't be available on orders that do not require a payment method. It has the following properties:",
                 "oneOf": [
                   {
                     "$ref": "#/components/schemas/Address"
@@ -2618,24 +2618,24 @@
               },
               "buyer_accepts_marketing": {
                 "type": "boolean",
-                "description": "Indicates whether or not the person who placed the order would like to receive email updates from the shop."
+                "description": "Whether the customer consented to receive email updates from the shop."
               },
               "cancel_reason": {
                 "type": "string",
-                "description": "The reason why the order was cancelled."
+                "description": "The reason why the order was canceled."
               },
               "cancelled_at": {
                 "type": "string",
-                "description": "The date and time when the order was cancelled. If the order was not cancelled, this value is null.",
+                "description": "The date and time when the order was canceled. Returns `null` if the order isn't canceled.",
                 "format": "date-time"
               },
               "checkout_id": {
                 "type": "string",
-                "description": "ID of the checkout thats associated with the order."
+                "description": "A unique value when referencing the checkout that's associated with the order."
               },
               "closed_at": {
                 "type": "string",
-                "description": "The date and time when the order was closed. If the order was not clsoed, this value is null.",
+                "description": "The date and time (ISO 8601 format) when the order was closed. Returns `null` if the order isn't closed.",
                 "format": "date-time"
               },
               "confirmed": {
@@ -2644,7 +2644,7 @@
               },
               "created_at": {
                 "type": "string",
-                "description": "The date and time when the order was created in channel.",
+                "description": "The date and time (ISO 8601 format) when the order was created in the channel.",
                 "format": "date-time"
               },
               "currency": {
@@ -2652,7 +2652,7 @@
                 "description": "The three letter code (ISO 4217) for the currency used for the payment."
               },
               "customer": {
-                "description": "",
+                "description": "Information about the customer. The order might not have a customer and apps should not depend on the existence of a `customer` object. This value might be `null` depending on the channel.",
                 "oneOf": [
                   {
                     "$ref": "#/components/schemas/Customer"
@@ -2661,7 +2661,8 @@
               },
               "customer_locale": {
                 "type": "string",
-                "description": "The two or three letter language code, optionally followed by a region modifier. Example values could be en, en-CA, en-PIRATE."
+                "description": "The two or three letter language code, optionally followed by a region modifier. Example values could be `en`, `en-CA`, `en-PIRATE`.",
+                "example": "en-CA"
               },
               "device_id": {
                 "type": "string",
@@ -2669,24 +2670,24 @@
               },
               "discount_codes": {
                 "type": "array",
-                "description": "Applicable discount codes that can be applied to the order.",
+                "description": "A list of discounts applied to the order.",
                 "items": {
                   "$ref": "#/components/schemas/DiscountCode"
                 }
               },
               "discount_applications": {
                 "type": "array",
-                "description": "An ordered list of amounts allocated by discount applications. Each discount allocation is associated to a particular discount application.",
+                "description": "An ordered list of stacked discount applications.\nThe `discount_applications` property includes 3 types: `discount_code`, `manual`, and `script`. All 3 types share a common structure and have some type specific attributes.",
                 "items": {
                   "$ref": "#/components/schemas/DiscountApplication"
                 }
               },
               "email": {
                 "type": "string",
-                "description": "The orders email address."
+                "description": "The customer's email address."
               },
               "financial_status": {
-                "description": "",
+                "description": "The status of payments associated with the order. Can only be set when the order is created. Valid values:",
                 "oneOf": [
                   {
                     "$ref": "#/components/schemas/OrderFinancialStatus"
@@ -2695,13 +2696,13 @@
               },
               "fulfillments": {
                 "type": "array",
-                "description": "",
+                "description": "An array of fulfillments associated with the order.",
                 "items": {
                   "$ref": "#/components/schemas/Fulfillment"
                 }
               },
               "fulfillment_status": {
-                "description": "",
+                "description": "The order's status in terms of fulfilled line items.",
                 "oneOf": [
                   {
                     "$ref": "#/components/schemas/OrderFulfillmentStatus"
@@ -2710,15 +2711,15 @@
               },
               "phone": {
                 "type": "string",
-                "description": "The customers phone number."
+                "description": "The customer's phone number for receiving SMS notifications."
               },
               "tags": {
                 "type": "string",
-                "description": "Tags are additional short descriptors, commonly used for filtering and searching, formatted as a string of comma-separated values."
+                "description": "Tags attached to the order, formatted as a string of comma-separated values. Tags are additional short descriptors, commonly used for filtering and searching. Each individual tag is limited to 40 characters in length."
               },
               "line_items": {
                 "type": "array",
-                "description": "",
+                "description": "The sum of all line item prices in the shop currency.",
                 "items": {
                   "$ref": "#/components/schemas/LineItem"
                 }
@@ -2729,23 +2730,24 @@
               },
               "name": {
                 "type": "string",
-                "description": "The customers order name as represented by a number, e.g. #1001."
+                "description": "The order name as represented by a number",
+                "example": "#1001"
               },
               "note": {
                 "type": "string",
-                "description": "The text of an optional note that a shop owner can attach to the order."
+                "description": "An optional note that a shop owner can attach to the order."
               },
               "number": {
                 "type": "string",
-                "description": "Numerical identifier unique to the shop. A number is sequential and starts at 1000."
+                "description": "The order's position in the shop's count of orders. Numbers are sequential and start at 1."
               },
               "order_number": {
                 "type": "string",
-                "description": "A unique numeric identifier for the order. This one is used by the shop owner and customer."
+                "description": "The order 's position in the shop's count of orders starting at 1001. Order numbers are sequential and start at 1001."
               },
               "order_status_url": {
                 "type": "string",
-                "description": "The URL pointing to the order status web page. The URL will be null unless the order was created from a checkout."
+                "description": "The URL pointing to the order status web page. The URL will be `null` unless the order was created from a checkout."
               },
               "payment_gateway_names": {
                 "type": "array",
@@ -2756,16 +2758,16 @@
               },
               "processed_at": {
                 "type": "string",
-                "description": "The date that the order was processed at.",
+                "description": "The date and time (ISO 8601 format) when an order was processed.",
                 "format": "date-time"
               },
               "referring_site": {
                 "type": "string",
-                "description": "The website that the customer clicked on to come to the shop."
+                "description": "The website where the customer clicked a link to the shop."
               },
               "refunds": {
                 "type": "array",
-                "description": "",
+                "description": "A list of refunds applied to the order. ",
                 "items": {
                   "$ref": "#/components/schemas/Refund"
                 }
@@ -2780,7 +2782,7 @@
               },
               "shipping_lines": {
                 "type": "array",
-                "description": "",
+                "description": "An array of objects, each of which details a shipping method used. Each object has the following properties:",
                 "items": {
                   "$ref": "#/components/schemas/ShippingLine"
                 }
@@ -2791,26 +2793,26 @@
               },
               "source_name": {
                 "type": "string",
-                "description": "Where the order originated. May only be set during creation, and is not writeable thereafter."
+                "description": "Where the order originated, used for sales attribution. May only be set during creation, and is not writeable thereafter."
               },
               "subtotal_price": {
                 "type": "string",
-                "description": "Price of the order before shipping and taxes"
+                "description": "The subtotal of the order in shop and presentment currencies after discounts but before shipping, duties, taxes, and tips."
               },
               "tax_lines": {
                 "type": "array",
-                "description": "",
+                "description": "An array of tax line objects, each of which details a tax applicable to the order. Each object has the following properties:",
                 "items": {
                   "$ref": "#/components/schemas/TaxLine"
                 }
               },
               "taxes_included": {
                 "type": "boolean",
-                "description": "States whether or not taxes are included in the order subtotal."
+                "description": "Whether taxes are included in the order subtotal."
               },
               "test": {
                 "type": "boolean",
-                "description": "States whether this is a test order."
+                "description": "Whether this is a test order."
               },
               "total_discounts": {
                 "type": "string",
@@ -2854,7 +2856,7 @@
               },
               "metafields": {
                 "type": "array",
-                "description": "",
+                "description": "Any additional data from the channel that didn't fit in the order model",
                 "items": {
                   "$ref": "#/components/schemas/MetaField"
                 }
@@ -3016,7 +3018,7 @@
                 "description": "Whether this order was exempt from taxes."
               },
               "company": {
-                "description": "",
+                "description": "Represents information about the purchasing company for the order. `null` will be returned if there is no purchasing company.",
                 "oneOf": [
                   {
                     "$ref": "#/components/schemas/OrderCompany"
@@ -3040,27 +3042,27 @@
             },
             "address1": {
               "type": "string",
-              "description": ""
+              "description": "The street address of the billing address."
             },
             "address2": {
               "type": "string",
-              "description": ""
+              "description": "An optional additional field for the street address of the billing address."
             },
             "city": {
               "type": "string",
-              "description": ""
+              "description": "The city, town, or village of the billing address."
             },
             "company": {
               "type": "string",
-              "description": ""
+              "description": "The company of the person associated with the billing address."
             },
             "country": {
               "type": "string",
-              "description": ""
+              "description": "The name of the country of the billing address."
             },
             "country_code": {
               "type": "string",
-              "description": ""
+              "description": "The two-letter code (ISO 3166-1 format) for the country of the billing address."
             },
             "country_name": {
               "type": "string",
@@ -3072,31 +3074,31 @@
             },
             "first_name": {
               "type": "string",
-              "description": ""
+              "description": "The first name of the person associated with the shipping address."
             },
             "last_name": {
               "type": "string",
-              "description": ""
+              "description": "The last name of the person associated with the shipping address."
             },
             "name": {
               "type": "string",
-              "description": ""
+              "description": "First and last name combined"
             },
             "phone": {
               "type": "string",
-              "description": ""
+              "description": "The phone number at the shipping address."
             },
             "province": {
               "type": "string",
-              "description": ""
+              "description": "The name of the region (for example, province, state, or prefecture) of the shipping address."
             },
             "province_code": {
               "type": "string",
-              "description": ""
+              "description": "The alphanumeric abbreviation of the region of the shipping address."
             },
             "zip": {
               "type": "string",
-              "description": ""
+              "description": "The postal code (for example, zip, postcode, or Eircode) of the shipping address."
             }
           }
         },
@@ -3106,7 +3108,7 @@
           "properties": {
             "id": {
               "type": "string",
-              "description": ""
+              "description": "A unique identifier for the customer."
             },
             "channel_name": {
               "type": "string",
@@ -3134,50 +3136,50 @@
             },
             "email": {
               "type": "string",
-              "description": ""
+              "description": "The unique email address of the customer. Attempting to assign the same email address to multiple customers returns an error."
             },
             "first_name": {
               "type": "string",
-              "description": ""
+              "description": "The customer's first name."
             },
             "last_name": {
               "type": "string",
-              "description": ""
+              "description": "The customer's last name."
             },
             "note": {
               "type": "string",
-              "description": ""
+              "description": "A note about the customer."
             },
             "phone": {
               "type": "string",
-              "description": ""
+              "description": "The unique phone number (E.164 format) for this customer."
             },
             "tags": {
               "type": "string",
-              "description": ""
+              "description": "Tags that the shop owner has attached to the customer, formatted as a string of comma-separated values."
             },
             "tax_exempt": {
               "type": "boolean",
-              "description": ""
+              "description": "Whether the customer is exempt from paying taxes on their order. If `true`, then taxes won't be applied to an order at checkout. If `false`, then taxes will be applied at checkout."
             },
             "tax_exemptions": {
               "type": "array",
-              "description": "",
+              "description": "Whether the customer is exempt from paying specific taxes on their order. Canadian taxes only. Valid values:",
               "items": {
                 "type": "string"
               }
             },
             "updated_at": {
               "type": "string",
-              "description": "",
+              "description": "The date and time (ISO 8601 format) when the customer information was last updated",
               "format": "date-time"
             },
             "verified_email": {
               "type": "boolean",
-              "description": ""
+              "description": "Whether the customer has verified their email address."
             },
             "sms_marketing_consent": {
-              "description": "",
+              "description": "The marketing consent information when the customer consented to receiving marketing material by SMS.",
               "oneOf": [
                 {
                   "$ref": "#/components/schemas/MarketingConsent"
@@ -3290,15 +3292,15 @@
             },
             "amount": {
               "type": "string",
-              "description": ""
+              "description": "The amount that's deducted from the order total. When you create an order, this value is the percentage or monetary amount to deduct. After the order is created, this property returns the calculated amount."
             },
             "code": {
               "type": "string",
-              "description": ""
+              "description": "When the associated discount application is of type `code`, this property returns the discount code that was entered at checkout. Otherwise this property returns the title of the discount that was applied."
             },
             "type": {
               "type": "string",
-              "description": ""
+              "description": "The type of discount. Default value: `fixed_amount` Valid values: \n `fixed_amount`: Applies `amount` as a unit of the store's currency. For example, if `amount` is 30 and the store's currency is USD, then 30 USD is deducted from the order total when the discount is applied. \n`percentage`: Applies a discount of `amount` as a percentage of the order total. \n`shipping`: Applies a free shipping discount on orders that have a shipping rate less than or equal to `amount`. For example, if `amount` is 30, then the discount will give the customer free shipping for any shipping rate that is less than or equal to $30."
             }
           }
         },
@@ -3308,45 +3310,45 @@
           "properties": {
             "type": {
               "type": "string",
-              "description": ""
+              "description": "The discount_applications property includes 3 types: `discount_code`, `manual`, and `script`. All 3 types share a common structure and have some type specific attributes."
             },
             "code": {
               "type": "string",
-              "description": ""
+              "description": "The discount code that was used to apply the discount. Available only for discount code applications."
             },
             "title": {
               "type": "string",
-              "description": ""
+              "description": "The title of the discount application, as defined by the merchant. Available only for manual discount applications."
             },
             "description": {
               "type": "string",
-              "description": ""
+              "description": "The description of the discount application, as defined by the merchant or the Shopify Script. Available only for manual and script discount applications."
             },
             "value": {
               "type": "string",
-              "description": ""
+              "description": " The value of the discount application as a decimal. This represents the intention of the discount application. For example, if the intent was to apply a 20% discount, then the value will be `20.0`. If the intent was to apply a $15 discount, then the value will be `15.0`."
             },
             "value_type": {
               "type": "string",
-              "description": ""
+              "description": "The type of the value. Valid values: `fixed_amount`: A fixed amount discount value in the currency of the order.`percentage`: A percentage discount value."
             },
             "allocation_method": {
               "type": "string",
-              "description": ""
+              "description": "The method by which the discount application value has been allocated to entitled lines. Valid values: `across`: The value is spread across all entitled lines. `each`: The value is applied onto every entitled line. `one`: The value is applied onto a single line."
             },
             "target_selection": {
               "type": "string",
-              "description": ""
+              "description": ": The lines on the order, of the type defined by target_type, that the discount is allocated over. Valid values: `all`: The discount is allocated onto all lines, `entitled`: The discount is allocated only onto lines it is entitled for. `explicit`: The discount is allocated onto explicitly selected lines."
             },
             "target_type": {
               "type": "string",
-              "description": ""
+              "description": "target_type: The type of line on the order that the discount is applicable on. Valid values: `line_item`: The discount applies to line items. `shipping_line`: The discount applies to shipping lines."
             }
           }
         },
         "OrderFinancialStatus": {
           "type": "string",
-          "description": "",
+          "description": "The status of payments associated with the order. Can only be set when the order is created. Valid values:",
           "nullable": true,
           "enum": [
             "authorized",
@@ -3364,7 +3366,7 @@
           "properties": {
             "id": {
               "type": "string",
-              "description": ""
+              "description": "The ID for the fulfillment."
             },
             "channel_name": {
               "type": "string",
@@ -3372,22 +3374,22 @@
             },
             "created_at": {
               "type": "string",
-              "description": "The date and time when the fulfillment was created.",
+              "description": "The date and time when the fulfillment was created in ISO 8601 format.",
               "format": "date-time"
             },
             "line_items": {
               "type": "array",
-              "description": "A historical record of each item in the fulfillment.",
+              "description": "A list of line item objects, each containing information about an item in the order. Each object has the following properties:.",
               "items": {
                 "$ref": "#/components/schemas/LineItem"
               }
             },
             "order_id": {
               "type": "string",
-              "description": "The unique numeric identifier for the order."
+              "description": "The unique numeric identifier for the order"
             },
             "status": {
-              "description": "",
+              "description": "The status of the fulfillment. Valid values:",
               "oneOf": [
                 {
                   "$ref": "#/components/schemas/FulfillmentStatus"
@@ -3407,7 +3409,7 @@
               "description": "A flag indicating whether the customer should be notified."
             },
             "destination": {
-              "description": "",
+              "description": "The destination where the items should be sent upon fulfillment.",
               "oneOf": [
                 {
                   "$ref": "#/components/schemas/Address"
@@ -3420,7 +3422,7 @@
             },
             "tracking_number": {
               "type": "string",
-              "description": "The shipping number, provided by the shipping company. If multiple tracking numbers exist."
+              "description": "The tracking number for the fulfillment, provided by the shipping company."
             },
             "tracking_numbers": {
               "type": "array",
@@ -3431,11 +3433,11 @@
             },
             "tracking_url": {
               "type": "string",
-              "description": "The tracking url, provided by the shipping company. May be null. If multiple tracking URLs exist."
+              "description": "The URL to track the fulfillment, provided by the shipping company. May be `null`."
             },
             "tracking_urls": {
               "type": "array",
-              "description": "An array of one or more tracking urls, provided by the shipping company. May be null.",
+              "description": "An array of one or more tracking urls, provided by the shipping company. May be `null`.",
               "items": {
                 "type": "string"
               }
@@ -3451,10 +3453,10 @@
             },
             "service": {
               "type": "string",
-              "description": ""
+              "description": "The fulfillment service associated with the fulfillment."
             },
             "shipment_status": {
-              "description": "",
+              "description": "The current shipment status of the fulfillment. Valid values:",
               "oneOf": [
                 {
                   "$ref": "#/components/schemas/FulfillmentShipmentStatus"
@@ -3463,10 +3465,10 @@
             },
             "name": {
               "type": "string",
-              "description": ""
+              "description": "The uniquely identifying fulfillment name, consisting of two parts separated by a `.`. The first part represents the order name and the second part represents the fulfillment number. The fulfillment number automatically increments depending on how many fulfillments are in an order (e.g. `#1001.1`, `#1001.2`)"
             },
             "origin_address": {
-              "description": "The address of the fulfillment location.",
+              "description": "The address of the fulfillment location. This property is intended for tax purposes, as a full address is required for tax providers to accurately calculate taxes.",
               "oneOf": [
                 {
                   "$ref": "#/components/schemas/Address"
@@ -3481,7 +3483,7 @@
           "properties": {
             "id": {
               "type": "string",
-              "description": ""
+              "description": "The ID of the line item within the fulfillment."
             },
             "channel_name": {
               "type": "string",
@@ -3496,7 +3498,7 @@
               "description": "Service provider who is doing the fulfillment. Valid values are either 'manual' or the name of the provider. eg: 'amazon', 'shipwire', etc."
             },
             "fulfillment_status": {
-              "description": "",
+              "description": "The status of an order in terms of the line items being `fulfilled`. Valid values: `fulfilled`, `null`, or `partial`. This field will be deprecated. Use the `status` property on the `FulfillmentOrder` resource instead.",
               "oneOf": [
                 {
                   "$ref": "#/components/schemas/LineFulfillmentStatus"
@@ -3622,7 +3624,7 @@
         },
         "LineFulfillmentStatus": {
           "type": "string",
-          "description": "",
+          "description": "The status of an order in terms of the line items being fulfilled. Valid values: `fulfilled`, `null`, or `partial`. This field will be deprecated. Use the `status` property on the `FulfillmentOrder` resource instead.",
           "nullable": true,
           "enum": [
             "fulfilled",
