@@ -170,7 +170,8 @@
                     "bol",
                     "sharetribe",
                     "lightspeed_c",
-                    "mirakl"
+                    "mirakl",
+                    "magento"
                   ]
                 },
                 "default": [
@@ -180,7 +181,8 @@
                   "bol",
                   "sharetribe",
                   "lightspeed_c",
-                  "mirakl"
+                  "mirakl",
+                  "magento"
                 ]
               }
             }
@@ -231,7 +233,8 @@
                   "lightspeed_c",
                   "shopify",
                   "woocommerce",
-                  "mirakl"
+                  "mirakl",
+                  "magento"
                 ]
               },
               "required": true
@@ -473,6 +476,29 @@
                         ]
                       },
                       "limit": 10
+                    }
+                  },
+                  "Magento": {
+                    "summary": "Example with Magento configuration.",
+                    "value": {
+                      "params": {
+                        "magento": [
+                          {
+                            "key": "baseUrl",
+                            "value": "https://your-magento-store.com"
+                          },
+                          {
+                            "key": "token",
+                            "value": "token"
+                          }
+                        ]
+                      },
+                      "collection_id": "1",
+                      "handle": "handle",
+                      "ids": "1,2",
+                      "limit": 10,
+                      "since_id": "1",
+                      "title": "title"
                     }
                   }
                 }
@@ -785,7 +811,8 @@
                   "lightspeed_c",
                   "shopify",
                   "woocommerce",
-                  "mirakl"
+                  "mirakl",
+                  "magento"
                 ]
               },
               "required": true
@@ -1055,10 +1082,58 @@
                           }
                         ]
                       },
+                      "value": {
+                        "params": {
+                          "magento": [
+                            {
+                              "key": "baseUrl",
+                              "value": "https://your-magento-store.com"
+                            },
+                            {
+                              "key": "token",
+                              "value": "token"
+                            }
+                          ]
+                        },
+                        "collection_id": "1",
+                        "handle": "handle",
+                        "ids": "1,2",
+                        "limit": 10,
+                        "since_id": "1",
+                        "title": "title"
+                      },
                       "fulfillment_status": "shipped",
                       "ids": "1,2",
                       "limit": 10,
                       "status": "any",
+                      "updated_at_min": "1939-08-05T01:34:33.0Z"
+                    }
+                  },
+                  "Magento": {
+                    "summary": "Example with Magento configuration.",
+                    "value": {
+                      "params": {
+                        "magento": [
+                          {
+                            "key": "baseUrl",
+                            "value": "https://your-magento-store.com"
+                          },
+                          {
+                            "key": "token",
+                            "value": "token"
+                          }
+                        ]
+                      },
+                      "attribution_app_id": "1",
+                      "created_at_max": "1948-06-08T07:16:01.0Z",
+                      "created_at_min": "1948-06-08T07:16:01.0Z",
+                      "financial_status": "paid",
+                      "fulfillment_status": "shipped",
+                      "ids": "1,2",
+                      "limit": 10,
+                      "since_id": "1",
+                      "status": "any",
+                      "updated_at_max": "1918-04-30T21:13:27.0Z",
                       "updated_at_min": "1939-08-05T01:34:33.0Z"
                     }
                   }
@@ -2198,11 +2273,11 @@
           "properties": {
             "next_page_token": {
               "type": "string",
-              "description": "Used to paginate to the next batch of objects. Should be a copy of the next_page_token value from the previous response. \n\n Supported channels: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`\n"
+              "description": "Used to paginate to the next batch of objects. Should be a copy of the next_page_token value from the previous response. \n\n Supported channels: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`, `magento`\n"
             },
             "limit": {
               "type": "number",
-              "description": "Used to limit the number of returned objects. The maximum is 100.\n\n Supported channels: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`\n",
+              "description": "Used to limit the number of returned objects. The maximum is 100.\n\n Supported channels: `shopify`, `woocommerce`, `bigcommerce`, `lightspeed_c`, `bol`, `amazon`, `magento`\n",
               "default": 10
             },
             "updated_at_min": {
@@ -2253,7 +2328,7 @@
             },
             "ids": {
               "type": "string",
-              "description": "Return only products specified by a comma-separated list of product IDs. \n\n Supported channels: `shopify`, `woocommerce`"
+              "description": "Return only products specified by a comma-separated list of product IDs. \n\n Supported channels: `shopify`, `woocommerce`, `magento`"
             },
             "status": {
               "type": "string",
@@ -2275,11 +2350,11 @@
             },
             "collection_id": {
               "type": "string",
-              "description": "Return products by product collection ID. \n\n Supported channels: `shopify`, `woocommerce`"
+              "description": "Return products by product collection ID. \n\n Supported channels: `shopify`, `woocommerce`, `magento`"
             },
             "handle": {
               "type": "string",
-              "description": "Return only products specified by a comma-separated list of product handles. \n\n Supported channels: `shopify`"
+              "description": "Return only products specified by a comma-separated list of product handles. \n\n Supported channels: `shopify`, `magento`"
             },
             "product_type": {
               "type": "string",
@@ -2287,7 +2362,7 @@
             },
             "title": {
               "type": "string",
-              "description": "Return products by product title. \n\n Supported channels: `shopify`, `woocommerce`"
+              "description": "Return products by product title. \n\n Supported channels: `shopify`, `woocommerce`, `magento`"
             },
             "vendor": {
               "type": "string",
@@ -2588,6 +2663,35 @@
           },
           "required": [
             "bigcommerce"
+          ]
+        },
+        "MagentoBodyParams": {
+          "type": "object",
+          "title": "Magento Parameters",
+          "properties": {
+            "magento": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "type": "string",
+                    "default": "baseUrl",
+                    "description": "required(if user is not authenticated), Full shop URL (ex: https://domain.com)"
+                  },
+                  "value": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "key",
+                  "value"
+                ]
+              }
+            }
+          },
+          "required": [
+            "magento"
           ]
         },
         "Order": {
@@ -3758,7 +3862,7 @@
             "in_transit",
             "out_for_delivery",
             "delivered",
-            "failure",
+            "failure"
           ]
         },
         "OrderFulfillmentStatus": {
