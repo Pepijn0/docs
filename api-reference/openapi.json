@@ -171,7 +171,8 @@
                     "sharetribe",
                     "lightspeed_c",
                     "mirakl",
-                    "magento"
+                    "magento",
+                    "bigcommerce"
                   ]
                 },
                 "default": [
@@ -182,7 +183,8 @@
                   "sharetribe",
                   "lightspeed_c",
                   "mirakl",
-                  "magento"
+                  "magento",
+                  "bigcommerce"
                 ]
               }
             }
@@ -234,7 +236,8 @@
                   "shopify",
                   "woocommerce",
                   "mirakl",
-                  "magento"
+                  "magento",
+                  "bigcommerce"
                 ]
               },
               "required": true
@@ -812,7 +815,8 @@
                   "shopify",
                   "woocommerce",
                   "mirakl",
-                  "magento"
+                  "magento",
+                  "bigcommerce"
                 ]
               },
               "required": true
