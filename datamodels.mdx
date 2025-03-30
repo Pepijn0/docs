@@ -1,28 +1,83 @@
 ---
 title: 'Datamodels'
-description: 'Understand how our data models work the same as Shopify's'
+description: 'How Kariz uses Shopify's Datamodels'
 ---
 
-To make setting up an integration to Kariz as easy as possible, we use the same data models as the Shopify REST API Version 2024/07. See here for more details:
+# Data Models
 
-This is done to allow you to reuse your existing connector to Shopify. So the setup process to connect to new channels should only take a few hours if you already have a shopify integration.
+To make setting up an integration to Kariz as easy as possible, we use the same data models as the Shopify REST API Version 2025/04. This is done to allow you to reuse your existing connector to Shopify. The setup process to connect to new channels should only take a few hours if you already have a Shopify integration.
 
-Furthermore, we simplified the API structure with our GET all product info. These endpoints return all of the product and product related information. This includes products, variants, inventory and inventory location and allows you to fetch all this data across different channels.
+## Simplified API Structure
 
-The same goes for the GET all order info endpoint. This returns the order information, shipments, fullfillment and refund info all in 1 call. Making sure you have access to all the possible order information without needing to setup calls to multiple endpoints.
+We've simplified the API structure to allow you to fetch all the product & order information in a single call:
 
+- For **products**, this includes products, variants, inventory and inventory location across different channels.
+- For **orders**, this returns the order information, shipments, fulfillment and refund info all in one call.
 
-### Execeptions
+This approach ensures you have access to all possible data without needing to set up calls to multiple endpoints.
 
-By default, we return all of the data that is available from the E-commerce platforms. When they don't support some functionality, we leave it out of the response. For example, some channels don't include the inventory location information.
+## Exceptions
 
-Here is an overview of the exceptions by channel
-1. Shopify (none)
-2. WooCommerce (No inventory location by default, store user needs to install this add on to enable it: https://wordpress.org/plugins/stock-locations-for-woocommerce/)
-3. BigCommerce: (none)
-4. Lightspeed (none)
-5. Amazon (none)
-6. Bol (none)
-7. Mirakl (none)
-8. Lightspeed (none)
-9. Magento (none)
+By default, we return all of the data that is available from the E-commerce platforms. When a platform doesn't support some functionality, we simply leave it out of the response. For example, some channels don't include inventory location information.
+
+Here is an overview of the exceptions by channel:
+
+| Channel | Exceptions |
+| ------- | ---------- |
+| Shopify | None |
+| WooCommerce | No inventory location by default (store user needs to install [this add-on](https://wordpress.org/plugins/stock-locations-for-woocommerce/) to enable it) |
+| BigCommerce | None |
+| Lightspeed | None |
+| Amazon | None |
+| Bol | None |
+| Mirakl | None |
+| Magento | None |
+
+## Product Data
+
+The unified product data model includes inventory details for all product variants. With one API call, you receive:
+
+<CardGroup>
+  <Card title="Products" icon="box">
+    Core product details including title, description, and options
+  </Card>
+  <Card title="Product Variants" icon="layer-group">
+    All variations of each product with their specific attributes
+  </Card>
+  <Card title="Inventory" icon="warehouse">
+    Current stock levels for each product variant
+  </Card>
+  <Card title="Inventory Levels by Location" icon="map-marker-alt">
+    Stock levels broken down by physical location (if applicable)
+  </Card>
+</CardGroup>
+
+For more details on product models, refer to the Shopify 2025/04 REST API Documentation:
+
+- **Products**: [API Documentation](https://shopify.dev/docs/api/admin-rest/2025-04/resources/product)
+- **Product Variants**: [API Documentation](https://shopify.dev/docs/api/admin-rest/2025-01/resources/product-variant)
+- **Inventory**: [API Documentation](https://shopify.dev/docs/api/admin-rest/2025-01/resources/inventorylevel)
+- **Inventory Level**: [API Documentation](https://shopify.dev/docs/api/admin-rest/2025-01/resources/inventorylevel)
+- **Inventory Location**: [API Documentation](https://shopify.dev/docs/api/admin-rest/2025-01/resources/location)
+
+## Order Data
+
+The unified order data model includes comprehensive information about orders, their fulfillment status, and financial details. With one API call, you receive:
+
+<CardGroup>
+  <Card title="Orders" icon="shopping-cart">
+    Complete order details including customer information and line items
+  </Card>
+  <Card title="Shipments" icon="truck">
+    Fulfillment status and shipping information for each order
+  </Card>
+  <Card title="Refunds" icon="money-bill-wave">
+    Any refunds associated with the orders
+  </Card>
+</CardGroup>
+
+For more details on order models, refer to the Shopify 2025/04 REST API Documentation:
+
+- **Orders**: [API Documentation](https://shopify.dev/docs/api/admin-rest/2025-04/resources/order)
+- **Shipments**: [API Documentation](https://shopify.dev/docs/api/admin-rest/2025-04/resources/fulfillment)
+- **Refunds**: [API Documentation](http://shopify.dev/docs/api/admin-rest/2025-04/resources/refund)

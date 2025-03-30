@@ -28,10 +28,10 @@ By the end of this guide, you'll have set up a complete integration that allows 
 
 Your application API key is a string that looks something like this:
 
-\`\`\`bash
+```text
 client_id: "client123"
 client_secret: "clientsecret123"
-\`\`\`
+```
 
 Store these credentials securely - you'll need them for all future requests to the Kariz API.
 
@@ -40,58 +40,25 @@ Store these credentials securely - you'll need them for all future requests to t
 Once you have your account set up, you will need to create an Access token. This token is used to authenticate all of your requests to the Kariz API. By default, the token is valid for 90 days.
 
 <CodeGroup>
-\`\`\`bash Endpoint
+```bash Endpoint
 POST https://sts.demo.trykariz.com/connect/token
-\`\`\`
-
-\`\`\`json Request Body
-{
-  "grant_type": "password",
-  "username": "john@example.com",
-  "password": "secretpassword",
-  "client_id": "client123",
-  "client_secret": "clientsecret123"
-}
-\`\`\`
-
-\`\`\`json Response
-{
-  "access_token": "ya29.a0AfH6SMDtYZB_...your_access_token...",
-  "token_type": "bearer",
-  "expires_in": 7776000,
-  "scope": "read write"
-}
-\`\`\`
+```
 </CodeGroup>
 
 Save this access token securely - you'll use it for all your API requests by including it in the Authorization header:
 
-\`\`\`text
-Authorization: Bearer ya29.a0AfH6SMDtYZB_...your_access_token...
-\`\`\`
+```text
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
 
 ## Step 3: Authenticate a User with Magic Link
 
 There are 2 ways to authenticate a user in Kariz (for more information, see the [Authentication](/authentication) section). For this tutorial, we will use our Magic Link authenticator as this is the quickest way to set up.
 
 <CodeGroup>
-\`\`\`bash Endpoint
+```bash Endpoint
 GET https://api.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken
-\`\`\`
-
-\`\`\`bash Parameters
-tpUserId=customer123@example.com (required)
-redirectUrl=https://your-app.com/callback (optional)
-scopes=shopify,amazon,woocommerce (optional)
-\`\`\`
-
-\`\`\`json Response
-{
-  "uri": "https://www.app.trykariz.com/en/tpuser/authorize?token=Mvznqqrm...AuD639OMo%3D",
-  "token": "Mvznqqrm...AuD639OMo%3D",
-  "expirationUtcUnixTimeSeconds": 1736269316
-}
-\`\`\`
+```
 </CodeGroup>
 
 ### Understanding the Parameters:
@@ -114,120 +81,17 @@ Now that you have authenticated a user, you can request data from them across di
 ### Retrieving Products
 
 <CodeGroup>
-\`\`\`bash Endpoint
+```bash Endpoint
 POST https://api.trykariz.com/api/KarizClientApp/Unified/Products
-\`\`\`
-
-\`\`\`bash Query Parameters
-channel=shopify (required)
-tpUserId=customer123@example.com (required)
-completionCallbackUrl=https://your-app.com/webhook (optional)
-\`\`\`
-
-\`\`\`json Request Body
-{
-  "params": {
-    "shopify": [
-      {
-        "key": "baseUrl",
-        "value": "your-shop.myshopify.com"
-      },
-      {
-        "key": "token",
-        "value": "your-shopify-oauth-token"
-      }
-    ]
-  },
-  "limit": 10
-}
-\`\`\`
-
-\`\`\`json Response
-{
-  "Errors": {},
-  "Output": {
-    "step": "transform",
-    "isSuccess": true,
-    "result": [
-      {
-        "id": "9193872097555",
-        "channel_name": "lightspeed_c",
-        "title": "Gift Card",
-        "body_html": "This is a gift card for the store",
-        "variants": [
-          {
-            "id": "48467551060243",
-            "product_id": "9193872097555",
-            "title": "$10",
-            "price": "10.00"
-          }
-        ]
-      }
-    ],
-    "next_page_token": "eyJsYXN0X2lkIjo1OTU0NDYxMzM1ODI3LCJsYXN0X3ZhbHVlIjoiMjAyNC0wOS0xMyAxNDo0NzoxMy4xNDAwNTEiLCJkaXJlY3Rpb24iOiJuZXh0In0"
-  }
-}
-\`\`\`
+```
 </CodeGroup>
 
 ### Retrieving Orders
 
 <CodeGroup>
-\`\`\`bash Endpoint
+```bash Endpoint
 POST https://api.trykariz.com/api/KarizClientApp/Unified/Orders
-\`\`\`
-
-\`\`\`bash Query Parameters
-channel=shopify (required)
-tpUserId=customer123@example.com (required)
-completionCallbackUrl=https://your-app.com/webhook (optional)
-\`\`\`
-
-\`\`\`json Request Body
-{
-  "params": {
-    "shopify": [
-      {
-        "key": "baseUrl",
-        "value": "your-shop.myshopify.com"
-      },
-      {
-        "key": "token",
-        "value": "your-shopify-oauth-token"
-      }
-    ]
-  },
-  "limit": 10
-}
-\`\`\`
-
-\`\`\`json Response
-{
-  "Errors": {},
-  "Output": {
-    "step": "transform",
-    "isSuccess": true,
-    "result": [
-      {
-        "id": "5954461335827",
-        "channel_name": "shopify",
-        "order_number": "1004",
-        "customer": {
-          "email": "customer@example.com"
-        },
-        "line_items": [
-          {
-            "product_id": "9193872326931",
-            "quantity": 1,
-            "price": "24.95"
-          }
-        ]
-      }
-    ],
-    "next_page_token": "eyJsYXN0X2lkIjo1OTU0NDYxMzM1ODI3LCJsYXN0X3ZhbHVlIjoiMjAyNC0wOS0xMyAxNDo0NzoxMy4xNDAwNTEiLCJkaXJlY3Rpb24iOiJuZXh0In0"
-  }
-}
-\`\`\`
+```
 </CodeGroup>
 
 <Note>
@@ -269,4 +133,3 @@ Congratulations! You've now set up a complete integration with Kariz and can acc
     View all the E-commerce channels we currently support
   </Card>
 </CardGroup>`;
-
