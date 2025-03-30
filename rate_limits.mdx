@@ -1,5 +1,7 @@
 ---
-title: 'Rate limits'
-description: 'Understand how the Kariz rate limits'
+title: 'Rate Limiting'
 ---
 
+Kariz unified API endpoints pass requests directly to their respective platforms and will be subject to each platform's unique rate limits.
+
+For enterprise plans, there is also the option to use cached data instead. In this case, you will not experience the normal rate limits imposed by a specific platform (e.g. Amazon or Big Commerce). The rate limits for the read endpoints are 500 requests in a window of 10 seconds, per organization.

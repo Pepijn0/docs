@@ -45,7 +45,11 @@
       "pages": [
         "introduction",
         "quickstart",
-        "channels"
+        "Markteplaces",
+        {
+          "label": "Supported Channel",
+          "href":"https://runkariz.com/integrations"
+        }
       ]
     },
     {
