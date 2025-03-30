@@ -1,86 +1,89 @@
 ---
-title: "Overview"
-description: "Learn how you can setup E-commerce channel integrations with Kariz’s unified API"
+title: "Introduction"
+description: "Learn how you can put E-commerce integrations on autopilot through Kariz's unified API"
 ---
 
-Welcome to the Kariz docs! You have come to the right place to learn how Kariz can help you setup all your E-commerce sales channel integrations through our unified API
+# Welcome to Kariz
 
-### &#xA;**What is Kariz ?**
+You've come to the right place to learn how Kariz can help you build E-commerce integrations faster and more reliably. Our unified API approach lets you connect once and instantly access multiple sales channels.
 
-Kariz offers unified APIs for E-commerce. We allow our customers to build a single integration to Kariz and instantly launch all E-commerce sales channel integrations to their customers.
+## What is Kariz?
 
-We do this by standardizing the data models of all the E-commerce platforms we support and allowing you to interact with the unified models using a set of clearly defined endpoints.
+Kariz offers unified APIs for E-commerce. We allow our customers to build a single integration to Kariz and instantly launch all E-commerce sales channel integrations to their customers.
 
-This way, getting product data from an E-commerce platform solution like Shopify will look the same as getting product data from other E-commerce channels like Amazon. It’s the same set of data models and fields you can rely on.
+We do this by standardizing the data models across all the E-commerce platforms we support and allowing you to interact with the unified models using a set of clearly defined endpoints.
 
-### &#xA;Unified APIs
+This way, getting product data from an E-commerce platform like **Shopify** will look the same as getting product data from other E-commerce channels like **Amazon** or **WooCommerce**. It's the same set of data models and fields you can rely on.
 
-When scaling your e-commerce operation to multiple sales platforms, the effort and time spent both to build and maintain these integrations grows exponentially with the ammount of added channels. With Kariz, you don’t have to worry about the complexity of the Sales Channels. You will receive data in the same format for every tool you choose to support.
+## Unified APIs
 
-We offer lots of tooling to make this process as simple as possible for any possible use-case you may have. This includes multiple unified authentication methods, pagination and our OpenAPI schema's to our full datamodels
+When scaling your E-commerce operation to multiple sales platforms, the effort and time spent both to build and maintain these integrations grows exponentially with the number of added channels. With Kariz, you don't have to worry about the complexity of the Sales Channels. You will receive data in the same format for every tool you choose to support.
 
-### Our Data models - Based of Shopify's
+We offer comprehensive tooling to make this process as simple as possible for any use-case you may have:
 
-To make connecting to Kariz as easy as possible, we use the same data models for our unified API as Shopify. This means that if you already have a integration to Shopify, we allow you to get setup in under an hour to all the other sales channel integrations that we offer. More than that, we return the data much easier than even using the Shopify API. We make multiple API calls to make sure that all the relevant e-commerce data is included in every call. This means that our product data also includes variants, inventory and inventory location. Best of all, it works the same for every E-commerce channel.
+- **Multiple authentication methods** for flexible integration
+- **Consistent data models** based on Shopify's structure
+- **Simplified API calls** that return complete related data in one request
+- **Smart pagination** for handling large datasets
+- **OpenAPI schemas** for code generation and testing
 
-### Modifications to the Shopify Data Models
+## Our Data Models
 
-[](https://github.com/runkariz/docs#modifications-to-the-shopify-data-models)
+To make connecting to Kariz as easy as possible, we use the same data models for our unified API as Shopify. This means that if you already have an integration to Shopify, we allow you to get set up in under an hour with all the other sales channel integrations that we offer.
 
-We have made two minor changes to the Shopify data models:
+We've also improved the experience by returning more complete data with fewer API calls:
 
-1. **ID Fields as Strings**
-   All ID fields are converted to strings to maintain consistency across different platforms.
+- Our product endpoints include variants, inventory and inventory location data
+- Our order endpoints return order information, shipments, fulfillment and refund info all in one call
 
-2. **Added Sales\_Channel Variable**
-   A new variable called `channel_name` is added to indicate the source platform of the user data. For example, if the user data is fetched from Shopify, `channel_name = 'shopify'`.
-
-## Authentication
-
-Authenticate your users with our 2 authentication methods
+## Get Started with Kariz
 
 <CardGroup cols={2}>
-  <Card title="Magic Link" icon="link" href="https://kariz-f9e6462a.mintlify.app/Authentication/Magic-Link">
-    Create new customer integrations in seconds using our magic links
+  <Card 
+    title="Quickstart" 
+    icon="rocket" 
+    href="/quickstart"
+  >
+    Connect to E-commerce integrations in minutes with our step-by-step guide
   </Card>
-
-  <Card title="User Token" icon="code" href="https://kariz-f9e6462a.mintlify.app/Authentication/Token-Authentication">
-    Use existing authentication tokens you have for customers to get their data through Kariz
+  
+  <Card 
+    title="Authentication" 
+    icon="key" 
+    href="/authentication"
+  >
+    Learn about our Magic Link and Token authentication methods
+  </Card>
+  
+  <Card 
+    title="Data Models" 
+    icon="database" 
+    href="/datamodels"
+  >
+    Understand how our unified data models work across platforms
+  </Card>
+  
+  <Card 
+    title="Pagination" 
+    icon="page" 
+    href="/pagination"
+  >
+    Handle large data sets efficiently with our pagination system
   </Card>
 </CardGroup>
 
-## E-Commerce API reference&#x20;
+## Supported E-commerce Channels
 
-See how to connect to all your data across sales channels&#x20;
+Kariz currently supports multiple leading E-commerce platforms, including:
 
-<CardGroup cols={2}>
-  <Card title="Products & Inventory" icon="shirt" href="https://kariz-f9e6462a.mintlify.app/Products">
-    Access all product and variant data including inventory data and&#x20;
-  </Card>
+- Shopify
+- WooCommerce
+- BigCommerce
+- Amazon
+- Bol
+- Mirakl
+- Lightspeed
+- Magento
+- And more!
 
-  <Card title="Orders" icon="receipt" href="https://mintlify.com/docs/api-playground/openapi">
-    Access all order data, including returns, refunds and shipment status
-  </Card>
-</CardGroup>
-
-## Resources
-
-Explore our other resources to learn more about Kariz
-
-<CardGroup cols={2}>
-  <Card title="Supported Channels" icon="store" href="https://runkariz.com/integrations">
-    Overview of all of the E-commerce channels we currently support and the data models
-  </Card>
-
-  <Card title="Pagination" icon="page" href="https://mintlify.com/docs/api-playground/openapi">
-    Access product and order batches greater than 50 at once using our API
-  </Card>
-
-  <Card title="Open API Schema" icon="code">
-    Download our OpenAPI schema for testing and code generation
-  </Card>
-
-  <Card title="Rate limits" icon="clock">
-    These are setup to help you avoid getting rate limited by the sales channels
-  </Card>
-</CardGroup>
+For a complete list of supported platforms and their capabilities, visit our [Supported Channels](https://runkariz.com/integrations) page.
