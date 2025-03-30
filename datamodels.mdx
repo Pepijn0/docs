@@ -25,7 +25,7 @@ Here is an overview of the exceptions by channel:
 | Channel | Exceptions |
 | ------- | ---------- |
 | Shopify | None |
-| WooCommerce | No inventory location by default (store user needs to install [this add-on](https://wordpress.org/plugins/stock-locations-for-woocommerce/) to enable it) |
+| WooCommerce | No inventory location (user needs to install this add-on](https://wordpress.org/plugins/stock-locations-for-woocommerce/)) |
 | BigCommerce | None |
 | Lightspeed | None |
 | Amazon | None |
@@ -37,17 +37,17 @@ Here is an overview of the exceptions by channel:
 
 The unified product data model includes inventory details for all product variants. With one API call, you receive:
 
-<CardGroup>
-  <Card title="Products" icon="box">
+<CardGroup cols={1}>
+  <Card title="Products" icon="shirt">
     Core product details including title, description, and options
   </Card>
-  <Card title="Product Variants" icon="layer-group">
+  <Card title="Product Variants" icon="palette">
     All variations of each product with their specific attributes
   </Card>
   <Card title="Inventory" icon="warehouse">
     Current stock levels for each product variant
   </Card>
-  <Card title="Inventory Levels by Location" icon="map-marker-alt">
+  <Card title="Inventory Levels by Location" icon="location-dot">
     Stock levels broken down by physical location (if applicable)
   </Card>
 </CardGroup>
@@ -64,14 +64,14 @@ For more details on product models, refer to the Shopify 2025/04 REST API Docume
 
 The unified order data model includes comprehensive information about orders, their fulfillment status, and financial details. With one API call, you receive:
 
-<CardGroup>
-  <Card title="Orders" icon="shopping-cart">
+<CardGroup cols={1}>
+  <Card title="Orders" icon="cart-shopping">
     Complete order details including customer information and line items
   </Card>
   <Card title="Shipments" icon="truck">
     Fulfillment status and shipping information for each order
   </Card>
-  <Card title="Refunds" icon="money-bill-wave">
+  <Card title="Refunds" icon="rotate-left">
     Any refunds associated with the orders
   </Card>
 </CardGroup>
