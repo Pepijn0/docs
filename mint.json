@@ -45,9 +45,16 @@
       "pages": [
         "introduction",
         "quickstart",
+        "Integration_catalog"
+      ]
+    },
+    {
+      "group": "Core Concepts",
+      "pages": [
         "datamodels",
         "authentication",
-        "pagination"
+        "pagination",
+        "rate_limits"
       ]
     }
   ],
