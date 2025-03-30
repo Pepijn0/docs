@@ -1,6 +1,6 @@
 
 ---
-title: 'Authentication'
+title: Authentication'
 description: 'How to authenticate your users'
 ---
 
@@ -23,6 +23,29 @@ Magic links are created through the API with the Create a Magic link endpoint. W
 3. **scopes** (optional): These are the sales channels that you want to let the user authenticate to. By default, the user will be given the option to authenticate to all supported channels.
 
 You can generate a Magic Link for the same user multiple times. This allows the user to authenticate to additional channels with each request. Only the last credential entered for the authentication will be stored.
+
+<CodeGroup>
+```bash Endpoint
+GET https://api.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken
+```
+
+```bash Headers
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+```bash Parameters
+tpUserId=customer123@example.com (required)
+redirectUrl=https://your-app.com/callback (optional)
+scopes=shopify,amazon,woocommerce,bol,sharetribe,lightspeed_c,mirakl,magento,bigcommerce (optional)
+```
+
+```json Response
+{
+  "uri": "https://www.app.trykariz.com/en/tpuser/authorize?token=Mvznqqrm...AuD639OMo%3D",
+  "token": "Mvznqqrm...AuD639OMo%3D",
+  "expirationUtcUnixTimeSeconds": 1736269316
+}
+```
 
 <Note>
 When you send a tpUserId that doesn't exist yet, we create a new user record. When you use an existing tpUserId, we update that record to include new sales channels or update existing ones.
@@ -69,7 +92,7 @@ tpUserId=customer123@example.com (required)
 
 ### Channel-Specific Parameters
 
-Different E-commerce platforms require different token parameters:
+Different E-commerce platforms require different token parameters. These parameters need to be appended to each request for which you want to do the token authenticaiton:
 
 <Accordion title="Shopify">
 ```json
