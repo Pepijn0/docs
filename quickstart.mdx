@@ -1,48 +1,269 @@
----
 title: "Quickstart"
-description: "Connect to E-commerce integrations to your product in minutes"
+description: "Connect to E-commerce integrations in minutes"
 ---
 
-Every call to a Kariz API must include an API secret key. After you create an Kariz Account, we will generate this API key. It has to be included in every request that you send to us so we can authenticate you.
+# Get Started with Kariz
 
-## What you will built
+This guide will walk you through the complete process of integrating with Kariz and connecting to your first E-commerce platform. You'll learn how to authenticate, create a connection for your users, and retrieve standardized data.
 
-If you haven't already, book a demo with us to get your account credentials. Here you will receive your **application** **API key**, every time you want to connect to connect to Kariz, this needs to be included in your request to our API.&#x20;
+<Note>
+Every call to a Kariz API must include an API secret key. After you create a Kariz Account, we will generate this API key. It must be included in every request you send to us so we can authenticate you.
+</Note>
 
-## Step 1: Create a developer account
+## What You Will Build
 
-If you haven't already, book a demo with us to get your account credentials. Here you will receive your **application** **API key**, every time you want to connect to connect to Kariz, this needs to be included in your request to our API.&#x20;
+By the end of this guide, you'll have set up a complete integration that allows your users to connect their E-commerce platforms (like Shopify, WooCommerce, Amazon, etc.) to your application. You'll be able to access their product and order data through our unified API.
 
-## Step 2: obtain an access token
+## Step 1: Create a Developer Account
 
-Once you have your account. You will need to create an Access token. This token is used to authenticate all of your requests. By default the token is valid for 90 days. You can obtain the access token by call the Obtain Access Token endpoint.
+<Steps>
+  <Step title="Book a Demo">
+    If you haven't already, book a demo with us to get your account credentials.
+  </Step>
+  <Step title="Receive API Key">
+    During onboarding, you'll receive your **application API key** which authenticates your requests to Kariz.
+  </Step>
+</Steps>
 
-## Step 3: Authenticate a user with Magic link
+Your application API key is a string that looks something like this:
+\`\`\`bash
+client_id: "client123"
+client_secret: "clientsecret123"
+\`\`\`
 
-There are 2 ways to authenticate a user in Kariz, for more info see the authentication section. For this tutorial we will use our generic authenticator as this is the quickest way to setup. 
+Store these credentials securely - you'll need them for all future requests to the Kariz API.
 
-You can create the magic link with this endpoint: Create a Magic link
-To create a authentication link for users, with our generic authenticator, you need to send us 3 parameters:
+## Step 2: Obtain an Access Token
 
-* Application API key
+Once you have your account set up, you will need to create an Access token. This token is used to authenticate all of your requests to the Kariz API. By default, the token is valid for 90 days.
 
-* Sales channel(s)
+<CodeGroup>
+\`\`\`bash Endpoint
+POST https://sts.demo.trykariz.com/connect/token
+\`\`\`
 
-* User name&#x20;
+\`\`\`json Request Body
+{
+  "grant_type": "password",
+  "username": "john@example.com",
+  "password": "secretpassword",
+  "client_id": "client123",
+  "client_secret": "clientsecret123"
+}
+\`\`\`
 
-The application API key you received from us before, you need to send it in every request to us so we authenticate your requests.
+\`\`\`json Response
+{
+  "access_token": "ya29.a0AfH6SMDtYZB_...your_access_token...",
+  "token_type": "bearer",
+  "expires_in": 7776000,
+  "scope": "read write"
+}
+\`\`\`
+</CodeGroup>
 
-The Sales channel(s) you send in the requests to us will determine what your end user will be asked to authenticate with. This can be one channel (shopify) but it can also be multiple channels at the same time (Shopify, WooCommerce and Amazon).
+Save this access token securely - you'll use it for all your API requests by including it in the Authorization header:
 
-The username, in order to authenticate a user for you, we need to know how to call the user. This code will be used later to retrieve data for a client. When you send us a username in a request, that didn't exisit yet. We are creating a new user for you in our database. When you send us a username that already existed in ourdatabase, we will update that record to include new sales channels or update old ones.
+\`\`\`
+Authorization: Bearer ya29.a0AfH6SMDtYZB_...your_access_token...
+\`\`\`
 
-The magic link is returned to you as the "uri" in the response. visiting this url will let the user authenticate.
+## Step 3: Authenticate a User with Magic Link
 
+There are 2 ways to authenticate a user in Kariz (for more information, see the [Authentication](/authentication) section). For this tutorial, we will use our Magic Link authenticator as this is the quickest way to set up.
 
-## Step 4: Request data
+<CodeGroup>
+\`\`\`bash Endpoint
+GET https://api.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken
+\`\`\`
 
-Now that you have autenticated a user, you can request data from them on the different sales channels. The data will always be returned in exactly the same format. To try this out, we recommend retrieving order data.
+\`\`\`bash Parameters
+tpUserId=customer123@example.com (required)
+redirectUrl=https://your-app.com/callback (optional)
+scopes=shopify,amazon,woocommerce (optional)
+\`\`\`
+
+\`\`\`json Response
+{
+  "uri": "https://www.app.trykariz.com/en/tpuser/authorize?token=Mvznqqrm...AuD639OMo%3D",
+  "token": "Mvznqqrm...AuD639OMo%3D",
+  "expirationUtcUnixTimeSeconds": 1736269316
+}
+\`\`\`
+</CodeGroup>
+
+### Understanding the Parameters:
+
+1. **Authorization:** The access token you obtained in Step 2 (sent in the request header).
+2. **tpUserId:** Your end user's identifier. This is purely for identification purposes within Kariz.
+3. **redirectUrl:** After the user completes authentication, we will redirect them to this URL.
+4. **scopes:** The E-commerce channels the user will be asked to authenticate with. By default, users will be given the option to authenticate to all supported channels.
+
+<Note>
+When you send a tpUserId that doesn't exist yet, we create a new user record. When you use an existing tpUserId, we update that record to include new sales channels or update existing ones.
+</Note>
+
+After getting the Magic Link, share the \`uri\` from the response with your user. When they visit this URL, they will be guided through authenticating with their selected E-commerce platforms.
+
+## Step 4: Request Data
+
+Now that you have authenticated a user, you can request data from them across different sales channels. The data will always be returned in exactly the same format, regardless of which platform it came from.
+
+### Retrieving Products
+
+<CodeGroup>
+\`\`\`bash Endpoint
+POST https://api.trykariz.com/api/KarizClientApp/Unified/Products
+\`\`\`
+
+\`\`\`bash Query Parameters
+channel=shopify (required)
+tpUserId=customer123@example.com (required)
+completionCallbackUrl=https://your-app.com/webhook (optional)
+\`\`\`
+
+\`\`\`json Request Body
+{
+  "params": {
+    "shopify": [
+      {
+        "key": "baseUrl",
+        "value": "your-shop.myshopify.com"
+      },
+      {
+        "key": "token",
+        "value": "your-shopify-oauth-token"
+      }
+    ]
+  },
+  "limit": 10
+}
+\`\`\`
+
+\`\`\`json Response (Shortened)
+{
+  "Errors": {},
+  "Output": {
+    "step": "transform",
+    "isSuccess": true,
+    "result": [
+      {
+        "id": "9193872097555",
+        "channel_name": "lightspeed_c",
+        "title": "Gift Card",
+        "body_html": "This is a gift card for the store",
+        "variants": [
+          {
+            "id": "48467551060243",
+            "product_id": "9193872097555",
+            "title": "$10",
+            "price": "10.00"
+          }
+        ]
+      }
+    ],
+    "next_page_token": "eyJsYXN0X2lkIjo1OTU0NDYxMzM1ODI3LCJsYXN0X3ZhbHVlIjoiMjAyNC0wOS0xMyAxNDo0NzoxMy4xNDAwNTEiLCJkaXJlY3Rpb24iOiJuZXh0In0"
+  }
+}
+\`\`\`
+</CodeGroup>
+
+### Retrieving Orders
+
+<CodeGroup>
+\`\`\`bash Endpoint
+POST https://api.trykariz.com/api/KarizClientApp/Unified/Orders
+\`\`\`
+
+\`\`\`bash Query Parameters
+channel=shopify (required)
+tpUserId=customer123@example.com (required)
+completionCallbackUrl=https://your-app.com/webhook (optional)
+\`\`\`
+
+\`\`\`json Request Body
+{
+  "params": {
+    "shopify": [
+      {
+        "key": "baseUrl",
+        "value": "your-shop.myshopify.com"
+      },
+      {
+        "key": "token",
+        "value": "your-shopify-oauth-token"
+      }
+    ]
+  },
+  "limit": 10
+}
+\`\`\`
+
+\`\`\`json Response (Shortened)
+{
+  "Errors": {},
+  "Output": {
+    "step": "transform",
+    "isSuccess": true,
+    "result": [
+      {
+        "id": "5954461335827",
+        "channel_name": "shopify",
+        "order_number": "1004",
+        "customer": {
+          "email": "customer@example.com"
+        },
+        "line_items": [
+          {
+            "product_id": "9193872326931",
+            "quantity": 1,
+            "price": "24.95"
+          }
+        ]
+      }
+    ],
+    "next_page_token": "eyJsYXN0X2lkIjo1OTU0NDYxMzM1ODI3LCJsYXN0X3ZhbHVlIjoiMjAyNC0wOS0xMyAxNDo0NzoxMy4xNDAwNTEiLCJkaXJlY3Rpb24iOiJuZXh0In0"
+  }
+}
+\`\`\`
+</CodeGroup>
+
+<Note>
+When retrieving large datasets, you can use the \`next_page_token\` value returned in the response to paginate through results. For more details, see the [Pagination](/pagination) section.
+</Note>
 
 ## Complete
 
-Now you can integrate to any of the E-commerce channels Kariz is connected to.
+Congratulations! You've now set up a complete integration with Kariz and can access data from any of the E-commerce channels we support. The data is standardized across all platforms, making it easy to build features that work consistently regardless of which E-commerce platform your users are connected to.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card 
+    title="Authentication Methods" 
+    icon="key" 
+    href="/authentication">
+    Learn about our Magic Link and Token authentication methods
+  </Card>
+  
+  <Card 
+    title="Data Models" 
+    icon="database" 
+    href="/datamodels">
+    Understand how our unified data structure works across platforms
+  </Card>
+  
+  <Card 
+    title="Pagination" 
+    icon="page" 
+    href="/pagination">
+    Handle large data sets efficiently with our pagination system
+  </Card>
+  
+  <Card 
+    title="Supported Channels" 
+    icon="store" 
+    href="https://runkariz.com/integrations">
+    View all the E-commerce channels we currently support
+  </Card>
+</CardGroup>`;
