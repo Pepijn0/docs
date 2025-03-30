@@ -27,6 +27,7 @@ By the end of this guide, you'll have set up a complete integration that allows 
 </Steps>
 
 Your application API key is a string that looks something like this:
+
 \`\`\`bash
 client_id: "client123"
 client_secret: "clientsecret123"
@@ -65,7 +66,7 @@ POST https://sts.demo.trykariz.com/connect/token
 
 Save this access token securely - you'll use it for all your API requests by including it in the Authorization header:
 
-\`\`\`
+\`\`\`text
 Authorization: Bearer ya29.a0AfH6SMDtYZB_...your_access_token...
 \`\`\`
 
@@ -141,7 +142,7 @@ completionCallbackUrl=https://your-app.com/webhook (optional)
 }
 \`\`\`
 
-\`\`\`json Response (Shortened)
+\`\`\`json Response
 {
   "Errors": {},
   "Output": {
@@ -200,7 +201,7 @@ completionCallbackUrl=https://your-app.com/webhook (optional)
 }
 \`\`\`
 
-\`\`\`json Response (Shortened)
+\`\`\`json Response
 {
   "Errors": {},
   "Output": {
@@ -268,3 +269,4 @@ Congratulations! You've now set up a complete integration with Kariz and can acc
     View all the E-commerce channels we currently support
   </Card>
 </CardGroup>`;
+
