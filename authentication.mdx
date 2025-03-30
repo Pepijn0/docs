@@ -34,6 +34,39 @@ If you already have authentication tokens for your users' E-commerce platforms, 
 
 When making API requests, include the token information directly in the request body:
 
+<CodeGroup>
+```bash Endpoint
+POST https://api.trykariz.com/api/KarizClientApp/Unified/Products
+```
+
+```bash Headers
+Authorization: Bearer YOUR_ACCESS_TOKEN
+```
+
+```bash Parameters
+channel=shopify (required)
+tpUserId=customer123@example.com (required)
+```
+
+```json Request Body
+{
+  "params": {
+    "shopify": [
+      {
+        "key": "baseUrl",
+        "value": "your-shop.myshopify.com"
+      },
+      {
+        "key": "token",
+        "value": "your-shopify-oauth-token"
+      }
+    ]
+  },
+  "limit": 10
+}
+```
+</CodeGroup>
+
 ### Channel-Specific Parameters
 
 Different E-commerce platforms require different token parameters:
