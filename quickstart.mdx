@@ -13,10 +13,15 @@ If you haven't already, book a demo with us to get your account credentials. Her
 
 If you haven't already, book a demo with us to get your account credentials. Here you will receive your **application** **API key**, every time you want to connect to connect to Kariz, this needs to be included in your request to our API.&#x20;
 
-## Step 2: Authenticate a user
+## Step 2: obtain an access token
 
-There are 2 ways to authenticate a user in Kariz. Using our generic authenticator or using token authentication. The second is recommended for testing with existing users or if you want to keep your style for the integration page. For more information on the different authentication methods click here. For this tutorial we will use our generic authenticator as this is the quickest way to setup.
+Once you have your account. You will need to create an Access token. This token is used to authenticate all of your requests. By default the token is valid for 90 days. You can obtain the access token by call the Obtain Access Token endpoint.
 
+## Step 3: Authenticate a user with Magic link
+
+There are 2 ways to authenticate a user in Kariz, for more info see the authentication section. For this tutorial we will use our generic authenticator as this is the quickest way to setup. 
+
+You can create the magic link with this endpoint: Create a Magic link
 To create a authentication link for users, with our generic authenticator, you need to send us 3 parameters:
 
 * Application API key
@@ -31,7 +36,10 @@ The Sales channel(s) you send in the requests to us will determine what your end
 
 The username, in order to authenticate a user for you, we need to know how to call the user. This code will be used later to retrieve data for a client. When you send us a username in a request, that didn't exisit yet. We are creating a new user for you in our database. When you send us a username that already existed in ourdatabase, we will update that record to include new sales channels or update old ones.
 
-## Step 3: Request data
+The magic link is returned to you as the "uri" in the response. visiting this url will let the user authenticate.
+
+
+## Step 4: Request data
 
 Now that you have autenticated a user, you can request data from them on the different sales channels. The data will always be returned in exactly the same format. To try this out, we recommend retrieving order data.
 

@@ -1,0 +1,17 @@
+---
+title: 'Authentication'
+description: 'How to authenticate your users'
+---
+
+We support 2 types of authentication: Magic link authentication and token authentication. Using the Magic link is recommended to quickly get started.
+
+Our magic Link is the component that your users will interact with in order to link their accounts to Kariz and allow you to access their accounts via the Rutter API.
+
+The Magic Link will handle credential validation, OAuth, and error handling for each platform that we support. Link works across all modern browsers and platforms, including web, iOS, Android, and mobile webviews.
+
+Magic links are created through the API with the Create a Magic link endpoint. With this call, an authentication link for the user is generated. The required inputs are:
+1. Authorization: Your Kariz Access token.
+2. the Userid: The user ID of the user. This user ID will be used to get user data across channels in subsequent requests.
+3. The scopes: these are the sales channels that you want to let the user authenticate to.
+
+You can generate an magic link for the same user multiple times. This allows the user to authenticate to additioal channnels with each request. Only the last credential entered for the authentcation will be stored.
