@@ -1,7 +1,38 @@
 ---
 title: 'Rate Limiting'
+description: 'Understanding rate limits when using the Kariz API'
 ---
 
-Kariz unified API endpoints pass requests directly to their respective platforms and will be subject to each platform's unique rate limits.
+# Rate Limiting in Kariz
 
-For enterprise plans, there is also the option to use cached data instead. In this case, you will not experience the normal rate limits imposed by a specific platform (e.g. Amazon or Big Commerce). The rate limits for the read endpoints are 500 requests in a window of 10 seconds, per organization.
+Rate limiting controls how many API requests can be made within a specific time period. Understanding these limits will help you optimize your integration with our unified API.
+
+## Platform-Specific Rate Limits
+
+When using Kariz's unified API endpoints, your requests are passed directly to their respective e-commerce platforms. As a result, these requests are subject to each platform's unique rate limiting policies:
+
+| Platform | Typical Rate Limits |
+| -------- | ------------------ |
+| Shopify | 2 requests/second |
+| Amazon | Varies by endpoint (typically 1-5 requests/second) |
+| WooCommerce | Depends on hosting (typically 5-25 requests/minute) |
+| BigCommerce | 150-450 requests/30 seconds (varies by plan) |
+| Magento | Self-hosted, depends on server configuration |
+
+<Note>
+When building your integration, consider implementing exponential backoff and retry logic to handle potential rate limit errors gracefully.
+</Note>
+
+## Enterprise Cached Data Option
+
+For enterprise plans, Kariz offers a cached data option that provides significantly higher throughput:
+
+<Card>
+**Enterprise Cached Data Limits:**
+- 500 requests per 10-second window
+- Per organization basis
+- Available for all read endpoints
+- No dependency on platform-specific limits
+</Card>
+
+This cached approach allows you to bypass the normal rate limits imposed by specific platforms like Amazon or BigCommerce, making it ideal for high-volume use cases or when you need more consistent performance.
