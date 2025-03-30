@@ -1,19 +1,17 @@
 
 ---
-title: "Authentication"
-description: "How to authenticate your users"
+title: 'Authentication'
+description: 'How to authenticate your users'
 ---
 
-# Authentication
-
-We support 2 types of authentication: Magic Link authentication and token authentication. Using the Magic Link is recommended to quickly get started.
+We support 2 types of authentication: Magic Link authentication and token authentication. Using the Magic Link is recommended to get started quickly.
 
 ## Magic Link Authentication
 
 Our Magic Link is the component that your users will interact with in order to link their accounts to Kariz and allow you to access their accounts via the Kariz API.
 
 <Note>
-The Magic Link will handle credential validation, OAuth, and error handling for each platform that we support. Link works across all modern browsers and platforms, including web, iOS, Android, and mobile webviews.
+The Magic Link will handle credential validation, OAuth, and error handling for each platform that we support. Link works across all modern browsers and platforms.
 </Note>
 
 Magic links are created through the API with the Create a Magic link endpoint. With this call, an authentication link for the user is generated.
