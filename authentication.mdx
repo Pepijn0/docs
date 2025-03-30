@@ -18,30 +18,6 @@ The Magic Link will handle credential validation, OAuth, and error handling for 
 
 Magic links are created through the API with the Create a Magic link endpoint. With this call, an authentication link for the user is generated.
 
-<CodeGroup>
-\`\`\`bash Endpoint
-GET https://api.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken
-\`\`\`
-
-\`\`\`bash Headers
-Authorization: Bearer YOUR_ACCESS_TOKEN
-\`\`\`
-
-\`\`\`bash Parameters
-tpUserId=customer123@example.com (required)
-redirectUrl=https://your-app.com/callback (optional)
-scopes=shopify,amazon,woocommerce,bol,sharetribe,lightspeed_c,mirakl,magento,bigcommerce (optional)
-\`\`\`
-
-\`\`\`json Response
-{
-  "uri": "https://www.app.trykariz.com/en/tpuser/authorize?token=Mvznqqrm...AuD639OMo%3D",
-  "token": "Mvznqqrm...AuD639OMo%3D",
-  "expirationUtcUnixTimeSeconds": 1736269316
-}
-\`\`\`
-</CodeGroup>
-
 ### Required Inputs
 
 1. **Authorization**: Your Kariz Access token (not your application API key) must be included in the Authorization header for all API requests. This token is obtained from the Obtain Access Token endpoint as described in the Quickstart guide.
@@ -60,45 +36,12 @@ If you already have authentication tokens for your users' E-commerce platforms, 
 
 When making API requests, include the token information directly in the request body:
 
-<CodeGroup>
-\`\`\`bash Endpoint
-POST https://api.trykariz.com/api/KarizClientApp/Unified/Products
-\`\`\`
-
-\`\`\`bash Headers
-Authorization: Bearer YOUR_ACCESS_TOKEN
-\`\`\`
-
-\`\`\`bash Parameters
-channel=shopify (required)
-tpUserId=customer123@example.com (required)
-\`\`\`
-
-\`\`\`json Request Body
-{
-  "params": {
-    "shopify": [
-      {
-        "key": "baseUrl",
-        "value": "your-shop.myshopify.com"
-      },
-      {
-        "key": "token",
-        "value": "your-shopify-oauth-token"
-      }
-    ]
-  },
-  "limit": 10
-}
-\`\`\`
-</CodeGroup>
-
 ### Channel-Specific Parameters
 
 Different E-commerce platforms require different token parameters:
 
 <Accordion title="Shopify">
-\`\`\`json
+```json
 "shopify": [
   {
     "key": "baseUrl",
@@ -109,11 +52,11 @@ Different E-commerce platforms require different token parameters:
     "value": "your-shopify-oauth-token"
   }
 ]
-\`\`\`
+```
 </Accordion>
 
 <Accordion title="WooCommerce">
-\`\`\`json
+```json
 "woocommerce": [
   {
     "key": "baseUrl",
@@ -124,11 +67,11 @@ Different E-commerce platforms require different token parameters:
     "value": "base64 token"
   }
 ]
-\`\`\`
+```
 </Accordion>
 
 <Accordion title="Amazon">
-\`\`\`json
+```json
 "amazon": [
   {
     "key": "endpoint",
@@ -143,22 +86,22 @@ Different E-commerce platforms require different token parameters:
     "value": "oauth token"
   }
 ]
-\`\`\`
+```
 </Accordion>
 
 <Accordion title="Bol">
-\`\`\`json
+```json
 "bol": [
   {
     "key": "token",
     "value": "base64 token"
   }
 ]
-\`\`\`
+```
 </Accordion>
 
 <Accordion title="Lightspeed">
-\`\`\`json
+```json
 "lightspeed_c": [
   {
     "key": "region",
@@ -169,11 +112,11 @@ Different E-commerce platforms require different token parameters:
     "value": "Basic eHh4eHh4"
   }
 ]
-\`\`\`
+```
 </Accordion>
 
 <Accordion title="BigCommerce">
-\`\`\`json
+```json
 "bigcommerce": [
   {
     "key": "store_hash",
@@ -184,22 +127,22 @@ Different E-commerce platforms require different token parameters:
     "value": "store token"
   }
 ]
-\`\`\`
+```
 </Accordion>
 
 <Accordion title="Mirakl">
-\`\`\`json
+```json
 "mirakl": [
   {
     "key": "token",
     "value": "bearer-token"
   }
 ]
-\`\`\`
+```
 </Accordion>
 
 <Accordion title="Magento">
-\`\`\`json
+```json
 "magento": [
   {
     "key": "baseUrl",
@@ -210,7 +153,7 @@ Different E-commerce platforms require different token parameters:
     "value": "token"
   }
 ]
-\`\`\`
+```
 </Accordion>
 
 ## Supported Sales Channels
