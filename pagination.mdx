@@ -1,9 +1,73 @@
 ---
 title: 'Pagination'
-description: 'How to use our unified Pagination'
+description: 'How to use our unified pagination system'
 ---
 
-When making a request for data, Kariz will paginate the returned data if the data set is too large. You'll know when pagination has occurred if the next_page_token field is supplied. The next_page_token is the id of the next entity (e.g. an order, a product).
+# Understanding Pagination in Kariz
 
-To proceed to the next page, set the query parameter 
-next_page_token to the next_page_token value. A response without a next_cursor field can either signify the last page or that the response was small enough where pagination was not required.
+When retrieving large datasets from the Kariz API, results are automatically paginated to optimize performance and response times. Pagination allows you to retrieve data in manageable chunks while providing a clear way to access subsequent records.
+
+## How Pagination Works
+
+Kariz uses token-based pagination that's consistent across all supported e-commerce channels. When a response contains more data than can be returned in a single request, Kariz will:
+
+1. Return a subset of the total results (default is 10 items per page)
+2. Include a \`next_page_token\` in the response to indicate more data is available
+3. Provide a \`next_page_token_url\` that can be used directly for the next request
+
+## Using the Next Page Token
+
+<Note>
+A response that doesn't include a \`next_page_token\` field indicates you've reached the last page of results or the entire dataset was small enough to be returned in a single response.
+</Note>
+
+### Example Pagination Flow
+
+```javascript
+// Initial request
+const initialResponse = await fetch('https://api.trykariz.com/api/KarizClientApp/Unified/Products?channel=shopify&tpUserId=user123');
+const data = await initialResponse.json();
+
+// Process the first page of results
+processData(data.Output.result);
+
+// Check if there are more pages
+if (data.Output.next_page_token) {
+  // Request the next page using the token
+  const nextPageResponse = await fetch(
+    'https://api.trykariz.com/api/KarizClientApp/Unified/Products?channel=shopify&tpUserId=user123&next_page_token=' + data.Output.next_page_token
+  );
+  const nextPageData = await nextPageResponse.json();
+  
+  // Process the next page of results
+  processData(nextPageData.Output.result);
+}
+```
+
+## Response Structure
+
+A paginated response will contain the following pagination-related fields:
+
+```json
+{
+  "Output": {
+    "result": [
+      // Array of products or orders
+    ],
+    "next_page_token": "eyJsYXN0X2lkIjo1OTU0NDYxMzM1ODI3LCJsYXN0X3ZhbHVlIjoiMjAyNC0wOS0xMyAxNDo0NzoxMy4xNDAwNTEiLCJkaXJlY3Rpb24iOiJuZXh0In0",
+    "next_page_token_url": "https://api.trykariz.com/api/KarizClientApp/Unified/Products?channel=shopify&tpUserId=user123&next_page_token=eyJsYXN0X2lkIjo1OTU0NDYxMzM1ODI3LCJsYXN0X3ZhbHVlIjoiMjAyNC0wOS0xMyAxNDo0NzoxMy4xNDAwNTEiLCJkaXJlY3Rpb24iOiJuZXh0In0"
+  }
+}
+```
+
+## Controlling Page Size
+
+You can adjust the number of results per page by using the \`limit\` parameter in your request:
+
+```
+GET https://api.trykariz.com/api/KarizClientApp/Unified/Products?channel=shopify&tpUserId=user123&limit=25
+```
+
+<Note>
+The maximum limit value is 100 items per page. Some channels may limit responses to 50 items per page, in which case we follow their limit. If you specify a higher value, it will be capped at 100.
+</Note>
