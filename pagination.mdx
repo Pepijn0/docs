@@ -3,7 +3,7 @@ title: 'Pagination'
 description: 'How to use our unified Pagination'
 ---
 
-When making a request for data, Kariz  will paginate the returned data if the data set is too large. You'll know when pagination has occurred if the next_page_token field is supplied. The next_page_token is the id of the next entity (e.g. an order, a product).
+When making a request for data, Kariz will paginate the returned data if the data set is too large. You'll know when pagination has occurred if the next_page_token field is supplied. The next_page_token is the id of the next entity (e.g. an order, a product).
 
 To proceed to the next page, set the query parameter 
 next_page_token to the next_page_token value. A response without a next_cursor field can either signify the last page or that the response was small enough where pagination was not required.
