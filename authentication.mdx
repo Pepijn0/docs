@@ -1,17 +1,230 @@
+
 ---
-title: 'Authentication'
-description: 'How to authenticate your users'
+title: "Authentication"
+description: "How to authenticate your users"
 ---
 
-We support 2 types of authentication: Magic link authentication and token authentication. Using the Magic link is recommended to quickly get started.
+# Authentication
 
-Our magic Link is the component that your users will interact with in order to link their accounts to Kariz and allow you to access their accounts via the Rutter API.
+We support 2 types of authentication: Magic Link authentication and token authentication. Using the Magic Link is recommended to quickly get started.
 
+## Magic Link Authentication
+
+Our Magic Link is the component that your users will interact with in order to link their accounts to Kariz and allow you to access their accounts via the Kariz API.
+
+<Note>
 The Magic Link will handle credential validation, OAuth, and error handling for each platform that we support. Link works across all modern browsers and platforms, including web, iOS, Android, and mobile webviews.
+</Note>
 
-Magic links are created through the API with the Create a Magic link endpoint. With this call, an authentication link for the user is generated. The required inputs are:
-1. Authorization: Your Kariz Access token.
-2. the Userid: The user ID of the user. This user ID will be used to get user data across channels in subsequent requests.
-3. The scopes: these are the sales channels that you want to let the user authenticate to.
+Magic links are created through the API with the Create a Magic link endpoint. With this call, an authentication link for the user is generated.
 
-You can generate an magic link for the same user multiple times. This allows the user to authenticate to additioal channnels with each request. Only the last credential entered for the authentcation will be stored.
+<CodeGroup>
+\`\`\`bash Endpoint
+GET https://api.trykariz.com/api/KarizClientApp/GetTpUserAuthDisposableToken
+\`\`\`
+
+\`\`\`bash Headers
+Authorization: Bearer YOUR_ACCESS_TOKEN
+\`\`\`
+
+\`\`\`bash Parameters
+tpUserId=customer123@example.com (required)
+redirectUrl=https://your-app.com/callback (optional)
+scopes=shopify,amazon,woocommerce,bol,sharetribe,lightspeed_c,mirakl,magento,bigcommerce (optional)
+\`\`\`
+
+\`\`\`json Response
+{
+  "uri": "https://www.app.trykariz.com/en/tpuser/authorize?token=Mvznqqrm...AuD639OMo%3D",
+  "token": "Mvznqqrm...AuD639OMo%3D",
+  "expirationUtcUnixTimeSeconds": 1736269316
+}
+\`\`\`
+</CodeGroup>
+
+### Required Inputs
+
+1. **Authorization**: Your Kariz Access token (not your application API key) must be included in the Authorization header for all API requests. This token is obtained from the Obtain Access Token endpoint as described in the Quickstart guide.
+2. **tpUserId**: The user ID of the user. This user ID will be used to get user data across channels in subsequent requests.
+3. **scopes** (optional): These are the sales channels that you want to let the user authenticate to. By default, the user will be given the option to authenticate to all supported channels.
+
+You can generate a Magic Link for the same user multiple times. This allows the user to authenticate to additional channels with each request. Only the last credential entered for the authentication will be stored.
+
+<Note>
+When you send a tpUserId that doesn't exist yet, we create a new user record. When you use an existing tpUserId, we update that record to include new sales channels or update existing ones.
+</Note>
+
+## Token Authentication
+
+If you already have authentication tokens for your users' E-commerce platforms, you can use Token Authentication to directly access their data without requiring them to go through the Magic Link flow.
+
+When making API requests, include the token information directly in the request body:
+
+<CodeGroup>
+\`\`\`bash Endpoint
+POST https://api.trykariz.com/api/KarizClientApp/Unified/Products
+\`\`\`
+
+\`\`\`bash Headers
+Authorization: Bearer YOUR_ACCESS_TOKEN
+\`\`\`
+
+\`\`\`bash Parameters
+channel=shopify (required)
+tpUserId=customer123@example.com (required)
+\`\`\`
+
+\`\`\`json Request Body
+{
+  "params": {
+    "shopify": [
+      {
+        "key": "baseUrl",
+        "value": "your-shop.myshopify.com"
+      },
+      {
+        "key": "token",
+        "value": "your-shopify-oauth-token"
+      }
+    ]
+  },
+  "limit": 10
+}
+\`\`\`
+</CodeGroup>
+
+### Channel-Specific Parameters
+
+Different E-commerce platforms require different token parameters:
+
+<Accordion title="Shopify">
+\`\`\`json
+"shopify": [
+  {
+    "key": "baseUrl",
+    "value": "your-shop.myshopify.com"
+  },
+  {
+    "key": "token",
+    "value": "your-shopify-oauth-token"
+  }
+]
+\`\`\`
+</Accordion>
+
+<Accordion title="WooCommerce">
+\`\`\`json
+"woocommerce": [
+  {
+    "key": "baseUrl",
+    "value": "https://domain.com/wordpress"
+  },
+  {
+    "key": "token",
+    "value": "base64 token"
+  }
+]
+\`\`\`
+</Accordion>
+
+<Accordion title="Amazon">
+\`\`\`json
+"amazon": [
+  {
+    "key": "endpoint",
+    "value": "https://sellingpartnerapi-eu.amazon.com"
+  },
+  {
+    "key": "marketplaceIds",
+    "value": ["A1805IZSGTT6HS", "A1PA6795UKMFR9"]
+  },
+  {
+    "key": "token",
+    "value": "oauth token"
+  }
+]
+\`\`\`
+</Accordion>
+
+<Accordion title="Bol">
+\`\`\`json
+"bol": [
+  {
+    "key": "token",
+    "value": "base64 token"
+  }
+]
+\`\`\`
+</Accordion>
+
+<Accordion title="Lightspeed">
+\`\`\`json
+"lightspeed_c": [
+  {
+    "key": "region",
+    "value": "nl"
+  },
+  {
+    "key": "token",
+    "value": "Basic eHh4eHh4"
+  }
+]
+\`\`\`
+</Accordion>
+
+<Accordion title="BigCommerce">
+\`\`\`json
+"bigcommerce": [
+  {
+    "key": "store_hash",
+    "value": "store hash"
+  },
+  {
+    "key": "token",
+    "value": "store token"
+  }
+]
+\`\`\`
+</Accordion>
+
+<Accordion title="Mirakl">
+\`\`\`json
+"mirakl": [
+  {
+    "key": "token",
+    "value": "bearer-token"
+  }
+]
+\`\`\`
+</Accordion>
+
+<Accordion title="Magento">
+\`\`\`json
+"magento": [
+  {
+    "key": "baseUrl",
+    "value": "https://your-magento-store.com"
+  },
+  {
+    "key": "token",
+    "value": "token"
+  }
+]
+\`\`\`
+</Accordion>
+
+## Supported Sales Channels
+
+Kariz currently supports the following sales channels:
+
+- shopify
+- amazon
+- woocommerce
+- bol
+- sharetribe
+- lightspeed_c
+- mirakl
+- magento
+- bigcommerce
+
+You can specify any combination of these channels in the \`scopes\` parameter when creating a Magic Link, or use a specific channel in the \`channel\` parameter when making API requests.`;
