@@ -38,6 +38,10 @@
       "icon": "square-terminal",
       "openapi": "/api-reference/openapi.json"
     }
+    {
+      "name": "Status",
+      "href": "https://status.runkariz.com/"
+    }
   ],
   "navigation": [
     {
