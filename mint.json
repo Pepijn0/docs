@@ -1,64 +1,62 @@
 {
-  "$schema": "https://mintlify.com/schema.json",
-  "name": "Kariz - E-commerce Unified API",
-  "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
-  },
-  "favicon": "/favicon.svg",
-  "colors": {
-    "primary": "#0079FF",
-    "light": "#07C983",
-    "dark": "#0D9373",
-    "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
-    }
-  },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:info@trykariz.com"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://runkariz.com"
-  },
-  "navigation": {
-    "anchors": [
-      {
-        "anchor": "API Reference",      
-        "icon": "square-terminal",
-        "pages": ["api-reference"],
-        "openapi": "/api-reference/openapi.json"
-      },
-      {
-        "anchor": "Status",
-        "href": "https://status.runkariz.com/"
-      }
+    "$schema": "https://mintlify.com/schema.json",
+    "name": "Kariz - E-commerce Unified API",
+    "logo": {
+        "dark": "/logo/dark.svg",
+        "light": "/logo/light.svg"
+    },
+    "favicon": "/favicon.svg",
+    "colors": {
+        "primary": "#0079FF",
+        "light": "#07C983",
+        "dark": "#0D9373",
+        "anchors": {
+            "from": "#0D9373",
+            "to": "#07C983"
+        }
+    },
+    "topbarLinks": [
+        {
+            "name": "Support",
+            "url": "mailto:info@trykariz.com"
+        }
     ],
-    "groups": [
-      {
-        "group": "Get Started",
-        "pages": [
-          "introduction",
-          "quickstart",
-          "channels"
-        ]
-      },
-      {
-        "group": "Core Concepts",
-        "pages": [
-          "datamodels",
-          "authentication",
-          "pagination",
-          "rate_limits"
-        ]
-      }
-    ]
-  },
-  "footerSocials": {
-    "linkedin": "https://nl.linkedin.com/company/runkariz"
-  }
+    "topbarCtaButton": {
+        "name": "Dashboard",
+        "url": "https://runkariz.com"
+    },
+    "anchors": [
+        {
+            "anchor": "API Reference",
+            "url": "api-reference",
+            "icon": "square-terminal",
+            "openapi": "/api-reference/openapi.json"
+        },
+        {
+            "anchor": "Status",
+            "href": "https://status.runkariz.com/"
+        }
+    ],
+    "navigation": [
+        {
+            "group": "Get Started",
+            "pages": [
+                "introduction",
+                "quickstart",
+                "channels"
+            ]
+        },
+        {
+            "group": "Core Concepts",
+            "pages": [
+                "datamodels",
+                "authentication",
+                "pagination",
+                "rate_limits"
+            ]
+        }
+    ],
+    "footerSocials": {
+        "linkedin": "https://nl.linkedin.com/company/runkariz"
+    }
 }
