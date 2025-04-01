@@ -27,13 +27,13 @@
     },
     "anchors": [
         {
-            "anchor": "API Reference",
+            "name": "API Reference",
             "url": "api-reference",
             "icon": "square-terminal",
             "openapi": "/api-reference/openapi.json"
         },
         {
-            "anchor": "Status",
+            "name": "Status",
             "href": "https://status.runkariz.com/"
         }
     ],
