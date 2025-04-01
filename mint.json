@@ -25,21 +25,15 @@
     "name": "Dashboard",
     "url": "https://runkariz.com"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "https://docs.runkariz.com/api-reference/authentication/obtain-access-token"
-    }
-  ],
   "anchors": [
     {
-      "name": "API Reference",      
+      "anchor": "API Reference",      
       "url": "api-reference",
       "icon": "square-terminal",
       "openapi": "/api-reference/openapi.json"
     }
     {
-      "name": "Status",
+      "anchor": "Status",
       "href": "https://status.runkariz.com/"
     }
   ],
