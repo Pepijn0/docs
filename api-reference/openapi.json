@@ -4949,7 +4949,7 @@
             "nullable": true,
             "minimum": 1,
             "maximum": 250,
-            "default": 50
+            "default": 10
           },
           "since_id": {
             "type": "string",
@@ -4997,7 +4997,7 @@
           "limit": {
             "type": "integer",
             "description": "Limit the amount of results.",
-            "default": 50,
+            "default": 10,
             "minimum": 1,
             "maximum": 250
           },
@@ -5047,7 +5047,7 @@
           "limit": {
             "description": "The maximum number of results to retrieve.",
             "type": "integer",
-            "default": 50,
+            "default": 10,
             "minimum": 1,
             "maximum": 250
           },
