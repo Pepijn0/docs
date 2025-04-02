@@ -706,7 +706,7 @@
     "/api/KarizClientApp/Unified/Fulfillments": {
       "post": {
         "tags": [
-          "Fulfillment"
+          "Orders"
         ],
         "summary": "List all Fulfillments",
         "description": "Retrieves fulfillments associated with an order.\n\nThe response is compatible with the Shopify REST API fulfillment schema. For detailed schema explanations, see the [Shopify REST API fulfillment resource]([https://shopify.dev/docs/api/admin-rest/2025-01/resources/fulfillment]).",
@@ -1158,7 +1158,7 @@
     "/api/KarizClientApp/Unified/Inventory": {
       "post": {
         "tags": [
-          "Inventory"
+          "Products"
         ],
         "summary": "List all inventory levels",
         "description": "Retrieves a list of inventory levels.\n\nProviding all this data in a single response simplifies inventory management integrations. The response is compatible with the Shopify REST API InventoryLevel schema. For detailed schema explanations, see the [Shopify REST API InventoryLevel resource]([https://shopify.dev/docs/api/admin-rest/2025-01/resources/inventorylevel]).",
@@ -2897,7 +2897,7 @@
     "/api/KarizClientApp/Unified/Refunds": {
       "post": {
         "tags": [
-          "Refunds"
+          "Orders"
         ],
         "summary": "List all Refunds",
         "description": "Retrieves a list of refunds for an order.\n\nThe response is compatible with the Shopify REST API refund schema. For detailed schema explanations, see the [Shopify REST API refund resource]([https://shopify.dev/docs/api/admin-rest/2025-01/resources/refund]).",
