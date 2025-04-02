@@ -164,27 +164,27 @@
               "items": {
                 "type": "string",
                 "enum": [
-                  "shopify",
                   "amazon",
-                  "woocommerce",
+                  "bigcommerce",
                   "bol",
-                  "sharetribe",
                   "lightspeed_c",
-                  "mirakl",
                   "magento",
-                  "bigcommerce"
+                  "mirakl",
+                  "sharetribe",
+                  "shopify",
+                  "woocommerce"
                 ]
               },
               "default": [
-                "shopify",
                 "amazon",
-                "woocommerce",
+                "bigcommerce",
                 "bol",
-                "sharetribe",
                 "lightspeed_c",
-                "mirakl",
                 "magento",
-                "bigcommerce"
+                "mirakl",
+                "sharetribe",
+                "shopify",
+                "woocommerce"
               ]
             }
           }
@@ -234,11 +234,10 @@
                 "bigcommerce",
                 "bol",
                 "lightspeed_c",
-                "shopify",
-                "woocommerce",
-                "mirakl",
                 "magento",
-                "bigcommerce"
+                "mirakl",
+                "shopify",
+                "woocommerce"
               ]
             },
             "required": true
@@ -719,15 +718,7 @@
             "schema": {
               "type": "string",
               "enum": [
-                "amazon",
-                "bigcommerce",
-                "bol",
-                "lightspeed_c",
-                "shopify",
-                "woocommerce",
-                "mirakl",
-                "magento",
-                "bigcommerce"
+                "shopify"
               ]
             },
             "required": true
@@ -1179,15 +1170,7 @@
             "schema": {
               "type": "string",
               "enum": [
-                "amazon",
-                "bigcommerce",
-                "bol",
-                "lightspeed_c",
-                "shopify",
-                "woocommerce",
-                "mirakl",
-                "magento",
-                "bigcommerce"
+                "shopify"
               ]
             },
             "required": true
@@ -1522,11 +1505,10 @@
                 "bigcommerce",
                 "bol",
                 "lightspeed_c",
-                "shopify",
-                "woocommerce",
-                "mirakl",
                 "magento",
-                "bigcommerce"
+                "mirakl",
+                "shopify",
+                "woocommerce"
               ]
             },
             "required": true
@@ -2353,11 +2335,10 @@
                 "bigcommerce",
                 "bol",
                 "lightspeed_c",
-                "shopify",
-                "woocommerce",
-                "mirakl",
                 "magento",
-                "bigcommerce"
+                "mirakl",
+                "shopify",
+                "woocommerce"
               ]
             },
             "required": true
@@ -2928,15 +2909,7 @@
             "schema": {
               "type": "string",
               "enum": [
-                "amazon",
-                "bigcommerce",
-                "bol",
-                "lightspeed_c",
-                "shopify",
-                "woocommerce",
-                "mirakl",
-                "magento",
-                "bigcommerce"
+                "shopify"
               ]
             },
             "required": true
