@@ -5184,7 +5184,27 @@
                   "type": "string"
                 },
                 "value": {
-                  "type": "string"
+                  "oneOf": [
+                    {
+                      "type": "string",
+                      "description": "A single string value."
+                    },
+                    {
+                      "type": "number",
+                      "description": "A numeric value (integer or float)."
+                    },
+                    {
+                      "type": "boolean",
+                      "description": "A boolean value (true or false)."
+                    },
+                    {
+                      "type": "array",
+                      "description": "An array of string values.",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  ]
                 }
               },
               "required": [
